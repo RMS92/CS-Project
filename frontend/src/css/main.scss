@@ -1,0 +1,50 @@
+// Variables
+// ==================
+:root {
+  --color: #555770;
+  --color-muted: #8F90A6;
+  --background: #FFFFFF;
+
+  --color-primary-02: #3E7BFA;
+  --color-primary-03: #6698FA;
+
+  --border: #EBEBF0;
+  --form-border: #E4E4EB;
+
+  --box-shadow-03: 0px 0px 2px rgba(40, 41, 61, 0.04), 0px 4px 8px rgba(96, 97, 112, 0.16);
+
+  --gap: 20px;
+  --card-padding: 16px;
+  --space: 8px;
+  --size: 45px;
+}
+
+// Outils
+// ==================
+@import "tools/reset";
+@import "tools/functions";
+@import "tools/mixins";
+@import "tools/layout";
+@import "tools/typography";
+
+// Generic
+// ==================
+body {
+  font-family: $font;
+  font-size: 16px;
+  color: var(--color);
+  line-height: 1.6;
+  background: var(--background);
+  scroll-margin: 100px 0 0 0;
+  word-break: break-word;
+}
+
+// Modules
+// ==================
+@import "modules/header";
+@import "modules/form";
+@import "modules/card";
+
+// Pages
+// ==================
+@import "pages/events";

@@ -27,11 +27,11 @@ export default function Header() {
           </div>
         </li>
         <li className="header__auth">
-          <NavLink exact to="/inscription" className="btn-primary-outlined">
+          <NavLink exact to="/inscription">
             S'inscrire
           </NavLink>
           <span className="text-muted"> · </span>
-          <NavLink exact to="/connexion" className="btn-primary">
+          <NavLink exact to="/connexion">
             Me connecter
           </NavLink>
         </li>

@@ -97,7 +97,7 @@ $font-alt: 'Inter', sans-serif;
 }
 
 %underlined {
-  border-bottom: 1px solid var(--tab-border);
+  border-bottom: 1px solid var(--form-border);
   padding-bottom: space(1);
   margin-bottom: space(3);
 }
@@ -248,7 +248,7 @@ a.underline:hover {
 }
 
 .text-muted {
-  color: var(--color-dark-04)
+  color: var(--color-muted)
 }
 
 .text-light {
@@ -266,7 +266,6 @@ a.underline:hover {
 
 .icon-verticalAlign {
   display: flex;
-
   align-items: center;
 }
 

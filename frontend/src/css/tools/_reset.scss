@@ -177,10 +177,15 @@ textarea {
 
 hr {
   height: 1px;
-  background: var(--tab-border);
+  background: var(--form-border);
   margin: 0;
   padding: 0;
   border: none;
+}
+
+.hr-separated {
+  width: 50%;
+  margin-left: 25vw;
 }
 
 *:focus:not(:focus-visible) {

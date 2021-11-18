@@ -36,6 +36,17 @@ export default function Icon(props: Props) {
         fill="currentColor"
       />
     </svg>
+  ) : name === "clock" ? (
+    <svg {...props} fill="none" viewBox="0 0 24 24" id="clock">
+      <path
+        d="M11.99 2A10 10 0 1012 21.99 10 10 0 0011.99 2zM12 20a8 8 0 110-16 8 8 0 010 16z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"
+        fill="currentColor"
+      />
+    </svg>
   ) : name === "user" ? (
     <svg {...props} fill="none" viewBox="0 0 12 13">
       <path

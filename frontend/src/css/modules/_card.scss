@@ -119,11 +119,11 @@
   align-items: center;
   padding: 8px var(--card-padding);
   color: var(--color-muted);
-  background: #FAFAFC;
+  background: var(--color-white-04);
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     margin-right: space(1);
   }
 

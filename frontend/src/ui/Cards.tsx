@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Icon from "./Icon";
 
 export default function EventCard() {
   return (
     <div className="card">
       <div className="card__body stack">
         <div className="card__title">
-          <Link to={`/events/event`}>Titre évènement</Link>
+          <Link to={`/events/event`}>Barbecue viande</Link>
         </div>
         <div className="card__description mb2">
           <p>
@@ -14,7 +15,7 @@ export default function EventCard() {
             combler l&apos;espace de text haha, je ne sert donc a rien :p
           </p>
         </div>
-        <Link to={`/event/event`} className="card__link" />
+        <Link to={`/events/event`} className="card__link" />
       </div>
       <div className="card__progress" />
       <footer className="card__footer">
@@ -22,10 +23,16 @@ export default function EventCard() {
           <Link to={`/profil/user`} className="avatar">
             <img src="/media/default.png" alt="avatar-default" />
           </Link>
+          <Link to={`/profil/user`} className="avatar">
+            <img src="/media/default.png" alt="avatar-default" />
+          </Link>
         </div>
-        <div></div>
+        <div className="center">
+          <Icon name="clock" />
+          55 min
+        </div>
       </footer>
-      <div className="card__badge">17/09 15h00</div>
+      <div className="card__badge">17/09</div>
     </div>
   );
 }

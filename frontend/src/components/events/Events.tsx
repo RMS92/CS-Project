@@ -1,5 +1,6 @@
 import React from "react";
-import EventCard from "../ui/Cards";
+import { Link } from "react-router-dom";
+import EventCard from "../../ui/Cards";
 
 export default function Events() {
   return (
@@ -13,6 +14,11 @@ export default function Events() {
           :)
           <br />
           C'est facile et simple d'utilisation :p
+        </div>
+        <div className="hstack" style={{ display: "block" }}>
+          <Link to={"/events/nouveau"} className="btn-primary">
+            Créer un évènement
+          </Link>
         </div>
       </div>
       <hr className="hr-separated" />

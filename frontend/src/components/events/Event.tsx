@@ -1,7 +1,7 @@
 import React from "react";
-import Icon from "../ui/Icon";
-import Field from "../ui/Field";
-import Comment from "./Comment";
+import Icon from "../../ui/Icon";
+import Field from "../../ui/Field";
+import Comment from "../Comment";
 
 export default function Event() {
   const handleSubmit = async () => {};
@@ -26,6 +26,19 @@ export default function Event() {
       <hr className="hr-separated" />
       <div className="layout-sidebar py5">
         <main className="stack-large">
+          <div className="stack">
+            <h4 className="stack-large__title">
+              <Icon name="default" />
+              Informations
+            </h4>
+            <div className="level1 stack-large p3">
+              <p>
+                L&apos;évènement Barbecue Viande se déroulera le{" "}
+                <strong>21/12/2021</strong> de 16h à 17h à l'adresse: 15 Avenue
+                Crampel, Toulouse - 31555
+              </p>
+            </div>
+          </div>
           <div className="comment-area">
             <div className="comments__title">6 commentaires</div>
             <form className="grid" onSubmit={handleSubmit}>

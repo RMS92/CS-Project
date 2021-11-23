@@ -17,6 +17,51 @@ export default function Icon(props: Props) {
         />
       </svg>
     </svg>
+  ) : name === "default" ? (
+    <svg {...props} fill="none" viewBox="0 0 13 12">
+      <g clip-path="url(#clip0_90_120)">
+        <path
+          fill="currentColor"
+          d="M11.5 0h-10a1 1 0 00-1 1v2a1 1 0 001 1h10a1 1 0 001-1V1a1 1 0 00-1-1zm1 6H.5v2h12V6zm-5 4h-7v2h7v-2z"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_90_120">
+          <path fill="#fff" d="M0 0h12v12H0z" transform="translate(.5)" />
+        </clipPath>
+      </defs>
+    </svg>
+  ) : name === "trash" ? (
+    <svg {...props} viewBox="0 0 24 24" fill="none">
+      <path
+        d="M3 6H5H21"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 11V17"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 11V17"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   ) : name === "home" ? (
     <svg {...props} viewBox="0 0 16 16" fill="none">
       <path
@@ -45,6 +90,18 @@ export default function Icon(props: Props) {
       <path
         d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"
         fill="currentColor"
+      />
+    </svg>
+  ) : name === "info" ? (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+      fill="none"
+      viewBox="0 0 3 10"
+    >
+      <path
+        fill="currentColor"
+        d="M2.93 3.59l-2.29.29-.08.38.45.08c.3.07.35.17.29.47L.56 8.28c-.2.9.1 1.31.8 1.31.55 0 1.18-.25 1.47-.6l.09-.41c-.2.18-.5.25-.69.25-.27 0-.37-.2-.3-.54l1-4.7zM2 2.5a1 1 0 100-2 1 1 0 000 2z"
       />
     </svg>
   ) : name === "user" ? (

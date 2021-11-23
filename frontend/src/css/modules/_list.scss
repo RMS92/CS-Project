@@ -17,6 +17,16 @@
   }
 }
 
+.list-group svg {
+  margin-left: space(2);
+  width: 16px;
+  height: 16px;
+}
+
+.list-group .icon-trash {
+  color: var(--color-red-02);
+}
+
 .list-icons a  {
   display: block;
   svg {

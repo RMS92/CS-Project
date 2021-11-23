@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Events from "./components/Events";
+import Events from "./components/events/Events";
 import Page from "./components/Page";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import Event from "./components/Event";
+import Event from "./components/events/Event";
 import Profil from "./components/Profil";
+import CreateEvent from "./components/events/CreateEvent";
 
 function App() {
   return (
@@ -20,6 +21,11 @@ function App() {
           <Route exact path="/events/event">
             <Page>
               <Event />
+            </Page>
+          </Route>
+          <Route exact path="/events/nouveau">
+            <Page>
+              <CreateEvent />
             </Page>
           </Route>
           <Route exact path="/profil">

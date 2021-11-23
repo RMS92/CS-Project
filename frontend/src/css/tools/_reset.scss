@@ -185,7 +185,11 @@ hr {
 
 .hr-separated {
   width: 50%;
-  margin-left: 25vw;
+  margin-left: calc(100vh - 50%);
+}
+
+strong {
+  font-weight: bold;
 }
 
 *:focus:not(:focus-visible) {

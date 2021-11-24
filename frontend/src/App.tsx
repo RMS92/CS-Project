@@ -7,6 +7,7 @@ import Register from "./components/auth/Register";
 import Event from "./components/events/Event";
 import Profil from "./components/Profil";
 import CreateEvent from "./components/events/CreateEvent";
+import ProfilView from "./components/ProfilView";
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
           <Route exact path="/profil">
             <Page>
               <Profil />
+            </Page>
+          </Route>
+          <Route exact path="/profil/id">
+            <Page>
+              <ProfilView />
             </Page>
           </Route>
           <Route exact path="/connexion">

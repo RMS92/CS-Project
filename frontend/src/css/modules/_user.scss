@@ -1,0 +1,135 @@
+.profil-header {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+  grid-gap: calc(2 * var(--space));
+}
+
+.profil-header__avatar, .profil-header__icon {
+  display: block;
+  width: 110px;
+  height: 110px;
+  border-radius: 110px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  // background-color: var(--tab-border);
+  border: solid 2px var(--form-border);
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 110px;
+    transition: opacity .3s;
+  }
+
+  input {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+}
+
+.profil-header__icon {
+  display: block;
+  width: 110px;
+  height: 110px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.profil-header__avatar:hover .profil-header__upload {
+  transform: translateY(0);
+}
+
+.profil-header__avatar:hover img {
+  opacity: .7;
+}
+
+.profil-header__upload {
+  width: 110px;
+  height: 25px;
+  background: var(--form-border);
+  transform: translateY(100%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: var(--color-dark-05);
+}
+
+.profil-header__body > * {
+  margin-bottom: 4px;
+}
+
+.profil-header__body p > * {
+  margin-right: space(1);
+}
+
+.profil-header__body h5 .badge {
+  margin-left: space(2);
+}
+
+.profil-header__body h5 a {
+  margin-left: 10px;
+}
+
+.profil-nav {
+  @extend %container;
+  @extend %level1;
+  padding-left: space(2);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .icon {
+    width: 21px;
+    height: 21px;
+    margin-right: space(1.5);
+  }
+}
+
+.profil-nav a {
+  padding-top: var(--gap);
+  padding-bottom: var(--gap);
+  margin-right: space(6);
+
+  &:hover {
+    color: var(--color-primary-03)
+  }
+}
+
+.profil-nav .is-selected {
+  color: var(--color-primary-03);
+  border-bottom: 3px solid var(--color-primary-03);
+}
+
+@include down(610px) {
+  .profil-header {
+    grid-template-columns: 1fr;
+  }
+  .profil-header__avatar {
+    display: none;
+  }
+}
+

@@ -104,6 +104,18 @@ export default function Icon(props: Props) {
         d="M2.93 3.59l-2.29.29-.08.38.45.08c.3.07.35.17.29.47L.56 8.28c-.2.9.1 1.31.8 1.31.55 0 1.18-.25 1.47-.6l.09-.41c-.2.18-.5.25-.69.25-.27 0-.37-.2-.3-.54l1-4.7zM2 2.5a1 1 0 100-2 1 1 0 000 2z"
       />
     </svg>
+  ) : name === "invitations" ? (
+    <svg {...props} fill="none" viewBox="0 0 24 24">
+      <g>
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M18 8A6 6 0 106 8c0 7-3 9-3 9h18s-3-2-3-9zM13.73 21a1.999 1.999 0 01-3.46 0"
+        />
+      </g>
+    </svg>
   ) : name === "user" ? (
     <svg {...props} fill="none" viewBox="0 0 12 13">
       <path

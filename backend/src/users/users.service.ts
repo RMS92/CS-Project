@@ -1,8 +1,9 @@
 import { Injectable, Provider } from "@nestjs/common";
 import { DatabaseTable } from "../database/database.decorator";
 import { DatabaseService } from "../database/database.service";
-import { User } from "./schemas/user.schema";
-import { Observable } from "rxjs";
+import { User } from "./models/user.model";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Injectable()
 export class UsersService {
@@ -25,5 +26,25 @@ export class UsersService {
     });
   }
 
-  create() {}
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const now = Date.now();
+    return this.db.insert({
+      query: "pseudo, password, role, created_at, updated_at",
+      where: `'${createUserDto.pseudo}', '${createUserDto.password}', 'ROLE_USER', ${now}, ${now}`,
+    });
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    return this.db.update({
+      query: `pseudo = '${updateUserDto.pseudo}'`,
+      where: "id = " + id,
+    });
+  }
+
+  async delete(id: number): Promise<User> {
+    return this.db.delete({
+      query: "",
+      where: "id = " + id,
+    });
+  }
 }

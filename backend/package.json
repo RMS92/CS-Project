@@ -29,6 +29,7 @@
     "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^7.6.15",
     "@nestjs/mapped-types": "*",
+    "class-validator": "^0.13.1",
     "@nestjs/platform-express": "^7.6.15",
     "@ogma/logger": "^2.2.0",
     "@ogma/nestjs-module": "^3.1.0",

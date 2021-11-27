@@ -7,6 +7,7 @@ import { catchError, map, tap } from "rxjs/operators";
 import {
   DatabaseFeatureOptions,
   DatabaseInterface,
+  DeleteParams,
   InsertParams,
   QueryParams,
   UpdateManyParams,
@@ -47,29 +48,31 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
     return rows[0];
   }
 
-  async insert(params: InsertParams): Promise<T[]> {
+  async insert(params: InsertParams): Promise<T> {
     const query =
-      "INSERT INTO " +
+      "INSERT INTO public." +
       this.tableName +
       " (" +
       params.query +
       ") VALUES (" +
       params.where +
       ") RETURNING *;";
-    return this.executeQuery(query);
+    console.log(query);
+    const rows = await this.executeQuery(query);
+    return rows[0];
   }
 
-  // tslint:disable-next-line: no-identical-functions
-  async update(params: UpdateParams): Promise<T[]> {
+  async update(params: UpdateParams): Promise<T> {
     const query =
-      "UPDATE " +
+      "UPDATE public." +
       this.tableName +
       " SET " +
       params.query +
       " WHERE " +
       params.where +
       " RETURNING *;";
-    return this.executeQuery(query);
+    const rows = await this.executeQuery(query);
+    return rows[0];
   }
 
   async updateMany(params: UpdateManyParams): Promise<T[]> {
@@ -89,8 +92,11 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async delete(params: QueryParams): Promise<T[]> {
-    const query = "";
-    return this.executeQuery(query);
+  async delete(params: DeleteParams): Promise<T> {
+    const query =
+      "DELETE FROM public." + this.tableName + " WHERE " + params.where;
+    console.log(query);
+    const rows = await this.executeQuery(query);
+    return rows[0];
   }
 }

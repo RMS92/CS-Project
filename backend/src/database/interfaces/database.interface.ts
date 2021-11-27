@@ -23,13 +23,19 @@ export interface QueryParams {
 export interface InsertParams {
   query: string;
   where?: string;
-  variables: any[];
+  // variables: any[];
 }
 
 export interface UpdateParams {
   query: string;
   where?: string;
-  variables: any[];
+  // variables: any[];
+}
+
+export interface DeleteParams {
+  query: string;
+  where: string;
+  // variables: any[];
 }
 
 export interface UpdateManyParams {
@@ -53,17 +59,17 @@ export interface DatabaseInterface<T> {
    * Method specifically for running inserts
    * @param params object of string and any array for what query should be run and with what parameters for SQL injection protection
    */
-  insert(params: QueryParams): Promise<T[]>;
+  insert(params: QueryParams): Promise<T>;
 
   /**
    * Method specifically for running updates
    * @param params object of string and any array for what query should be run and with what parameters for SQL injection protection
    */
-  update(params: QueryParams): Promise<T[]>;
+  update(params: QueryParams): Promise<T>;
 
   /**
    * Method specifically for running deletes
    * @param params object of string and any array for what query should be run and with what parameters for SQL injection protection
    */
-  delete(params: QueryParams): Promise<T[]>;
+  delete(params: QueryParams): Promise<T>;
 }

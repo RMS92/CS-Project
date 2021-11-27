@@ -7,7 +7,7 @@ export class User {
   @t
   pseudo: string;
 
-  /* @t
+  @t
   password: string;
 
   @t
@@ -17,5 +17,5 @@ export class User {
   created_at: Date;
 
   @t
-  updated_at: Date;*/
+  updated_at: Date;
 }

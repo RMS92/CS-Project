@@ -44,6 +44,7 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       this.tableName +
       " WHERE " +
       params.where;
+    console.log("QUERY: ", query);
     const rows = await this.executeQuery(query);
     return rows[0];
   }

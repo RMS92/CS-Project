@@ -10,6 +10,10 @@ import {
 } from "./options";
 import { OgmaModule } from "@ogma/nestjs-module";
 import { UsersModule } from "./users/users.module";
+import { AuthModule } from "./auth/auth.module";
+import { PassportModule } from "@nestjs/passport";
+import { SecurityModule } from "./security/security.module";
+import { IAuthModuleOptions } from "@nestjs/passport/dist/interfaces/auth-module.options";
 
 @Module({
   imports: [
@@ -24,7 +28,16 @@ import { UsersModule } from "./users/users.module";
       useClass: OgmaModuleConfig,
       imports: [ConfigModule.Deferred],
     }),
+    PassportModule.registerAsync({
+      useFactory: async () => {
+        return {
+          session: true,
+        };
+      },
+    }),
     UsersModule,
+    AuthModule,
+    SecurityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

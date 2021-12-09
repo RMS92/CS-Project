@@ -71,6 +71,10 @@ export class ConfigService {
     return this.envConfig.PORT;
   }
 
+  get sessionSecret(): string {
+    return this.envConfig.SESSION_SECRET;
+  }
+
   get applicationName(): string {
     return this.envConfig.APPLICATION;
   }

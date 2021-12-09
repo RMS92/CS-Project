@@ -26,6 +26,21 @@ export class UsersService {
     });
   }
 
+  async findByPseudo(field: string) {
+    return this.db.query({
+      query: "*",
+      where: "pseudo = " + `'${field}'`,
+    });
+  }
+
+  async pseudoExists(pseudo: string) {
+    const user = await this.db.query({
+      query: "*",
+      where: "pseudo = " + `'${pseudo}'`,
+    });
+    return !!user;
+  }
+
   async create(createUserDto: CreateUserDto): Promise<User> {
     const now = Date.now();
     return this.db.insert({

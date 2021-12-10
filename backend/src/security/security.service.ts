@@ -36,9 +36,7 @@ export class SecurityService {
     );
     if (!pseudoExists) {
       if (createUserDTO.password2 === createUserDTO.password) {
-        createUserDTO.password = await this.authService.hashPassword(
-          createUserDTO.password
-        );
+        // Hash passwords ?
         // Send confirmation email
         // Create account
         await this.usersService.create(createUserDTO);

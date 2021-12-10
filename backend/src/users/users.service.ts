@@ -33,6 +33,13 @@ export class UsersService {
     });
   }
 
+  async findByPseudoAndPassword(pseudo: string, password: string) {
+    return this.db.query({
+      query: "*",
+      where: "pseudo = " + `'${pseudo}'` + " AND password = " + `'${password}'`,
+    });
+  }
+
   async pseudoExists(pseudo: string) {
     const user = await this.db.query({
       query: "*",

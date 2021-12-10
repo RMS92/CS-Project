@@ -3,15 +3,19 @@ import Icon from "../ui/Icon";
 import Field from "../ui/Field";
 import clsx from "clsx";
 import EventCard from "../ui/Cards";
+import { User } from "../types";
+import { formatTitle } from "../utils/functions";
 
-export default function Profil() {
+export default function Profil({ user }: { user: User }) {
   const [page, setPage] = useState("profil");
 
   return (
     <div className="container py5">
       <div className="stack-extra mb5">
         <div className="events-hero stack">
-          <div className="hero-title">Profil de Roromain</div>
+          <div className="hero-title">
+            Profil de {formatTitle(user?.pseudo)}
+          </div>
           <div className="hero-text">
             Tu fais bel et bien partie de la communauté d'évènements de CS
             Rennes :)
@@ -83,9 +87,7 @@ function ProfilBodyEdit() {
               Mes informations
             </h4>
             <div className="level1 grid p3">
-              <Field name="pseudo" type="text">
-                Pseudo
-              </Field>
+              <Field name="pseudo" type="text"></Field>
             </div>
             <div className="text-right">
               <button className="btn-primary" type="button">

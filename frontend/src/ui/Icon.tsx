@@ -17,9 +17,21 @@ export default function Icon(props: Props) {
         />
       </svg>
     </svg>
+  ) : name === "cross" ? (
+    <svg
+      {...props}
+      viewBox="0 0 8 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8 1.14667L6.85333 0L4 2.85333L1.14667 0L0 1.14667L2.85333 4L0 6.85333L1.14667 8L4 5.14667L6.85333 8L8 6.85333L5.14667 4L8 1.14667Z"
+        fill="currentColor"
+      />
+    </svg>
   ) : name === "default" ? (
     <svg {...props} fill="none" viewBox="0 0 13 12">
-      <g clip-path="url(#clip0_90_120)">
+      <g clipPath="url(#clip0_90_120)">
         <path
           fill="currentColor"
           d="M11.5 0h-10a1 1 0 00-1 1v2a1 1 0 001 1h10a1 1 0 001-1V1a1 1 0 00-1-1zm1 6H.5v2h12V6zm-5 4h-7v2h7v-2z"
@@ -104,17 +116,55 @@ export default function Icon(props: Props) {
         d="M2.93 3.59l-2.29.29-.08.38.45.08c.3.07.35.17.29.47L.56 8.28c-.2.9.1 1.31.8 1.31.55 0 1.18-.25 1.47-.6l.09-.41c-.2.18-.5.25-.69.25-.27 0-.37-.2-.3-.54l1-4.7zM2 2.5a1 1 0 100-2 1 1 0 000 2z"
       />
     </svg>
+  ) : name === "logout" ? (
+    <svg
+      {...props}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M0 2.667C0 1.2 1.2 0 2.666 0H13.33v2.667H2.666v18.666H13.33V24H2.666A2.674 2.674 0 010 21.333V2.667zm18.897 8l-3.38-3.382L17.4 5.4 24 12l-6.599 6.6-1.884-1.885 3.38-3.382h-8.78v-2.666h8.78z"
+        fill="currentColor"
+      />
+    </svg>
   ) : name === "invitations" ? (
     <svg {...props} fill="none" viewBox="0 0 24 24">
       <g>
         <path
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           d="M18 8A6 6 0 106 8c0 7-3 9-3 9h18s-3-2-3-9zM13.73 21a1.999 1.999 0 01-3.46 0"
         />
       </g>
+    </svg>
+  ) : name === "success" ? (
+    <svg
+      {...props}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 2a10.01 10.01 0 000 20 10.01 10.01 0 000-20zm-2 14.41l-3.71-3.7 1.41-1.42 2.3 2.3 5.3-5.3 1.4 1.42-6.7 6.7z"
+        fill="currentColor"
+      />
+    </svg>
+  ) : name === "warning" ? (
+    <svg
+      {...props}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M14.93 13.38L8.43 2.12A.5.5 0 008 1.88a.5.5 0 00-.43.25l-6.5 11.25a.5.5 0 00.43.76h13a.5.5 0 00.43-.76zM7.5 6.5c0-.07.06-.13.13-.13h.75c.06 0 .12.06.12.13v2.88c0 .06-.06.12-.12.12h-.75a.13.13 0 01-.13-.13V6.5zM8 12a.75.75 0 010-1.5.75.75 0 010 1.5z"
+        fill="currentColor"
+      />
     </svg>
   ) : name === "user" ? (
     <svg {...props} fill="none" viewBox="0 0 12 13">

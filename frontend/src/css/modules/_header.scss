@@ -102,6 +102,11 @@
   margin-right: calc(2 * var(--space));
 }
 
+.header-side > .header__account a, .header-side > .header__logout a {
+  display: flex;
+  align-items: center;
+}
+
 .header__search {
   display: flex;
   align-items: center;

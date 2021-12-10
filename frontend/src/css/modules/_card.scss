@@ -24,6 +24,7 @@
 .notification,
 %notification {
   //@extend %level3;
+  box-shadow: var(--box-shadow-03);
   border-radius: 3px;
   transition: 0.3s;
 }

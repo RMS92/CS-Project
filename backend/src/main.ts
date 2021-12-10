@@ -12,6 +12,13 @@ async function bootstrap() {
     AppModule,
     process.env.NODE_ENV === "production" ? { logger: false } : {}
   );
+
+  const corsOptions = {
+    origin: ["http://localhost:3000"],
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  };
+
   const config = app.get<ConfigService>(ConfigService);
   const logger = app.get<OgmaService>(OgmaService);
   app.useLogger(logger);
@@ -27,8 +34,8 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         // secure: true,
-        httpOnly: true,
-        sameSite: "strict",
+        // httpOnly: true,
+        sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000,
       },
       /*store: new MongoStore({
@@ -41,6 +48,9 @@ async function bootstrap() {
   // Passport initialization
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // Cross-origin resource sharing
+  app.enableCors(corsOptions);
 
   await app.listen(port);
   logger.log(`Listening at ${await app.getUrl()}`, "NestApplication");

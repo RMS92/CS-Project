@@ -26,21 +26,24 @@ export class UsersService {
     });
   }
 
-  async findByPseudo(field: string) {
+  async findByPseudo(field: string): Promise<User> {
     return this.db.query({
       query: "*",
       where: "pseudo = " + `'${field}'`,
     });
   }
 
-  async findByPseudoAndPassword(pseudo: string, password: string) {
+  async findByPseudoAndPassword(
+    pseudo: string,
+    password: string
+  ): Promise<User> {
     return this.db.query({
       query: "*",
       where: "pseudo = " + `'${pseudo}'` + " AND password = " + `'${password}'`,
     });
   }
 
-  async pseudoExists(pseudo: string) {
+  async pseudoExists(pseudo: string): Promise<boolean> {
     const user = await this.db.query({
       query: "*",
       where: "pseudo = " + `'${pseudo}'`,

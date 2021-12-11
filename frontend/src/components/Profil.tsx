@@ -150,29 +150,9 @@ function ProfilBodyEdit() {
 }
 
 function ProfilBodyEvents() {
-  return (
-    <div className="events mt5">
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-    </div>
-  );
+  return <div className="events mt5"></div>;
 }
 
 function ProfilBodyInvitations() {
-  return (
-    <div className="events mt5">
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-    </div>
-  );
+  return <div className="events mt5"></div>;
 }

@@ -9,7 +9,7 @@ import Events from "./components/events/Events";
 import Page from "./components/Page";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import Event from "./components/events/Event";
+import Event from "./components/events/ShowEvent";
 import Profil from "./components/Profil";
 import CreateEvent from "./components/events/CreateEvent";
 import ProfilView from "./components/ProfilView";
@@ -45,11 +45,11 @@ function App() {
           <Route exact path="/">
             <Events />
           </Route>
-          <Route exact path="/events/event">
-            <Event />
-          </Route>
           <Route exact path="/events/nouveau">
-            <CreateEvent />
+            {user ? <CreateEvent /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/events/:id">
+            <Event />
           </Route>
           <Route exact path="/profil">
             {user ? <Profil user={user} /> : <Redirect to="/" />}

@@ -1,9 +1,26 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
+import { apiFetch, formToObject } from "../../utils/api";
 import Icon from "../../ui/Icon";
 import Field from "../../ui/Field";
 
 export default function CreateEvent() {
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    const form: HTMLFormElement = e.target as HTMLFormElement;
+    const data: string = JSON.stringify(formToObject(form));
+
+    try {
+      await apiFetch("/events", {
+        method: "post",
+        body: data,
+        dataType: "json",
+      });
+      form.reset();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="container py5">
       <div className="events-hero stack mb5">

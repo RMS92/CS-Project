@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Icon from "../../ui/Icon";
 import Field from "../../ui/Field";
+import { Event } from "../../types";
+import { apiFetch } from "../../utils/api";
 import Comment from "../Comment";
+import { dateDiff } from "../../utils/functions";
 
-export default function Event() {
+export default function ShowEvent() {
+  const [event, setEvent] = useState<Event | null>();
+  // @ts-ignore
+  const { id } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      const res = await apiFetch("/events/" + id);
+      setEvent(res);
+    })();
+  }, []);
+
+  console.log("event: ", event);
+
+  if (!event) {
+    return <></>;
+  }
   const handleSubmit = async () => {};
 
   return (
     <div className="container py5">
       <div className="stack-extra mb5">
         <div className="events-hero stack">
-          <div className="hero-title">Barbecue viande</div>
-          <div className="hero-text">
-            Je suis la description de l'évènement et je suis la juste pour
-            combler l&apos;espace de text haha, je ne sert donc a rien. Je suis
-            la description de l'évènement et je suis la juste pour combler
-            l&apos;espace de text haha, je ne sert donc a rien. Je suis la
-            description de l'évènement et je suis la :p
-          </div>
+          <div className="hero-title">{event.title}</div>
+          <div className="hero-text">{event.content}</div>
           <div className="hstack" style={{ display: "block" }}>
             <button className="btn-primary">Participer à l'évènement</button>
           </div>
@@ -34,8 +48,10 @@ export default function Event() {
             <div className="level1 stack-large p3">
               <p>
                 L&apos;évènement Barbecue Viande se déroulera le{" "}
-                <strong>21/12/2021</strong> de 16h à 17h à l'adresse: 15 Avenue
-                Crampel, Toulouse - 31555
+                <strong>
+                  {new Date(parseFloat(event?.begin_at)).toLocaleDateString()}
+                </strong>{" "}
+                de 16h à 17h à l'adresse: {event.place}
               </p>
             </div>
           </div>
@@ -62,7 +78,9 @@ export default function Event() {
         <aside className="">
           <div className="stack-large">
             <div className="text-right">
-              <small className="text-muted">Il y a 1 heure.</small>
+              <small className="text-muted">
+                {dateDiff(new Date(parseFloat(event.created_at)))}
+              </small>
             </div>
             <div>
               <h5 className="h5 mb2">Participants</h5>

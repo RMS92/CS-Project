@@ -8,6 +8,18 @@ export type User = {
   updated_at: Date;
 };
 
+export type Event = {
+  id: string;
+  title: string;
+  content: string;
+  place: string;
+  duration: number;
+  begin_at: string;
+  created_at: string;
+  updated_at: Date;
+  user_id: string;
+};
+
 export type FlashMessage = {
   status: number;
   message: string;

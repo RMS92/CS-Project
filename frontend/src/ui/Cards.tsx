@@ -1,21 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
+import { formatDescription } from "../utils/functions";
 
-export default function EventCard() {
+export default function EventCard({
+  id,
+  title,
+  place,
+  begin_at,
+  duration,
+  description,
+}: {
+  id: string;
+  title: string;
+  place: string;
+  begin_at: string;
+  duration: number;
+  description: string;
+}) {
+  const beginDate = new Date(parseFloat(begin_at)).toLocaleDateString();
   return (
     <div className="card">
       <div className="card__body stack">
         <div className="card__title">
-          <Link to={`/events/event`}>Barbecue viande</Link>
+          <Link to={`/events/${id}`}>{title}</Link>
         </div>
         <div className="card__description mb2">
-          <p>
-            Je suis la description de l'évènement et je suis la juste pour
-            combler l&apos;espace de text haha, je ne sert donc a rien :p
-          </p>
+          <p>{formatDescription(description)}</p>
         </div>
-        <Link to={`/events/event`} className="card__link" />
+        <Link to={`/events/${id}`} className="card__link" />
       </div>
       <div className="card__progress" />
       <footer className="card__footer">
@@ -29,10 +42,11 @@ export default function EventCard() {
         </div>
         <div className="center">
           <Icon name="clock" />
-          55 min
+          {duration <= 3600 ? duration / 60 : duration / 60 / 60}
+          {duration <= 3600 ? " min" : " heures"}
         </div>
       </footer>
-      <div className="card__badge">17/09</div>
+      <div className="card__badge">{beginDate}</div>
     </div>
   );
 }

@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../../ui/Cards";
+import { useEvents } from "../../hooks/useEvents";
+import { Event } from "../../types";
 
 export default function Events() {
+  const { events, fetchEvents } = useEvents();
+
+  useEffect(() => {
+    (async () => {
+      await fetchEvents();
+    })();
+  }, []);
+
+  if (!events) {
+    return <></>;
+  }
+
   return (
     <div className="container py5">
       <div className="events-hero stack mb5">
@@ -23,16 +37,17 @@ export default function Events() {
       </div>
       <hr className="hr-separated" />
       <div className="events mt5">
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
+        {events.map((e: Event) => (
+          <EventCard
+            key={e.id}
+            id={e.id}
+            title={e.title}
+            place={e.place}
+            description={e.content}
+            duration={e.duration}
+            begin_at={e.begin_at}
+          />
+        ))}
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ export class UsersService {
 
   async findOne(id: number): Promise<User> {
     return this.db.query({
-      query: "*",
+      query: "id, pseudo",
       where: "id = " + id,
     });
   }

@@ -16,4 +16,6 @@ export class CreateEventDto {
   duration: Date;
 
   begin_at: Date;
+
+  start_time: number;
 }

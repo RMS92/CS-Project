@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Icon from "../../ui/Icon";
 import Field from "../../ui/Field";
-import { Event } from "../../types";
+import { Event, User } from "../../types";
 import { apiFetch } from "../../utils/api";
 import Comment from "../Comment";
-import { dateDiff } from "../../utils/functions";
+import { dateDiff, formatTitle } from "../../utils/functions";
 
 export default function ShowEvent() {
   const [event, setEvent] = useState<Event | null>();
+  const [author, setAuthor] = useState<User | null>();
   // @ts-ignore
   const { id } = useParams();
 
@@ -16,10 +17,11 @@ export default function ShowEvent() {
     (async () => {
       const res = await apiFetch("/events/" + id);
       setEvent(res);
+
+      const res2 = await apiFetch("/users/" + res.user_id);
+      setAuthor(res2);
     })();
   }, []);
-
-  console.log("event: ", event);
 
   if (!event) {
     return <></>;
@@ -51,7 +53,9 @@ export default function ShowEvent() {
                 <strong>
                   {new Date(parseFloat(event?.begin_at)).toLocaleDateString()}
                 </strong>{" "}
-                de 16h à 17h à l'adresse: {event.place}
+                de {event?.start_time}h à{" "}
+                {event?.start_time + event?.duration / 60}h à l&apos;adresse:{" "}
+                {event.place}.
               </p>
             </div>
           </div>
@@ -79,11 +83,24 @@ export default function ShowEvent() {
           <div className="stack-large">
             <div className="text-right">
               <small className="text-muted">
-                {dateDiff(new Date(parseFloat(event.created_at)))}
+                {dateDiff(new Date(parseFloat(event?.created_at)))}
               </small>
             </div>
             <div>
-              <h5 className="h5 mb2">Participants</h5>
+              <h5 className="h5 mb2">Créateur</h5>
+
+              <div className="flex">
+                <a href={`/profil/${event?.user_id}`} className="avatar">
+                  <img src="/media/default.png" alt="avatar-default" />
+                </a>
+                <div className="ml2">
+                  <strong className="bold">
+                    {formatTitle(author ? author.pseudo : "")}
+                  </strong>
+                  <br />
+                </div>
+              </div>
+              <h5 className="h5 mb2 mt2">Participants</h5>
               <div className="list-group">
                 <div className="flex">
                   <a href={`/profil/id`} className="avatar">

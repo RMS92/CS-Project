@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EventCard from "../../ui/Cards";
 import { useEvents } from "../../hooks/useEvents";
-import { Event } from "../../types";
+import { Event, User } from "../../types";
 
 export default function Events() {
   const { events, fetchEvents } = useEvents();
@@ -38,15 +38,7 @@ export default function Events() {
       <hr className="hr-separated" />
       <div className="events mt5">
         {events.map((e: Event) => (
-          <EventCard
-            key={e.id}
-            id={e.id}
-            title={e.title}
-            place={e.place}
-            description={e.content}
-            duration={e.duration}
-            begin_at={e.begin_at}
-          />
+          <EventCard key={e.id} event={e} onDelete={Promise.resolve} />
         ))}
       </div>
     </div>

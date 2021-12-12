@@ -2,33 +2,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
 import { formatDescription } from "../utils/functions";
+import { Event } from "../types";
 
 export default function EventCard({
-  id,
-  title,
-  place,
-  begin_at,
-  duration,
-  description,
+  event,
+  editable = false,
+  onDelete,
 }: {
-  id: string;
-  title: string;
-  place: string;
-  begin_at: string;
-  duration: number;
-  description: string;
+  event: Event;
+  editable?: boolean;
+  onDelete: (e: Event) => Promise<void>;
 }) {
-  const beginDate = new Date(parseFloat(begin_at)).toLocaleDateString();
+  const beginDate = new Date(parseFloat(event.begin_at)).toLocaleDateString();
+
   return (
     <div className="card">
       <div className="card__body stack">
         <div className="card__title">
-          <Link to={`/events/${id}`}>{title}</Link>
+          <Link to={`/events/${event.id}`}>{event.title}</Link>
         </div>
         <div className="card__description mb2">
-          <p>{formatDescription(description)}</p>
+          <p>{formatDescription(event.content)}</p>
         </div>
-        <Link to={`/events/${id}`} className="card__link" />
+        <Link to={`/events/${event.id}`} className="card__link" />
       </div>
       <div className="card__progress" />
       <footer className="card__footer">
@@ -42,11 +38,16 @@ export default function EventCard({
         </div>
         <div className="center">
           <Icon name="clock" />
-          {duration <= 3600 ? duration / 60 : duration / 60 / 60}
-          {duration <= 3600 ? " min" : " heures"}
+          {event.duration <= 60 ? event.duration : event.duration / 60}
+          {event.duration <= 60 ? " min" : " heures"}
         </div>
       </footer>
       <div className="card__badge">{beginDate}</div>
+      {editable ? (
+        <div className="card__icons" onClick={() => onDelete(event)}>
+          <Icon name="delete" className="icon icon-delete" />
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../ui/Icon";
 import Field from "../ui/Field";
 import clsx from "clsx";
 import EventCard from "../ui/Cards";
 import { User } from "../types";
 import { formatTitle } from "../utils/functions";
+import { useEvents } from "../hooks/useEvents";
+import { Event } from "../types";
 
 export default function Profil({ user }: { user: User }) {
   const [page, setPage] = useState("profil");
@@ -61,16 +63,16 @@ export default function Profil({ user }: { user: User }) {
           Invitations
         </a>
       </div>
-      <ProfilBody page={page} />
+      <ProfilBody user={user} page={page} />
     </div>
   );
 }
 
-function ProfilBody({ page }: { page: string }) {
+function ProfilBody({ user, page }: { user: User; page: string }) {
   return page === "profil" ? (
     <ProfilBodyEdit />
   ) : page === "events" ? (
-    <ProfilBodyEvents />
+    <ProfilBodyEvents user={user} />
   ) : page === "invitations" ? (
     <ProfilBodyInvitations />
   ) : null;
@@ -149,8 +151,31 @@ function ProfilBodyEdit() {
   );
 }
 
-function ProfilBodyEvents() {
-  return <div className="events mt5"></div>;
+function ProfilBodyEvents({ user }: { user: User }) {
+  const { events, fetchEvents, deleteEvent } = useEvents();
+
+  const filteredEvents = (events || []).filter(
+    (e: Event) => e.user_id === user.id
+  );
+
+  useEffect(() => {
+    (async () => {
+      await fetchEvents();
+    })();
+  }, []);
+
+  return (
+    <div className="events mt5">
+      {filteredEvents.map((e: Event) => (
+        <EventCard
+          key={e.id}
+          editable={true}
+          event={e}
+          onDelete={deleteEvent}
+        />
+      ))}
+    </div>
+  );
 }
 
 function ProfilBodyInvitations() {

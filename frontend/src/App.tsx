@@ -46,7 +46,7 @@ function App() {
             <Events />
           </Route>
           <Route exact path="/events/nouveau">
-            {user ? <CreateEvent /> : <Redirect to="/" />}
+            {user ? <CreateEvent user={user} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/events/:id">
             <Event />
@@ -54,7 +54,7 @@ function App() {
           <Route exact path="/profil">
             {user ? <Profil user={user} /> : <Redirect to="/" />}
           </Route>
-          <Route exact path="/profil/id">
+          <Route exact path="/profil/:id">
             <ProfilView />
           </Route>
           <Route exact path="/connexion">

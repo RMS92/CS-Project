@@ -1,9 +1,22 @@
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { apiFetch, formToObject } from "../../utils/api";
 import Icon from "../../ui/Icon";
 import Field from "../../ui/Field";
+import SelectBox from "../../ui/SelectBox";
+import { User } from "../../types";
 
-export default function CreateEvent() {
+export default function CreateEvent({ user }: { user: User }) {
+  const [users, setUsers] = useState<User[]>();
+  const [filteredValue, setFilteredValue] = useState<User>(user);
+  const filteredUsers = (users || []).filter((u: User) => u.id !== user.id);
+
+  useEffect(() => {
+    (async () => {
+      const res = await apiFetch("/users");
+      setUsers(res);
+    })();
+  }, []);
+
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
@@ -52,6 +65,9 @@ export default function CreateEvent() {
               <Field name="begin_at" type="date" placeholder="">
                 Date début
               </Field>
+              <Field name="start_time" type="text" placeholder="">
+                Heure de début
+              </Field>
               <Field name="duration" type="text" placeholder="">
                 Durée
               </Field>
@@ -73,27 +89,11 @@ export default function CreateEvent() {
             </div>
             <div>
               <h5 className="h5 mb2">Participants</h5>
-              <div className="form-group mb2">
-                <input placeholder="Recherche..." />
-              </div>
-              <div className="list-group">
-                <div className="flex">
-                  <a href={`/profil/id`} className="avatar">
-                    <img src="/media/default.png" alt="avatar-default" />
-                  </a>
-                  <div className="ml2">
-                    <strong className="bold">Romain Bernard</strong>
-                    <br />
-                  </div>
-                  <button>
-                    <Icon
-                      name="trash"
-                      className="icon icon-trash"
-                      onClick={() => {}}
-                    />
-                  </button>
-                </div>
-              </div>
+              <SelectBox
+                filteredValue={filteredValue}
+                setFilteredValue={setFilteredValue}
+                initialValues={filteredUsers}
+              />
             </div>
             <div></div>
           </div>

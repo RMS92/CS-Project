@@ -17,6 +17,9 @@ export class Event {
   duration: Date;
 
   @t
+  start_time: number;
+
+  @t
   created_at: Date;
 
   @t

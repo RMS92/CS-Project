@@ -15,6 +15,7 @@ export type Event = {
   place: string;
   duration: number;
   begin_at: string;
+  start_time: string;
   created_at: string;
   updated_at: Date;
   user_id: string;

@@ -32,8 +32,8 @@ export class EventsService {
 
     return this.db.insert({
       query:
-        "title, content, place, duration, begin_at, created_at, updated_at, user_id",
-      where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, ${begin_at}, ${now}, ${now}, ${user_id}`,
+        "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
+      where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
     });
   }
 

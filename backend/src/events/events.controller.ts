@@ -49,6 +49,7 @@ export class EventsController {
   }*/
 
   @Delete(":id")
+  @UseGuards(AuthenticatedGuard)
   async delete(@Param("id") id: string): Promise<Event> {
     return this.eventsService.delete(+id);
   }

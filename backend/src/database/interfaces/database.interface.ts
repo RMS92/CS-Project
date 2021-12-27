@@ -38,6 +38,13 @@ export interface DeleteParams {
   // variables: any[];
 }
 
+export interface JoinParams {
+  query: string;
+  join: string;
+  joinCondition: string;
+  where?: string;
+}
+
 export interface UpdateManyParams {
   query: string;
   tableAlias: string;

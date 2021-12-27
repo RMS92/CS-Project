@@ -8,13 +8,19 @@ export default function SelectBox({
   filteredValue,
   setFilteredValue,
   initialValues,
+  onClick,
 }: {
   filteredValue: User;
   setFilteredValue: Function;
   initialValues: User[];
+  onClick: Function;
 }) {
   const [visible, setVisible] = useToggle(false);
   const [search, setSearch] = useState("");
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useClickOutside(ref, setVisible);
 
   const filteredUsers = (initialValues || []).filter((u: User) =>
     search === "" || u.pseudo.toLowerCase().includes(search.toLowerCase())
@@ -55,7 +61,11 @@ export default function SelectBox({
                   f.id === filteredValue.id ? " active" : null
                 )}
                 role="option"
-                onClick={() => setFilteredValue(f)}
+                onClick={() => {
+                  setFilteredValue(f);
+                  onClick(f);
+                  setVisible();
+                }}
               >
                 {f.pseudo}
               </div>

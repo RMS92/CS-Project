@@ -9,6 +9,7 @@ import {
   DatabaseInterface,
   DeleteParams,
   InsertParams,
+  JoinParams,
   QueryParams,
   UpdateManyParams,
   UpdateParams,
@@ -74,6 +75,23 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       " RETURNING *;";
     const rows = await this.executeQuery(query);
     return rows[0];
+  }
+
+  async join(params: JoinParams): Promise<T[]> {
+    const query =
+      "SELECT " +
+      params.query +
+      " FROM public." +
+      this.tableName +
+      " JOIN public." +
+      params.join +
+      " ON " +
+      params.joinCondition +
+      " WHERE public." +
+      params.where;
+
+    console.log("QUERY JOIN: ", query);
+    return await this.executeQuery(query);
   }
 
   async updateMany(params: UpdateManyParams): Promise<T[]> {

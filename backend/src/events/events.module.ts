@@ -2,9 +2,13 @@ import { Module } from "@nestjs/common";
 import { EventsService } from "./events.service";
 import { EventsController } from "./events.controller";
 import { DatabaseModule } from "../database/database.module";
+import { UsersEventsModule } from "../users-events/users-events.module";
 
 @Module({
-  imports: [DatabaseModule.forFeature({ tableName: "event" })],
+  imports: [
+    DatabaseModule.forFeature({ tableName: "event" }),
+    UsersEventsModule,
+  ],
   controllers: [EventsController],
   providers: [EventsService],
 })

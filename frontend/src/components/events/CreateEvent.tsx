@@ -10,6 +10,8 @@ export default function CreateEvent({ user }: { user: User }) {
   const [filteredValue, setFilteredValue] = useState<User>(user);
   const filteredUsers = (users || []).filter((u: User) => u.id !== user.id);
 
+  const [participants, setParticipants] = useState<Array<User>>([]);
+
   useEffect(() => {
     (async () => {
       const res = await apiFetch("/users");
@@ -17,19 +19,34 @@ export default function CreateEvent({ user }: { user: User }) {
     })();
   }, []);
 
+  const onClick = async (user: User) => {
+    setParticipants((p) => [...p, user]);
+  };
+
+  const handleDelete = (user: User) => {
+    setParticipants(participants.filter((p) => p.id !== user.id));
+  };
+
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
+    const ids = [];
 
     const form: HTMLFormElement = e.target as HTMLFormElement;
-    const data: string = JSON.stringify(formToObject(form));
+    const data: object = formToObject(form);
+
+    //
+    for (let i = 0; i < participants.length; i++) ids.push(participants[i].id);
+
+    Object.assign(data, { users_ids: ids });
 
     try {
       await apiFetch("/events", {
         method: "post",
-        body: data,
+        body: JSON.stringify(data),
         dataType: "json",
       });
       form.reset();
+      setParticipants([]);
     } catch (err) {
       console.log(err);
     }
@@ -93,9 +110,33 @@ export default function CreateEvent({ user }: { user: User }) {
                 filteredValue={filteredValue}
                 setFilteredValue={setFilteredValue}
                 initialValues={filteredUsers}
+                onClick={onClick}
               />
             </div>
-            <div></div>
+            <div className="list-group">
+              {participants.length != 0
+                ? participants.map((p) => (
+                    <div className="flex" key={p.id}>
+                      <a href={`/profil/${p.id}`} className="avatar">
+                        <img src="/media/default.png" alt="avatar-default" />
+                      </a>
+                      <div className="ml2">
+                        <strong className="bold">{p.pseudo}</strong>
+                        <br />
+                      </div>
+                      <div className="list-group__delete">
+                        <Icon
+                          name="cross"
+                          className="icon icon-cross"
+                          onClick={() => {
+                            handleDelete(p);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))
+                : null}
+            </div>
           </div>
         </aside>
       </div>

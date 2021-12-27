@@ -3,9 +3,12 @@ import { DatabaseTable } from "../database/database.decorator";
 import { DatabaseService } from "../database/database.service";
 import { Event } from "./models/event.model";
 import { CreateEventDto } from "./dto/create-event.dto";
+import { UsersEventsService } from "../users-events/users-events.service";
 
 @Injectable()
 export class EventsService {
+  constructor(private readonly userEventService: UsersEventsService) {}
+
   @DatabaseTable("event")
   private readonly db: DatabaseService<Event>;
 
@@ -30,11 +33,17 @@ export class EventsService {
     const now = Date.now();
     const begin_at = new Date(createEventDto.begin_at).getTime();
 
-    return this.db.insert({
+    const event = await this.db.insert({
       query:
         "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
       where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
     });
+
+    for (let i = 0; i < createEventDto.users_ids.length; i++) {
+      await this.userEventService.create(createEventDto.users_ids[i], event.id);
+    }
+
+    return event;
   }
 
   /*async update(id: number, updateEventDto: UpdateEventDto): Promise<ShowEvent> {

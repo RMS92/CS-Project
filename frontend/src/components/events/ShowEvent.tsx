@@ -10,6 +10,7 @@ import { dateDiff, formatTitle } from "../../utils/functions";
 export default function ShowEvent() {
   const [event, setEvent] = useState<Event | null>();
   const [author, setAuthor] = useState<User | null>();
+  const [participants, setParticipants] = useState<User[] | null>();
   // @ts-ignore
   const { id } = useParams();
 
@@ -20,6 +21,9 @@ export default function ShowEvent() {
 
       const res2 = await apiFetch("/users/" + res.user_id);
       setAuthor(res2);
+
+      const res3 = await apiFetch("/users/events/" + id);
+      setParticipants(res3);
     })();
   }, []);
 
@@ -102,33 +106,19 @@ export default function ShowEvent() {
               </div>
               <h5 className="h5 mb2 mt2">Participants</h5>
               <div className="list-group">
-                <div className="flex">
-                  <a href={`/profil/id`} className="avatar">
-                    <img src="/media/default.png" alt="avatar-default" />
-                  </a>
-                  <div className="ml2">
-                    <strong className="bold">Romain Bernard</strong>
-                    <br />
-                  </div>
-                </div>
-                <div className="flex">
-                  <a href={`/profil/id`} className="avatar">
-                    <img src="/media/default.png" alt="avatar-default" />
-                  </a>
-                  <div className="ml2">
-                    <strong className="bold">Olivier Nachin</strong>
-                    <br />
-                  </div>
-                </div>
-                <div className="flex">
-                  <a href={`/profil/id`} className="avatar">
-                    <img src="/media/default.png" alt="avatar-default" />
-                  </a>
-                  <div className="ml2">
-                    <strong className="bold">Antoine Dreyer</strong>
-                    <br />
-                  </div>
-                </div>
+                {participants
+                  ? participants.map((p: User) => (
+                      <div className="flex" key={p.id}>
+                        <a href={`/profil/${p.id}`} className="avatar">
+                          <img src="/media/default.png" alt="avatar-default" />
+                        </a>
+                        <div className="ml2">
+                          <strong className="bold">{p.pseudo}</strong>
+                          <br />
+                        </div>
+                      </div>
+                    ))
+                  : null}
               </div>
             </div>
             <div></div>

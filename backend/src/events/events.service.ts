@@ -4,6 +4,8 @@ import { DatabaseService } from "../database/database.service";
 import { Event } from "./models/event.model";
 import { CreateEventDto } from "./dto/create-event.dto";
 import { UsersEventsService } from "../users-events/users-events.service";
+import { User } from "../users/models/user.model";
+import { UserEvent } from "../users-events/models/user-event.model";
 
 @Injectable()
 export class EventsService {
@@ -15,7 +17,7 @@ export class EventsService {
   async findAll(): Promise<Event[]> {
     return this.db.queryAll({
       query: "*",
-      where: "",
+      where: "ORDER BY created_at DESC",
     });
   }
 
@@ -44,6 +46,10 @@ export class EventsService {
     }
 
     return event;
+  }
+
+  async createEventUser(user_id: string, event_id: string): Promise<UserEvent> {
+    return this.userEventService.create(user_id, event_id);
   }
 
   /*async update(id: number, updateEventDto: UpdateEventDto): Promise<ShowEvent> {

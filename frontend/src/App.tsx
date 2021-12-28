@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -32,6 +32,7 @@ function App() {
         setUser(user);
         setOnConnect(true);
       } catch (e) {
+        // @ts-ignore
         setUser(null);
       }
     })();
@@ -49,7 +50,7 @@ function App() {
             {user ? <CreateEvent user={user} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/events/:id">
-            <Event />
+            <Event user={user} />
           </Route>
           <Route exact path="/profil">
             {user ? <Profil user={user} /> : <Redirect to="/" />}

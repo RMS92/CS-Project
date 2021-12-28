@@ -5,6 +5,7 @@ import { User } from "./models/user.model";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { query } from "express";
+import { UserEvent } from "../users-events/models/user-event.model";
 
 @Injectable()
 export class UsersService {
@@ -20,12 +21,21 @@ export class UsersService {
     });
   }
 
+  async findAllUsersEvents(): Promise<User[]> {
+    return this.db.join({
+      query: "public.user.id, public.user.pseudo, public.user_event.event_id",
+      join: "user_event",
+      joinCondition: "public.user_event.user_id = public.user.id",
+      where: "",
+    });
+  }
+
   async findUsersEvents(id: number): Promise<User[]> {
     return this.db.join({
       query: "public.user.id, public.user.pseudo",
       join: "user_event",
       joinCondition: "public.user.id = public.user_event.user_id",
-      where: "user_event.event_id = " + id,
+      where: " WHERE public.user_event.event_id = " + id,
     });
   }
 

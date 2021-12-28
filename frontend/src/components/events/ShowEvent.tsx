@@ -7,10 +7,12 @@ import { apiFetch } from "../../utils/api";
 import Comment from "../Comment";
 import { dateDiff, formatTitle } from "../../utils/functions";
 
-export default function ShowEvent() {
+export default function ShowEvent({ user }: { user: User | null }) {
   const [event, setEvent] = useState<Event | null>();
   const [author, setAuthor] = useState<User | null>();
   const [participants, setParticipants] = useState<User[] | null>();
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isAuthor, setIsAuthor] = useState(false);
   // @ts-ignore
   const { id } = useParams();
 
@@ -24,13 +26,39 @@ export default function ShowEvent() {
 
       const res3 = await apiFetch("/users/events/" + id);
       setParticipants(res3);
+
+      if (res2.id === user?.id) {
+        setIsAuthor(true);
+      }
+
+      for (let i = 0; i < res3.length; i++) {
+        console.log(res3[i].id, " ", user?.id);
+        if (res3[i].id === user?.id) {
+          setIsSubscribed(true);
+        }
+      }
     })();
   }, []);
 
   if (!event) {
     return <></>;
   }
-  const handleSubmit = async () => {};
+  const handleSubmit = async () => {
+    const data = { event_id: id };
+    try {
+      await apiFetch("/events/users", {
+        method: "post",
+        body: JSON.stringify(data),
+        dataType: "json",
+      });
+      if (user) {
+        setParticipants(participants?.concat(user));
+        setIsSubscribed(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="container py5">
@@ -39,7 +67,23 @@ export default function ShowEvent() {
           <div className="hero-title">{event.title}</div>
           <div className="hero-text">{event.content}</div>
           <div className="hstack" style={{ display: "block" }}>
-            <button className="btn-primary">Participer à l'évènement</button>
+            {!user ? (
+              <Link to="/connexion" className="btn-primary">
+                Se connecter
+              </Link>
+            ) : isAuthor ? (
+              <button className="btn-primary">
+                Vous êtes le créateur de l&apos;évènement
+              </button>
+            ) : isSubscribed ? (
+              <button className="btn-primary">
+                Vous participer à cet évènement
+              </button>
+            ) : (
+              <button className="btn-primary" onClick={handleSubmit}>
+                Participer à l&apos;évènement
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -107,17 +151,37 @@ export default function ShowEvent() {
               <h5 className="h5 mb2 mt2">Participants</h5>
               <div className="list-group">
                 {participants
-                  ? participants.map((p: User) => (
-                      <div className="flex" key={p.id}>
-                        <a href={`/profil/${p.id}`} className="avatar">
-                          <img src="/media/default.png" alt="avatar-default" />
-                        </a>
-                        <div className="ml2">
-                          <strong className="bold">{p.pseudo}</strong>
-                          <br />
+                  ? participants.map((p: User, i) =>
+                      i < 5 ? (
+                        <div className="flex" key={p.id}>
+                          <a href={`/profil/${p.id}`} className="avatar">
+                            <img
+                              src="/media/default.png"
+                              alt="avatar-default"
+                            />
+                          </a>
+                          <div className="ml2">
+                            <strong className="bold">{p.pseudo}</strong>
+                            <br />
+                          </div>
                         </div>
-                      </div>
-                    ))
+                      ) : i === 6 ? (
+                        <div className="flex" key={p.id}>
+                          <a href={`/profil/${p.id}`} className="avatar">
+                            <img
+                              src="/media/default.png"
+                              alt="avatar-default"
+                            />
+                          </a>
+                          <div className="ml2">
+                            <strong className="bold">
+                              + {participants.length - 5} autres participants
+                            </strong>
+                            <br />
+                          </div>
+                        </div>
+                      ) : null
+                    )
                   : null}
               </div>
             </div>

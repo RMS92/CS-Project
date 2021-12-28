@@ -7,6 +7,7 @@ import { User } from "../types";
 import { formatTitle } from "../utils/functions";
 import { useEvents } from "../hooks/useEvents";
 import { Event } from "../types";
+import { apiFetch } from "../utils/api";
 
 export default function Profil({ user }: { user: User }) {
   const [page, setPage] = useState("profil");
@@ -74,7 +75,7 @@ function ProfilBody({ user, page }: { user: User; page: string }) {
   ) : page === "events" ? (
     <ProfilBodyEvents user={user} />
   ) : page === "invitations" ? (
-    <ProfilBodyInvitations />
+    <ProfilBodyInvitations user={user} />
   ) : null;
 }
 
@@ -153,6 +154,7 @@ function ProfilBodyEdit() {
 
 function ProfilBodyEvents({ user }: { user: User }) {
   const { events, fetchEvents, deleteEvent } = useEvents();
+  const [participants, setParticipants] = useState<User[]>([]);
 
   const filteredEvents = (events || []).filter(
     (e: Event) => e.user_id === user.id
@@ -161,6 +163,9 @@ function ProfilBodyEvents({ user }: { user: User }) {
   useEffect(() => {
     (async () => {
       await fetchEvents();
+      //
+      const res = await apiFetch("/users/events");
+      setParticipants(res);
     })();
   }, []);
 
@@ -169,6 +174,8 @@ function ProfilBodyEvents({ user }: { user: User }) {
       {filteredEvents.map((e: Event) => (
         <EventCard
           key={e.id}
+          // @ts-ignore
+          participants={participants.filter((p) => p.event_id === e.id)}
           editable={true}
           event={e}
           onDelete={deleteEvent}
@@ -178,6 +185,6 @@ function ProfilBodyEvents({ user }: { user: User }) {
   );
 }
 
-function ProfilBodyInvitations() {
+function ProfilBodyInvitations({ user }: { user: User }) {
   return <div className="events mt5"></div>;
 }

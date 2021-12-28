@@ -22,6 +22,11 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Get("events")
+  async findAllUsersEvents(): Promise<User[]> {
+    return this.usersService.findAllUsersEvents();
+  }
+
   @Get("events/:id")
   findUsersEvents(@Param("id") id: string): Promise<User[]> {
     return this.usersService.findUsersEvents(+id);

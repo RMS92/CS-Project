@@ -33,7 +33,14 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
   }
 
   async queryAll(params: QueryParams): Promise<T[]> {
-    const query = "SELECT " + params.query + " FROM public." + this.tableName;
+    const query =
+      "SELECT " +
+      params.query +
+      " FROM public." +
+      this.tableName +
+      " " +
+      params.where;
+    console.log("QUERY: ", query);
     return this.executeQuery(query);
   }
 
@@ -87,7 +94,6 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       params.join +
       " ON " +
       params.joinCondition +
-      " WHERE public." +
       params.where;
 
     console.log("QUERY JOIN: ", query);

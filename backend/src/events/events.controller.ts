@@ -15,6 +15,9 @@ import { Event } from "./models/event.model";
 import { CreateEventDto } from "./dto/create-event.dto";
 import { UpdateEventDto } from "./dto/update-event.dto";
 import { AuthenticatedGuard } from "../auth/guards/authenticated-auth.guard";
+import { User } from "../users/models/user.model";
+import { UserEvent } from "../users-events/models/user-event.model";
+import { CreateUserEventDto } from "../users-events/dto/create-user-event.dto";
 
 @Controller("events")
 export class EventsController {
@@ -38,6 +41,19 @@ export class EventsController {
   ): Promise<Event> {
     const user_id = req.user.id;
     return this.eventsService.create(createEventDto, +user_id);
+  }
+
+  @Post("users")
+  @UseGuards(AuthenticatedGuard)
+  async createEventUser(
+    @Body() createUserEvent: CreateUserEventDto,
+    @Req() req
+  ): Promise<UserEvent> {
+    const user_id = req.user.id;
+    return this.eventsService.createEventUser(
+      user_id,
+      createUserEvent.event_id
+    );
   }
 
   /*@Patch(":id")

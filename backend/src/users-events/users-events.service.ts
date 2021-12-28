@@ -9,6 +9,13 @@ export class UsersEventsService {
   @DatabaseTable("user_event")
   private readonly db: DatabaseService<UserEvent>;
 
+  async findAll(): Promise<UserEvent[]> {
+    return this.db.queryAll({
+      query: "*",
+      where: "",
+    });
+  }
+
   async create(user_id: string, event_id: string): Promise<UserEvent> {
     const now = Date.now();
 

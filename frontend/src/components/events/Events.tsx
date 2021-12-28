@@ -3,15 +3,22 @@ import { Link } from "react-router-dom";
 import EventCard from "../../ui/Cards";
 import { useEvents } from "../../hooks/useEvents";
 import { Event, User } from "../../types";
+import { apiFetch } from "../../utils/api";
 
 export default function Events() {
   const { events, fetchEvents } = useEvents();
+  const [participants, setParticipants] = useState<User[]>([]);
 
   useEffect(() => {
     (async () => {
       await fetchEvents();
+      // Get all participants
+      const res = await apiFetch("/users/events");
+      setParticipants(res);
     })();
   }, []);
+
+  console.log(participants);
 
   if (!events) {
     return <></>;
@@ -38,7 +45,13 @@ export default function Events() {
       <hr className="hr-separated" />
       <div className="events mt5">
         {events.map((e: Event) => (
-          <EventCard key={e.id} event={e} onDelete={Promise.resolve} />
+          <EventCard
+            key={e.id}
+            event={e}
+            // @ts-ignore
+            participants={participants.filter((p) => p.event_id === e.id)}
+            onDelete={Promise.resolve}
+          />
         ))}
       </div>
     </div>

@@ -1,3 +1,5 @@
+import * as stream from "stream";
+
 export type Props = { [key: string]: any };
 
 export type User = {
@@ -19,6 +21,15 @@ export type Event = {
   created_at: string;
   updated_at: Date;
   user_id: string;
+};
+
+export type CommentType = {
+  id: string;
+  content: string;
+  user_id: string;
+  event_id: string;
+  created_at: string;
+  updated_at: Date;
 };
 
 export type FlashMessage = {

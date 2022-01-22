@@ -25,14 +25,13 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const user = await apiFetch("/me");
-        if (!user) {
+        const res = await apiFetch("/me");
+        if (!res) {
           return;
         }
-        setUser(user);
+        setUser(res);
         setOnConnect(true);
       } catch (e) {
-        // @ts-ignore
         setUser(null);
       }
     })();
@@ -50,7 +49,7 @@ function App() {
             {user ? <CreateEvent user={user} /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/events/:id">
-            <Event user={user} />
+            <Event />
           </Route>
           <Route exact path="/profil">
             {user ? <Profil user={user} /> : <Redirect to="/" />}

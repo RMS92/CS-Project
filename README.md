@@ -1,8 +1,10 @@
-A FAIRE
-Participants sur les cards - fait
-filtrer les participants dans la selectbox quand un est selectionner
-plus de 5 participants: "ET 5 autres ..."
-inscritpion d'un utilisateur a un evenenement - fait
-profil utilisateur
+profil view invitations
 
-PB de reload avec la connexion utilisateur
+profil normal
+ - update delete account and mdp
+ - invitations (table de liaison)
+
+champs de recherche 
+footer
+les ' sont mal traités quand on rentre du contenu dans les forms (ex: j'avoue = erreur bdd car précense ')
+les niveaux de sécurités

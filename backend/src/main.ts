@@ -6,6 +6,8 @@ import { configure } from "./config.main";
 import { goSpelunking } from "./spelunk";
 import session = require("express-session");
 import * as passport from "passport";
+let cookieparser = require("cookie-parser");
+let PostgreSqlStore = require("connect-pg-simple")(session);
 
 async function bootstrap() {
   const app = await NestFactory.create(
@@ -25,23 +27,23 @@ async function bootstrap() {
   const port = config.port;
   configure(app, config, logger);
   await goSpelunking(app);
+  app.use(cookieparser());
 
   // Session configuration
   app.use(
     session({
       secret: config.sessionSecret,
-      resave: false,
-      saveUninitialized: false,
+      resave: true,
+      saveUninitialized: true,
       cookie: {
         // secure: true,
-        // httpOnly: true,
-        sameSite: "none",
+        httpOnly: true,
+        sameSite: "strict",
         maxAge: 24 * 60 * 60 * 1000,
       },
-      /*store: new MongoStore({
-          uri: process.env.DATABASE_URL,
-          collection: 'sessions',
-        }),*/
+      /*store: new PostgreSqlStore({
+        conString: config.databaseUrl,
+      }),*/
     })
   );
 

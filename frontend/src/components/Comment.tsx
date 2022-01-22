@@ -1,13 +1,33 @@
-import React from "react";
-import Icon from "../ui/Icon";
-import Field from "../ui/Field";
-import { useToggle } from "../hooks/useToogle";
-import Fade from "../ui/animations/Fade";
+import React, { useEffect, useState } from "react";
+import { CommentType, User } from "../types";
+import { apiFetch } from "../utils/api";
+import { dateDiff } from "../utils/functions";
 
-export default function Comment() {
-  const [reply, setReply] = useToggle(false);
+export default function Comment({
+  comment,
+  onDelete,
+  user,
+}: {
+  comment: CommentType;
+  onDelete: Function;
+  user: User | null | undefined;
+}) {
+  const [author, setAuthor] = useState<User | null>(null);
 
-  const handleSubmit = async () => {};
+  useEffect(() => {
+    (async () => {
+      const res = await apiFetch("/users/" + comment.user_id);
+      setAuthor(res);
+    })();
+  }, []);
+
+  const handleDelete = async () => {
+    try {
+      await onDelete(comment);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="comment">
@@ -15,48 +35,22 @@ export default function Comment() {
         <img src="/media/default.png" alt="avatar-default" />
       </a>
       <div className="comment__meta">
-        <div className="comment__author">Romain Bernard</div>
+        <div className="comment__author">{author?.pseudo}</div>
         <div className="comment__actions">
-          <a className="comment__date">Il y a 1 jour</a>
-
-          <a className="comment__answer" onClick={() => setReply()}>
-            <Icon name="reply" width="14" className="icon icon-reply" />
-            Répondre
+          <a className="comment__date">
+            {dateDiff(new Date(parseFloat(comment.created_at)))}
           </a>
+          {user?.id == comment.user_id && (
+            <a className="text-danger" onClick={handleDelete}>
+              Supprimer
+            </a>
+          )}
         </div>
       </div>
       <div className="comment__content">
         <div className="formatted">
-          <p>Je suis le contenu du fabuleux commentaire :)</p>
+          <p>{comment.content}</p>
         </div>
-      </div>
-      <div className="comment__replies">
-        <Fade
-          visible={reply}
-          duration={300}
-          from={{ opacity: 0 }}
-          animateEnter={false}
-        >
-          <form className="grid" onSubmit={handleSubmit}>
-            <div className="full">
-              <Field name="content" type="textarea">
-                Votre message
-              </Field>
-            </div>
-            <div className="hstack">
-              <button className="btn-primary" type="submit">
-                Envoyer
-              </button>
-              <button
-                className="btn-secondary"
-                type="button"
-                onClick={() => setReply()}
-              >
-                Annuler
-              </button>
-            </div>
-          </form>
-        </Fade>
       </div>
     </div>
   );

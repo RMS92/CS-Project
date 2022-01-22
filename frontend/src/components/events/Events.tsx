@@ -18,8 +18,6 @@ export default function Events() {
     })();
   }, []);
 
-  console.log(participants);
-
   if (!events) {
     return <></>;
   }
@@ -44,7 +42,7 @@ export default function Events() {
       </div>
       <hr className="hr-separated" />
       <div className="events mt5">
-        {events.map((e: Event) => (
+        {events.map((e: Event, i: number) => (
           <EventCard
             key={e.id}
             event={e}

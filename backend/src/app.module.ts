@@ -16,6 +16,7 @@ import { SecurityModule } from "./security/security.module";
 import { IAuthModuleOptions } from "@nestjs/passport/dist/interfaces/auth-module.options";
 import { EventsModule } from "./events/events.module";
 import { UsersEventsModule } from './users-events/users-events.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { UsersEventsModule } from './users-events/users-events.module';
     AuthModule,
     SecurityModule,
     UsersEventsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

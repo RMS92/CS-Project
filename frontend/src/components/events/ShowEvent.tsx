@@ -1,23 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Icon from "../../ui/Icon";
 import Field from "../../ui/Field";
-import { Event, User } from "../../types";
-import { apiFetch } from "../../utils/api";
+import { CommentType, Event, User } from "../../types";
+import { apiFetch, formToObject } from "../../utils/api";
 import Comment from "../Comment";
 import { dateDiff, formatTitle } from "../../utils/functions";
+import { useComments } from "../../hooks/useComments";
 
-export default function ShowEvent({ user }: { user: User | null }) {
+export default function ShowEvent() {
+  const [user, setUser] = useState<User | null>();
   const [event, setEvent] = useState<Event | null>();
   const [author, setAuthor] = useState<User | null>();
   const [participants, setParticipants] = useState<User[] | null>();
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isAuthor, setIsAuthor] = useState(false);
+
   // @ts-ignore
   const { id } = useParams();
 
+  const { comments, fetchComments, createComment, deleteComment } =
+    useComments();
+
+  const filteredComments = (comments || []).filter(
+    (c: CommentType) => c.event_id == id
+  );
+
   useEffect(() => {
     (async () => {
+      let resUser = null;
+      try {
+        resUser = await apiFetch("/me");
+        setUser(resUser);
+      } catch (e) {
+        setUser(null);
+      }
+
       const res = await apiFetch("/events/" + id);
       setEvent(res);
 
@@ -27,13 +45,16 @@ export default function ShowEvent({ user }: { user: User | null }) {
       const res3 = await apiFetch("/users/events/" + id);
       setParticipants(res3);
 
-      if (res2.id === user?.id) {
+      // Fetch comments
+      await fetchComments();
+
+      if (res2.id === resUser?.id) {
         setIsAuthor(true);
       }
 
       for (let i = 0; i < res3.length; i++) {
-        console.log(res3[i].id, " ", user?.id);
-        if (res3[i].id === user?.id) {
+        // console.log(res3[i].id, " ", user?.id);
+        if (res3[i].id === resUser?.id) {
           setIsSubscribed(true);
         }
       }
@@ -55,6 +76,22 @@ export default function ShowEvent({ user }: { user: User | null }) {
         setParticipants(participants?.concat(user));
         setIsSubscribed(true);
       }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmitComment = async (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    const form: HTMLFormElement = e.target as HTMLFormElement;
+    const data: object = formToObject(form);
+
+    Object.assign(data, { event_id: id });
+
+    try {
+      await createComment(data);
+      form.reset();
     } catch (err) {
       console.log(err);
     }
@@ -108,22 +145,37 @@ export default function ShowEvent({ user }: { user: User | null }) {
             </div>
           </div>
           <div className="comment-area">
-            <div className="comments__title">6 commentaires</div>
-            <form className="grid" onSubmit={handleSubmit}>
+            <div className="comments__title">
+              {filteredComments.length} commentaires
+            </div>
+            <form className="grid" onSubmit={handleSubmitComment}>
               <div className="full">
                 <Field name="content" type="textarea">
                   Votre message
                 </Field>
               </div>
               <div className="hstack">
-                <button className="btn-primary" type="submit">
-                  Envoyer
-                </button>
+                {user ? (
+                  <button className="btn-primary" type="submit">
+                    Envoyer
+                  </button>
+                ) : (
+                  <Link to="/connexion" className="btn-primary">
+                    Se connecter
+                  </Link>
+                )}
               </div>
             </form>
             <hr />
             <div className="comment-list">
-              <Comment />
+              {filteredComments.map((c: CommentType) => (
+                <Comment
+                  key={c.id}
+                  comment={c}
+                  onDelete={deleteComment}
+                  user={user}
+                />
+              ))}
             </div>
           </div>
         </main>

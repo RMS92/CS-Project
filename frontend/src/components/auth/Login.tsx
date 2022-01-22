@@ -10,11 +10,7 @@ import { FlashMessage } from "../../types";
 import Alert from "../../ui/Alert";
 import clsx from "clsx";
 
-export default function Login({
-  onConnect,
-}: {
-  onConnect: Dispatch<SetStateAction<boolean>>;
-}) {
+export default function Login({ onConnect }: { onConnect: Function }) {
   const [flashMessages, setFlashMessages] = useState<FlashMessage | null>(null);
 
   const handleSubmit = async (e: SyntheticEvent) => {

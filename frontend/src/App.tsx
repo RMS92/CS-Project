@@ -52,7 +52,11 @@ function App() {
             <Event />
           </Route>
           <Route exact path="/profil">
-            {user ? <Profil user={user} /> : <Redirect to="/" />}
+            {user ? (
+              <Profil user={user} setOnConnect={setOnConnect} />
+            ) : (
+              <Redirect to="/" />
+            )}
           </Route>
           <Route exact path="/profil/:id">
             <ProfilView />

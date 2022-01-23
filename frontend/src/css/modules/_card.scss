@@ -180,6 +180,19 @@
   }
 }
 
+.card__infos {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: space(-.9);
+  left: space(-1.5);
+  font-size: .8rem;
+
+  > * + * {
+    margin-left: space(1);
+  }
+}
+
 .card__icons {
   position: absolute;
   display: flex;

@@ -33,6 +33,16 @@ export class EventsController {
     return this.eventsService.findOne(+id);
   }
 
+  @Get("users/:id")
+  async findEventsByUser(@Param("id") id: string): Promise<Event[]> {
+    return this.eventsService.findEventsByUser(+id);
+  }
+
+  @Get("users/:id/invitations")
+  async findEventsInvitationsByUser(@Param("id") id: string): Promise<Event[]> {
+    return this.eventsService.findEventsInvitationsByUser(+id);
+  }
+
   @Post()
   @UseGuards(AuthenticatedGuard)
   async create(

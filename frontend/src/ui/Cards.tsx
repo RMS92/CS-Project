@@ -36,7 +36,7 @@ export default function EventCard({
                   <Link to={`/profil/${p.id}`} className="avatar">
                     <img src="/media/default.png" alt="avatar-default" />
                   </Link>
-                ) : i === 4 ? (
+                ) : i === 3 ? (
                   <button className="avatar">
                     + {participants.length - 3}
                   </button>

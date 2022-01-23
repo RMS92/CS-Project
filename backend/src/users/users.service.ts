@@ -6,6 +6,8 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { query } from "express";
 import { UserEvent } from "../users-events/models/user-event.model";
+import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
+import { PseudoAlreadyUsedException } from "../security/exceptions/pseudo-already-used.exception";
 
 @Injectable()
 export class UsersService {
@@ -82,6 +84,31 @@ export class UsersService {
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     return this.db.update({
       query: `pseudo = '${updateUserDto.pseudo}'`,
+      where: "id = " + id,
+    });
+  }
+
+  async updatePseudo(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    const pseudo = updateUserDto.pseudo.toLowerCase();
+
+    const pseudoExists = await this.pseudoExists(pseudo);
+
+    if (!pseudoExists) {
+      return this.db.update({
+        query: `pseudo = '${updateUserDto.pseudo}'`,
+        where: "id = " + id,
+      });
+    } else {
+      throw new PseudoAlreadyUsedException();
+    }
+  }
+
+  async updatePassword(
+    id: number,
+    updateUserPasswordDto: UpdateUserPasswordDto
+  ): Promise<User> {
+    return this.db.update({
+      query: `password = '${updateUserPasswordDto.password}'`,
       where: "id = " + id,
     });
   }

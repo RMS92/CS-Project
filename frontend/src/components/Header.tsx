@@ -37,14 +37,6 @@ export default function Header({
         </li>
       </ul>
       <ul className="header-side">
-        <li className="header__search">
-          <div className="form-group" style={{ position: "relative" }}>
-            <input className="search" placeholder="Recherche..." />
-            <button>
-              <Icon name="search" />
-            </button>
-          </div>
-        </li>
         {onConnect ? (
           <>
             <li className="header__account">

@@ -28,6 +28,22 @@ export class EventsService {
     });
   }
 
+  async findEventsByUser(id: number): Promise<Event[]> {
+    return this.db.queryAll({
+      query: "*",
+      where: "WHERE user_id = " + id,
+    });
+  }
+
+  async findEventsInvitationsByUser(id: number): Promise<Event[]> {
+    return this.db.join({
+      query: "*",
+      join: "user_event",
+      joinCondition: "public.event.id = public.user_event.event_id",
+      where: " WHERE public.user_event.user_id = " + id,
+    });
+  }
+
   async create(
     createEventDto: CreateEventDto,
     user_id: number

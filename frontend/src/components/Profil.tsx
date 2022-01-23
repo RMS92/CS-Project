@@ -11,6 +11,15 @@ import { apiFetch } from "../utils/api";
 
 export default function Profil({ user }: { user: User }) {
   const [page, setPage] = useState("profil");
+  const [participants, setParticipants] = useState<User[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      // Get participants
+      const res = await apiFetch("/users/events");
+      setParticipants(res);
+    })();
+  }, []);
 
   return (
     <div className="container py5">
@@ -64,22 +73,30 @@ export default function Profil({ user }: { user: User }) {
           Invitations
         </a>
       </div>
-      <ProfilBody user={user} page={page} />
+      <ProfilBody user={user} page={page} participants={participants} />
     </div>
   );
 }
 
-function ProfilBody({ user, page }: { user: User; page: string }) {
+function ProfilBody({
+  user,
+  page,
+  participants,
+}: {
+  user: User;
+  page: string;
+  participants: User[];
+}) {
   return page === "profil" ? (
-    <ProfilBodyEdit />
+    <ProfilBodyEdit user={user} />
   ) : page === "events" ? (
-    <ProfilBodyEvents user={user} />
+    <ProfilBodyEvents user={user} participants={participants} />
   ) : page === "invitations" ? (
-    <ProfilBodyInvitations user={user} />
+    <ProfilBodyInvitations user={user} participants={participants} />
   ) : null;
 }
 
-function ProfilBodyEdit() {
+function ProfilBodyEdit({ user }: { user: User }) {
   return (
     <div className="layout-sidebar py5">
       <main className="stack-large">
@@ -90,11 +107,11 @@ function ProfilBodyEdit() {
               Mes informations
             </h4>
             <div className="level1 grid p3">
-              <Field name="pseudo" type="text"></Field>
+              <Field name="pseudo" type="text" value={user?.pseudo}></Field>
             </div>
             <div className="text-right">
               <button className="btn-primary" type="button">
-                Mofidier mon profil
+                Modifier mon pseudo
               </button>
             </div>
           </div>
@@ -126,11 +143,9 @@ function ProfilBodyEdit() {
         <div className="stack">
           <h4 className="stack-large__title text-danger">
             <Icon name="delete" />
-            Danger zone
+            Supprimer mon compte
           </h4>
           <p className="h5 normal">
-            Vous n&apos;êtes pas satisfait du contenu de notre application ?
-            <br />
             Vous souhaitez supprimer toutes les informations associées à votre
             compte?
           </p>
@@ -152,9 +167,14 @@ function ProfilBodyEdit() {
   );
 }
 
-function ProfilBodyEvents({ user }: { user: User }) {
+function ProfilBodyEvents({
+  user,
+  participants,
+}: {
+  user: User;
+  participants: User[];
+}) {
   const { events, fetchEvents, deleteEvent } = useEvents();
-  const [participants, setParticipants] = useState<User[]>([]);
 
   const filteredEvents = (events || []).filter(
     (e: Event) => e.user_id === user.id
@@ -163,9 +183,6 @@ function ProfilBodyEvents({ user }: { user: User }) {
   useEffect(() => {
     (async () => {
       await fetchEvents();
-      //
-      const res = await apiFetch("/users/events");
-      setParticipants(res);
     })();
   }, []);
 
@@ -185,6 +202,36 @@ function ProfilBodyEvents({ user }: { user: User }) {
   );
 }
 
-function ProfilBodyInvitations({ user }: { user: User }) {
-  return <div className="events mt5"></div>;
+function ProfilBodyInvitations({
+  user,
+  participants,
+}: {
+  user: User;
+  participants: User[];
+}) {
+  const [invitations, setInvitations] = useState<Event[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await apiFetch("/events/users/" + user.id + "/invitations");
+      setInvitations(res);
+    })();
+  }, []);
+
+  console.log(invitations);
+  console.log(participants);
+
+  return (
+    <div className="events mt5">
+      {invitations.map((e: Event) => (
+        <EventCard
+          key={e.id}
+          // @ts-ignore
+          participants={participants.filter((p) => p.event_id === e.event_id)}
+          event={e}
+          onDelete={Promise.resolve}
+        />
+      ))}
+    </div>
+  );
 }

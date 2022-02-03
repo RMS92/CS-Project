@@ -5,8 +5,11 @@ profil normal
  - invitations (table de liaison) - fait 
 
 // champs de recherche 
+pagination
+logo a mettre
 footer
-les ' sont mal traités quand on rentre du contenu dans les forms (ex: j'avoue = erreur bdd car précense ')
+les ' sont mal traités quand on rentre du contenu dans les forms (ex: j'avoue = erreur bdd car précense ') = afficher erreur
+alerte sur la creation événement
 les niveaux de sécurités
 
 ---

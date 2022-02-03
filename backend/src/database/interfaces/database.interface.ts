@@ -1,5 +1,6 @@
 import { Type } from "@nestjs/common";
 import { Observable } from "rxjs";
+import { Workbook, Worksheet } from "exceljs";
 
 export interface DatabaseFeatureOptions {
   tableName: string;

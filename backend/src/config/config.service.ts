@@ -47,6 +47,10 @@ export class ConfigService {
     return this.envConfig.DATABASE_URL;
   }
 
+  get databaseRecordsUrl(): string {
+    return this.envConfig.DATABASE_RECORDS_URL;
+  }
+
   get isProd(): boolean {
     const env = this.nodeEnv.toLowerCase();
     return env === "production" || env === "prod";
@@ -55,6 +59,13 @@ export class ConfigService {
   get databaseConfig(): DatabaseModuleOptions {
     return {
       connectionUrl: this.databaseUrl,
+      ssl: this.isProd,
+    };
+  }
+
+  get databaseRecordsConfig(): DatabaseModuleOptions {
+    return {
+      connectionUrl: this.databaseRecordsUrl,
       ssl: this.isProd,
     };
   }

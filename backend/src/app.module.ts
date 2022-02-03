@@ -13,24 +13,28 @@ import { UsersModule } from "./users/users.module";
 import { AuthModule } from "./auth/auth.module";
 import { PassportModule } from "@nestjs/passport";
 import { SecurityModule } from "./security/security.module";
-import { IAuthModuleOptions } from "@nestjs/passport/dist/interfaces/auth-module.options";
 import { EventsModule } from "./events/events.module";
-import { UsersEventsModule } from './users-events/users-events.module';
-import { CommentsModule } from './comments/comments.module';
+import { UsersEventsModule } from "./users-events/users-events.module";
+import { CommentsModule } from "./comments/comments.module";
+import { MongooseModule } from "@nestjs/mongoose";
+import { WorkbookModule } from './workbook/workbook.module';
 
 @Module({
   imports: [
     ConfigModule.forRootAsync(ConfigModule, {
       useClass: ConfigModuleConfig,
     }),
+
     DatabaseModule.forRootAsync({
       imports: [ConfigModule.Deferred],
       useClass: DatabaseModuleConfig,
     }),
+
     OgmaModule.forRootAsync({
       useClass: OgmaModuleConfig,
       imports: [ConfigModule.Deferred],
     }),
+
     PassportModule.registerAsync({
       useFactory: async () => {
         return {
@@ -38,12 +42,20 @@ import { CommentsModule } from './comments/comments.module';
         };
       },
     }),
+
     UsersModule,
+
     EventsModule,
+
     AuthModule,
+
     SecurityModule,
+
     UsersEventsModule,
+
     CommentsModule,
+
+    WorkbookModule,
   ],
   controllers: [AppController],
   providers: [AppService],

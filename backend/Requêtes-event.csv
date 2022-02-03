@@ -1,0 +1,6 @@
+Requête,Niveau
+SELECT * FROM public.event ORDER BY created_at DESC,1
+SELECT * FROM public.event WHERE id = 47,1
+SELECT * FROM public.event WHERE id = 47,1
+SELECT * FROM public.event ORDER BY created_at DESC,1
+SELECT * FROM public.event ORDER BY created_at DESC,1

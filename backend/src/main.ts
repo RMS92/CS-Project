@@ -7,7 +7,6 @@ import { goSpelunking } from "./spelunk";
 import session = require("express-session");
 import * as passport from "passport";
 let cookieparser = require("cookie-parser");
-let PostgreSqlStore = require("connect-pg-simple")(session);
 
 async function bootstrap() {
   const app = await NestFactory.create(

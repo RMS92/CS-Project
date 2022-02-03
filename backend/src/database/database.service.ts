@@ -1,9 +1,6 @@
-import { jsonSerializer } from "@deepkit/type";
 import { Injectable, Type } from "@nestjs/common";
 import { OgmaService } from "@ogma/nestjs-module";
 import { Pool } from "pg";
-import { from, Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
 import {
   DatabaseFeatureOptions,
   DatabaseInterface,
@@ -14,6 +11,7 @@ import {
   UpdateManyParams,
   UpdateParams,
 } from "./interfaces/database.interface";
+import { WorkbookService } from "../workbook/workbook.service";
 
 @Injectable()
 export class DatabaseService<T> implements DatabaseInterface<T> {
@@ -22,12 +20,18 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
   constructor(
     private readonly pool: Pool,
     readonly feature: DatabaseFeatureOptions,
-    private readonly logger: OgmaService
+    private readonly logger: OgmaService,
+    private readonly workbookService: WorkbookService
   ) {
+    this.workbookService = new WorkbookService();
     this.tableName = feature.tableName;
   }
 
   private async executeQuery(query: string) {
+    // Add query in worksheet
+    await this.workbookService.addRow(query, 1);
+    await this.workbookService.writeWorkbook(this.tableName);
+
     const res = await this.pool.query(query);
     return res.rows;
   }

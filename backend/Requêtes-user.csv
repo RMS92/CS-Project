@@ -1,20 +1,82 @@
 Requête,Niveau
-"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",1
-"SELECT id, pseudo FROM public.user WHERE id = 15",1
-"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = 47",1
-"SELECT id, pseudo FROM public.user WHERE id = 15",1
-"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = 47",1
-SELECT * FROM public.user WHERE pseudo = 'lulu' AND password = '1234',1
-"SELECT id, pseudo FROM public.user WHERE id = 20",1
-"SELECT id, pseudo FROM public.user WHERE id = 20",1
-"SELECT id, pseudo FROM public.user WHERE id = 20",1
-"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",1
-"SELECT id, pseudo FROM public.user WHERE id = 20",1
-SELECT * FROM public.user WHERE pseudo = 'admin',1
-"INSERT INTO public.user (pseudo, password, role, created_at, updated_at) VALUES ('admin', 'azerty', 'ROLE_USER', 1643921481891, 1643921481891) RETURNING *;",1
-SELECT * FROM public.user WHERE pseudo = 'admin' AND password = 'admin',1
-SELECT * FROM public.user WHERE pseudo = 'admin' AND password = 'azerty',1
-"SELECT id, pseudo FROM public.user WHERE id = 26",1
-"SELECT id, pseudo FROM public.user WHERE id = 26",1
-"SELECT id, pseudo FROM public.user WHERE id = 26",1
-"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",1
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+SELECT * FROM public.user WHERE pseudo = $1 AND password = $2,3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+SELECT * FROM public.user ,3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+SELECT * FROM public.user ,3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+SELECT * FROM public.user WHERE pseudo = $1 AND password = $2,3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3
+"SELECT id, pseudo FROM public.user WHERE id = $1",3

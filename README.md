@@ -4,9 +4,12 @@ profil normal
  - update delete account and mdp - a faire ce soir front end
  - invitations (table de liaison) - fait 
 
-// champs de recherche 
+// TODO
 pagination
 logo a mettre
+notifs quand on a creer un évènement
+(en minutes formulaire creation)
+notif need to login pour creer event
 footer
 les ' sont mal traités quand on rentre du contenu dans les forms (ex: j'avoue = erreur bdd car précense ') = afficher erreur
 alerte sur la creation événement

@@ -18,25 +18,25 @@ export interface QueryParams {
   /**
    * The values to inject into the query at runtime. Helps guard against SQL Injection
    */
-  // variables: any[];
+  variables?: any[];
 }
 
 export interface InsertParams {
   query: string;
   where?: string;
-  // variables: any[];
+  variables?: any[];
 }
 
 export interface UpdateParams {
   query: string;
   where?: string;
-  // variables: any[];
+  variables?: any[];
 }
 
 export interface DeleteParams {
   query: string;
   where: string;
-  // variables: any[];
+  variables?: any[];
 }
 
 export interface JoinParams {
@@ -44,6 +44,7 @@ export interface JoinParams {
   join: string;
   joinCondition: string;
   where?: string;
+  variables?: any[];
 }
 
 export interface UpdateManyParams {

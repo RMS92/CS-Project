@@ -27,7 +27,9 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
     this.tableName = feature.tableName;
   }
 
-  private async executeQuery(query: string) {
+  //----------- Query normal -----------//
+
+  private async executeQuery(query: string): Promise<T[]> {
     // Add query in worksheet
     await this.workbookService.addRow(query, 1);
     await this.workbookService.writeWorkbook(this.tableName);
@@ -70,7 +72,7 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       ") VALUES (" +
       params.where +
       ") RETURNING *;";
-    console.log(query);
+    console.log("QUERY: ", query);
     const rows = await this.executeQuery(query);
     return rows[0];
   }
@@ -84,6 +86,7 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       " WHERE " +
       params.where +
       " RETURNING *;";
+    console.log("QUERY: ", query);
     const rows = await this.executeQuery(query);
     return rows[0];
   }
@@ -99,33 +102,100 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       " ON " +
       params.joinCondition +
       params.where;
-
-    console.log("QUERY JOIN: ", query);
+    console.log("QUERY: ", query);
     return await this.executeQuery(query);
   }
 
-  async updateMany(params: UpdateManyParams): Promise<T[]> {
-    const query =
-      "UPDATE " +
-      this.tableName +
-      " AS " +
-      params.tableAlias +
-      " SET " +
-      params.query +
-      " FROM " +
-      params.tempTable +
-      " WHERE " +
-      params.where +
-      " RETURNING *;";
-    return this.executeQuery(query);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async delete(params: DeleteParams): Promise<T> {
     const query =
       "DELETE FROM public." + this.tableName + " WHERE " + params.where;
-    console.log(query);
+    console.log("QUERY: ", query);
     const rows = await this.executeQuery(query);
+    return rows[0];
+  }
+
+  //----------- Prepared statement -----------//
+  private async runQuery(query: string, params: any[]): Promise<T[]> {
+    // Add query in worksheet
+    await this.workbookService.addRow(query, 3);
+    await this.workbookService.writeWorkbook(this.tableName);
+
+    const res = await this.pool.query(query, params);
+    return res.rows;
+  }
+  async preparedQueryAll(params: QueryParams): Promise<T[]> {
+    const query =
+      "SELECT " +
+      params.query +
+      " FROM public." +
+      this.tableName +
+      " " +
+      params.where;
+    console.log("PREPARED QUERY: ", query);
+    return this.runQuery(query, params.variables);
+  }
+
+  async preparedQuery(params: QueryParams): Promise<T> {
+    const query =
+      "SELECT " +
+      params.query +
+      " FROM public." +
+      this.tableName +
+      " WHERE " +
+      params.where;
+    console.log("PREPARED QUERY: ", query);
+    const rows = await this.runQuery(query, params.variables);
+    return rows[0];
+  }
+
+  async preparedInsert(params: InsertParams): Promise<T> {
+    const query =
+      "INSERT INTO public." +
+      this.tableName +
+      " (" +
+      params.query +
+      ") VALUES (" +
+      params.where +
+      ") RETURNING *;";
+    console.log("PREPARED QUERY: ", query);
+    const rows = await this.runQuery(query, params.variables);
+    return rows[0];
+  }
+
+  async preparedUpdate(params: UpdateParams): Promise<T> {
+    const query =
+      "UPDATE public." +
+      this.tableName +
+      " SET " +
+      params.query +
+      " WHERE " +
+      params.where +
+      " RETURNING *;";
+    console.log("PREPARED QUERY: ", query);
+    const rows = await this.runQuery(query, params.variables);
+    return rows[0];
+  }
+
+  async preparedJoin(params: JoinParams): Promise<T[]> {
+    const query =
+      "SELECT " +
+      params.query +
+      " FROM public." +
+      this.tableName +
+      " JOIN public." +
+      params.join +
+      " ON " +
+      params.joinCondition +
+      params.where;
+    console.log("PREPARED QUERY: ", query);
+    return await this.runQuery(query, params.variables);
+  }
+
+  async preparedDelete(params: DeleteParams): Promise<T> {
+    const query =
+      "DELETE FROM public." + this.tableName + " WHERE " + params.where;
+    console.log("PREPARED QUERY: ", query);
+    const rows = await this.runQuery(query, params.variables);
     return rows[0];
   }
 }

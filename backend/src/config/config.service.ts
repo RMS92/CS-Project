@@ -82,6 +82,10 @@ export class ConfigService {
     return this.envConfig.PORT;
   }
 
+  getSecurityLevel(): number {
+    return this.envConfig.SECURITY_LEVEL;
+  }
+
   get sessionSecret(): string {
     return this.envConfig.SESSION_SECRET;
   }

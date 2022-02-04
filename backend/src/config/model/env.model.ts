@@ -22,6 +22,9 @@ export class EnvConfig {
   PORT: number = 3333;
 
   @t
+  SECURITY_LEVEL: number = 1;
+
+  @t
   COOKIE_AGE: number = 86400;
 
   @t

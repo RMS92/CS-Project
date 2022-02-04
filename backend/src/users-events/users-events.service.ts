@@ -9,19 +9,40 @@ export class UsersEventsService {
   @DatabaseTable("user_event")
   private readonly db: DatabaseService<UserEvent>;
 
+  securityLevel: number = 3;
+
+  // DONE
   async findAll(): Promise<UserEvent[]> {
-    return this.db.queryAll({
-      query: "*",
-      where: "",
-    });
+    if (this.securityLevel === 1) {
+      return this.db.queryAll({
+        query: "*",
+        where: "",
+      });
+    } else {
+      return this.db.preparedQueryAll({
+        query: "*",
+        where: "",
+        variables: [],
+      });
+    }
   }
 
+  // DONE
   async create(user_id: string, event_id: string): Promise<UserEvent> {
     const now = Date.now();
 
-    return this.db.insert({
-      query: "user_id, event_id, created_at, updated_at",
-      where: `${user_id}, ${event_id}, ${now}, ${now}`,
-    });
+    if (this.securityLevel === 1) {
+      return this.db.insert({
+        query: "user_id, event_id, created_at, updated_at",
+        where: `${user_id}, ${event_id}, ${now}, ${now}`,
+      });
+    } else {
+      const where = `$${1}, $${2}, $${3}, $${4}`;
+      return this.db.preparedInsert({
+        query: "user_id, event_id, created_at, updated_at",
+        where,
+        variables: [user_id, event_id, now, now],
+      });
+    }
   }
 }

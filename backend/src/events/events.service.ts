@@ -14,36 +14,81 @@ export class EventsService {
   @DatabaseTable("event")
   private readonly db: DatabaseService<Event>;
 
+  securityLevel: number = 3;
+
+  // DONE
   async findAll(): Promise<Event[]> {
-    return this.db.queryAll({
-      query: "*",
-      where: "ORDER BY created_at DESC",
-    });
+    if (this.securityLevel === 1) {
+      return this.db.queryAll({
+        query: "*",
+        where: "ORDER BY created_at DESC",
+      });
+    } else {
+      return this.db.preparedQueryAll({
+        query: "*",
+        where: "ORDER BY created_at DESC",
+        variables: [],
+      });
+    }
   }
 
+  // DONE
   async findOne(id: number): Promise<Event> {
-    return this.db.query({
-      query: "*",
-      where: "id = " + id,
-    });
+    if (this.securityLevel === 1) {
+      return this.db.query({
+        query: "*",
+        where: "id = " + id,
+      });
+    } else {
+      const where = "id = $1";
+      return this.db.preparedQuery({
+        query: "*",
+        where,
+        variables: [id],
+      });
+    }
   }
 
+  // DONE
   async findEventsByUser(id: number): Promise<Event[]> {
-    return this.db.queryAll({
-      query: "*",
-      where: "WHERE user_id = " + id,
-    });
+    if (this.securityLevel === 1) {
+      return this.db.queryAll({
+        query: "*",
+        where: "WHERE user_id = " + id,
+      });
+    } else {
+      const where = "WHERE user_id = $1";
+      return this.db.preparedQueryAll({
+        query: "*",
+        where,
+        variables: [id],
+      });
+    }
   }
 
+  // DONE
   async findEventsInvitationsByUser(id: number): Promise<Event[]> {
-    return this.db.join({
-      query: "*",
-      join: "user_event",
-      joinCondition: "public.event.id = public.user_event.event_id",
-      where: " WHERE public.user_event.user_id = " + id,
-    });
+    if (this.securityLevel === 1) {
+      return this.db.join({
+        query:
+          "title, content, place, duration, public.event.created_at, public.event.updated_at, public.user_event.user_id, begin_at, start_time, event_id as id",
+        join: "user_event",
+        joinCondition: "public.event.id = public.user_event.event_id",
+        where: " WHERE public.user_event.user_id = " + id,
+      });
+    } else {
+      return this.db.preparedJoin({
+        query:
+          "title, content, place, duration, public.event.created_at, public.event.updated_at, public.user_event.user_id, begin_at, start_time, event_id as id",
+        join: "user_event",
+        joinCondition: "public.event.id = public.user_event.event_id",
+        where: " WHERE public.user_event.user_id = $1",
+        variables: [id],
+      });
+    }
   }
 
+  // DONE
   async create(
     createEventDto: CreateEventDto,
     user_id: number
@@ -51,11 +96,32 @@ export class EventsService {
     const now = Date.now();
     const begin_at = new Date(createEventDto.begin_at).getTime();
 
-    const event = await this.db.insert({
-      query:
-        "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
-      where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
-    });
+    let event;
+    if (this.securityLevel === 1) {
+      event = await this.db.insert({
+        query:
+          "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
+        where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
+      });
+    } else {
+      const where = `$${1}, $${2}, $${3}, $${4}, $${5}, $${6}, $${7}, $${8}, $${9}`;
+      event = await this.db.preparedInsert({
+        query:
+          "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
+        where,
+        variables: [
+          createEventDto.title,
+          createEventDto.content,
+          createEventDto.place,
+          createEventDto.duration,
+          createEventDto.start_time,
+          begin_at,
+          now,
+          now,
+          user_id,
+        ],
+      });
+    }
 
     for (let i = 0; i < createEventDto.users_ids.length; i++) {
       await this.userEventService.create(createEventDto.users_ids[i], event.id);
@@ -64,6 +130,7 @@ export class EventsService {
     return event;
   }
 
+  // DONE
   async createEventUser(user_id: string, event_id: string): Promise<UserEvent> {
     return this.userEventService.create(user_id, event_id);
   }
@@ -75,10 +142,20 @@ export class EventsService {
     });
   }*/
 
+  // DONE
   async delete(id: number): Promise<Event> {
-    return this.db.delete({
-      query: "",
-      where: "id = " + id,
-    });
+    if (this.securityLevel === 1) {
+      return this.db.delete({
+        query: "",
+        where: "id = " + id,
+      });
+    } else {
+      const where = "id = $1";
+      return this.db.preparedDelete({
+        query: "",
+        where,
+        variables: [id],
+      });
+    }
   }
 }

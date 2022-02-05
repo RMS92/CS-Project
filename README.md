@@ -1,16 +1,17 @@
-profil view invitations - fait
+profil view invitations - done
 
 profil normal
- - update delete account and mdp - a faire ce soir front end
- - invitations (table de liaison) - fait 
+ - update delete account and mdp - done
+ - invitations (table de liaison) - done
 
 // TODO
-pagination
-logo a mettre
-notifs quand on a creer un évènement
-(en minutes formulaire creation)
+pagination - done
+logo a mettre - done
+notifs quand on a creer un évènement - done
+(en minutes formulaire creation) - done
 notif need to login pour creer event
-footer
+footer - done
+
 les ' sont mal traités quand on rentre du contenu dans les forms (ex: j'avoue = erreur bdd car précense ') = afficher erreur
 alerte sur la creation événement
 les niveaux de sécurités

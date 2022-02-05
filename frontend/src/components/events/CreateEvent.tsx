@@ -3,12 +3,15 @@ import { apiFetch, formToObject } from "../../utils/api";
 import Icon from "../../ui/Icon";
 import Field from "../../ui/Field";
 import SelectBox from "../../ui/SelectBox";
-import { User } from "../../types";
+import { FlashMessage, User } from "../../types";
+import Alert from "../../ui/Alert";
+import clsx from "clsx";
 
 export default function CreateEvent({ user }: { user: User }) {
   const [users, setUsers] = useState<User[]>();
   const [filteredValue, setFilteredValue] = useState<User>(user);
   const filteredUsers = (users || []).filter((u: User) => u.id !== user.id);
+  const [flashMessages, setFlashMessages] = useState<FlashMessage | null>(null);
 
   const [participants, setParticipants] = useState<Array<User>>([]);
 
@@ -46,13 +49,28 @@ export default function CreateEvent({ user }: { user: User }) {
         dataType: "json",
       });
       form.reset();
+      setFlashMessages({
+        status: 200,
+        success: true,
+        message: "L'évènement a bien été créé.",
+      });
       setParticipants([]);
     } catch (err) {
-      console.log(err);
+      // @ts-ignore
+      setFlashMessages(err);
     }
   };
   return (
     <div className="container py5">
+      {flashMessages ? (
+        <Alert
+          type={clsx(flashMessages.success ? "success" : "danger")}
+          isFloating={true}
+          onDisappear={setFlashMessages}
+        >
+          {flashMessages.message}
+        </Alert>
+      ) : null}
       <div className="events-hero stack mb5">
         <div className="hero-title">Créer un nouvel évènement</div>
         <div className="hero-text">
@@ -86,7 +104,7 @@ export default function CreateEvent({ user }: { user: User }) {
                 Heure de début
               </Field>
               <Field name="duration" type="text" placeholder="">
-                Durée
+                Durée (en minutes)
               </Field>
               <Field name="content" type="textarea" placeholder="">
                 Description

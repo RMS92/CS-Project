@@ -27,7 +27,11 @@ export default function Header({
       <ul className="header-nav">
         <li className="header__home">
           <NavLink exact to="/">
-            <Icon name="home" />
+            <img
+              src={`/media/cs-event_logo.png`}
+              alt="cs-event_logo"
+              className="header__logo"
+            />
           </NavLink>
         </li>
         <li>

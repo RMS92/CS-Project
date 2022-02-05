@@ -33,11 +33,11 @@ export default function EventCard({
           {participants.length !== 0
             ? participants.map((p, i) =>
                 i < 3 ? (
-                  <Link to={`/profil/${p.id}`} className="avatar">
+                  <Link key={i} to={`/profil/${p.id}`} className="avatar">
                     <img src="/media/default.png" alt="avatar-default" />
                   </Link>
                 ) : i === 3 ? (
-                  <button className="avatar">
+                  <button key={i} className="avatar">
                     + {participants.length - 3}
                   </button>
                 ) : null

@@ -43,7 +43,7 @@ function App() {
         <Header user={user} onConnect={onConnect} setOnConnect={setOnConnect} />
         <Switch>
           <Route exact path="/">
-            <Events />
+            <Events user={user} />
           </Route>
           <Route exact path="/events/nouveau">
             {user ? <CreateEvent user={user} /> : <Redirect to="/" />}

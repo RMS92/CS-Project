@@ -6,15 +6,21 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
 import { PseudoAlreadyUsedException } from "../security/exceptions/pseudo-already-used.exception";
+import { ConfigService } from "../config/config.service";
 
 @Injectable()
 export class UsersService {
   constructor(
     @DatabaseTable("user")
-    private readonly db: DatabaseService<User>
-  ) {}
+    private readonly db: DatabaseService<User>,
+    private readonly configService: ConfigService
+  ) {
+    this.configService = new ConfigService({
+      useProcess: true,
+    });
+  }
 
-  securityLevel: number = 3;
+  securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
   // DONE
   async findAll(): Promise<User[]> {

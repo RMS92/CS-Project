@@ -8,6 +8,7 @@ import { CONFIG_MODULE_OPTIONS } from "./config.constants";
 import { ConfigModuleOptions } from "./interfaces/config-options.interface";
 import { EnvConfig } from "./model/env.model";
 import { OgmaModuleOptions } from "@ogma/nestjs-module";
+import { DatabaseModuleSecurity } from "../database/interfaces/database-security.interface";
 
 @Injectable()
 export class ConfigService {
@@ -47,8 +48,8 @@ export class ConfigService {
     return this.envConfig.DATABASE_URL;
   }
 
-  get databaseRecordsUrl(): string {
-    return this.envConfig.DATABASE_RECORDS_URL;
+  get securityLevel(): number {
+    return this.envConfig.SECURITY_LEVEL;
   }
 
   get isProd(): boolean {
@@ -59,13 +60,6 @@ export class ConfigService {
   get databaseConfig(): DatabaseModuleOptions {
     return {
       connectionUrl: this.databaseUrl,
-      ssl: this.isProd,
-    };
-  }
-
-  get databaseRecordsConfig(): DatabaseModuleOptions {
-    return {
-      connectionUrl: this.databaseRecordsUrl,
       ssl: this.isProd,
     };
   }
@@ -82,8 +76,10 @@ export class ConfigService {
     return this.envConfig.PORT;
   }
 
-  getSecurityLevel(): number {
-    return this.envConfig.SECURITY_LEVEL;
+  get databaseSecurity(): DatabaseModuleSecurity {
+    return {
+      securityLevel: this.securityLevel,
+    };
   }
 
   get sessionSecret(): string {

@@ -10,6 +10,7 @@ import { DatabaseService } from "./database.service";
 import { DatabaseModuleOptions } from "./interfaces/database-options.interface";
 import { DatabaseFeatureOptions } from "./interfaces/database.interface";
 import { WorkbookService } from "../workbook/workbook.service";
+import { ConfigModule } from "../config/config.module";
 
 @Module({})
 export class DatabaseModule {

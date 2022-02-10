@@ -8,10 +8,12 @@ import {
   InsertParams,
   JoinParams,
   QueryParams,
-  UpdateManyParams,
   UpdateParams,
 } from "./interfaces/database.interface";
 import { WorkbookService } from "../workbook/workbook.service";
+import { DatabaseModuleSecurity } from "./interfaces/database-security.interface";
+import { DatabaseModuleOptions } from "./interfaces/database-options.interface";
+import { ConfigService } from "../config/config.service";
 
 @Injectable()
 export class DatabaseService<T> implements DatabaseInterface<T> {

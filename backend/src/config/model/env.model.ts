@@ -9,10 +9,6 @@ export class EnvConfig {
   DATABASE_URL: string = "postgres://postgres:root@localhost:5432/cs_project";
 
   @t
-  DATABASE_RECORDS_URL: string =
-    "postgres://postgres:root@localhost:5432/cs_project_records";
-
-  @t
   JWT_SECRET: string = "itsasecret";
 
   @t

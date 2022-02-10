@@ -1,8 +1,2 @@
 Requête,Niveau
-SELECT * FROM public.comment ORDER BY created_at ASC,3
-SELECT * FROM public.comment ORDER BY created_at ASC,3
-DELETE FROM public.comment WHERE id = $1,3
-SELECT * FROM public.comment ORDER BY created_at ASC,3
-SELECT * FROM public.comment ORDER BY created_at ASC,3
-SELECT * FROM public.comment ORDER BY created_at ASC,3
-SELECT * FROM public.comment ORDER BY created_at ASC,3
+SELECT * FROM public.comment ORDER BY created_at DESC,1

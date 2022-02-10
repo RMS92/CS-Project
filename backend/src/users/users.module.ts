@@ -5,7 +5,10 @@ import { DatabaseModule } from "../database/database.module";
 import { ConfigModule } from "../config/config.module";
 
 @Module({
-  imports: [DatabaseModule.forFeature({ tableName: "user" })],
+  imports: [
+    DatabaseModule.forFeature({ tableName: "user" }),
+    ConfigModule.Deferred,
+  ],
   controllers: [UsersController],
   providers: [UsersService],
   exports: [UsersService],

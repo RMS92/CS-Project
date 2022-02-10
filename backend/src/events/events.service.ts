@@ -6,15 +6,21 @@ import { CreateEventDto } from "./dto/create-event.dto";
 import { UsersEventsService } from "../users-events/users-events.service";
 import { User } from "../users/models/user.model";
 import { UserEvent } from "../users-events/models/user-event.model";
+import { ConfigService } from "../config/config.service";
 
 @Injectable()
 export class EventsService {
-  constructor(private readonly userEventService: UsersEventsService) {}
-
-  @DatabaseTable("event")
-  private readonly db: DatabaseService<Event>;
-
-  securityLevel: number = 3;
+  constructor(
+    @DatabaseTable("event")
+    private readonly db: DatabaseService<Event>,
+    private readonly userEventService: UsersEventsService,
+    private readonly configService: ConfigService
+  ) {
+    this.configService = new ConfigService({
+      useProcess: true,
+    });
+  }
+  securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
   // DONE
   async findAll(): Promise<Event[]> {

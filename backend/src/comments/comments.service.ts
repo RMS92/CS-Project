@@ -4,13 +4,21 @@ import { UpdateCommentDto } from "./dto/update-comment.dto";
 import { DatabaseTable } from "../database/database.decorator";
 import { DatabaseService } from "../database/database.service";
 import { Comment } from "./models/comment.model";
+import { ConfigService } from "../config/config.service";
 
 @Injectable()
 export class CommentsService {
-  @DatabaseTable("comment")
-  private readonly db: DatabaseService<Comment>;
+  constructor(
+    @DatabaseTable("comment")
+    private readonly db: DatabaseService<Comment>,
+    private readonly configService: ConfigService
+  ) {
+    this.configService = new ConfigService({
+      useProcess: true,
+    });
+  }
 
-  securityLevel: number = 3;
+  securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
   // DONE
   async create(

@@ -5,6 +5,9 @@ profil normal
  - invitations (table de liaison) - done
 
 // TODO
+Error for comment field and create event field when fail creation at level 1 ??
+save csv ce qu'il a rentré + template ??
+
 pagination - done
 logo a mettre - done
 notifs quand on a creer un évènement - done

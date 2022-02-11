@@ -65,9 +65,16 @@ export function createDatabaseProviders(
       useFactory: (
         pool: Pool,
         ogmaService: OgmaService,
-        workbookService: WorkbookService
+        workbookService: WorkbookService,
+        configService: ConfigService
       ) => {
-        return new DatabaseService(pool, feature, ogmaService, workbookService);
+        return new DatabaseService(
+          pool,
+          feature,
+          ogmaService,
+          workbookService,
+          configService
+        );
       },
     },
   ];

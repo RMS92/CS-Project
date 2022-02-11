@@ -101,8 +101,14 @@ export default function ShowEvent() {
     <div className="container py5">
       <div className="stack-extra mb5">
         <div className="events-hero stack">
-          <div className="hero-title">{event.title}</div>
-          <div className="hero-text">{event.content}</div>
+          <div
+            className="hero-title"
+            dangerouslySetInnerHTML={{ __html: event.title }}
+          />
+          <div
+            className="hero-text"
+            dangerouslySetInnerHTML={{ __html: event.content }}
+          />
           <div className="hstack" style={{ display: "block" }}>
             {!user ? (
               <Link to="/connexion" className="btn-primary">

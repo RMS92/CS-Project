@@ -7,6 +7,7 @@ import { UsersEventsService } from "../users-events/users-events.service";
 import { User } from "../users/models/user.model";
 import { UserEvent } from "../users-events/models/user-event.model";
 import { ConfigService } from "../config/config.service";
+import escapeInput from "../utils";
 
 @Injectable()
 export class EventsService {
@@ -22,9 +23,8 @@ export class EventsService {
   }
   securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
-  // DONE
   async findAll(): Promise<Event[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.queryAll({
         query: "*",
         where: "ORDER BY created_at DESC",
@@ -38,9 +38,8 @@ export class EventsService {
     }
   }
 
-  // DONE
   async findOne(id: number): Promise<Event> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.query({
         query: "*",
         where: "id = " + id,
@@ -55,9 +54,8 @@ export class EventsService {
     }
   }
 
-  // DONE
   async findEventsByUser(id: number): Promise<Event[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.queryAll({
         query: "*",
         where: "WHERE user_id = " + id,
@@ -72,9 +70,8 @@ export class EventsService {
     }
   }
 
-  // DONE
   async findEventsInvitationsByUser(id: number): Promise<Event[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.join({
         query:
           "title, content, place, duration, public.event.created_at, public.event.updated_at, public.user_event.user_id, begin_at, start_time, event_id as id",
@@ -94,7 +91,6 @@ export class EventsService {
     }
   }
 
-  // DONE
   async create(
     createEventDto: CreateEventDto,
     user_id: number
@@ -108,6 +104,15 @@ export class EventsService {
         query:
           "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
         where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
+      });
+    } else if (this.securityLevel === 2) {
+      const safeTitle = escapeInput(createEventDto.title);
+      const safeContent = escapeInput(createEventDto.content);
+      const safePlace = escapeInput(createEventDto.place);
+      event = await this.db.insert({
+        query:
+          "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
+        where: `'${safeTitle}', '${safeContent}', '${safePlace}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
       });
     } else {
       const where = `$${1}, $${2}, $${3}, $${4}, $${5}, $${6}, $${7}, $${8}, $${9}`;
@@ -136,21 +141,12 @@ export class EventsService {
     return event;
   }
 
-  // DONE
   async createEventUser(user_id: string, event_id: string): Promise<UserEvent> {
     return this.userEventService.create(user_id, event_id);
   }
 
-  /*async update(id: number, updateEventDto: UpdateEventDto): Promise<ShowEvent> {
-    return this.db.update({
-      query: `pseudo = '${updateEventDto.pseudo}'`,
-      where: "id = " + id,
-    });
-  }*/
-
-  // DONE
   async delete(id: number): Promise<Event> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.delete({
         query: "",
         where: "id = " + id,

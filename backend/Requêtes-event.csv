@@ -1,3 +1,5 @@
-Requête,Niveau
-SELECT * FROM public.event ORDER BY created_at DESC,1
-SELECT * FROM public.event WHERE id = 48,1
+Input,Requête,Niveau
+"{""query"":""*"",""where"":""id = 52""}",SELECT * FROM public.event WHERE id = 52,1
+"[{""query"":""*"",""where"":""ORDER BY created_at DESC""}]",SELECT * FROM public.event ORDER BY created_at DESC,1
+"{""query"":""*"",""where"":""id = 54""}",SELECT * FROM public.event WHERE id = 54,1
+"[{""query"":""*"",""where"":""ORDER BY created_at DESC""}]",SELECT * FROM public.event ORDER BY created_at DESC,1

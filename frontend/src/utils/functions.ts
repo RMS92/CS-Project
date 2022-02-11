@@ -35,7 +35,7 @@ export function pagination(currentPage: number, pageCount: number) {
 }
 
 // Format card description
-export function formatDescription(description: string): String {
+export function formatDescription(description: string): string {
   if (description.length < 130) {
     return description;
   }

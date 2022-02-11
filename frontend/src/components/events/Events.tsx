@@ -30,9 +30,9 @@ export default function Events({ user }: { user: User | null }) {
         <div className="hero-title">Les prochains évènements de CS Rennes</div>
         <div className="hero-text">
           Vous trouverez ci-dessous les prochains évènements qui auront lieu sur
-          le campus CS de Rennes. <br /> Si l'un d'entre eux vous plait, vous
-          pouvez vous y inscrire afin de prévenir l'organisateur que vous venez
-          :)
+          le campus CS de Rennes. <br /> Si l&apos;un d'entre eux vous plait,
+          vous pouvez vous y inscrire afin de prévenir l'organisateur que vous
+          venez :)
           <br />
           C'est facile et simple d'utilisation :p
         </div>

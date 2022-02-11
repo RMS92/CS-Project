@@ -7,6 +7,8 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
 import { PseudoAlreadyUsedException } from "../security/exceptions/pseudo-already-used.exception";
 import { ConfigService } from "../config/config.service";
+import escapeInput from "../utils";
+import { sample } from "rxjs/operators";
 
 @Injectable()
 export class UsersService {
@@ -22,9 +24,8 @@ export class UsersService {
 
   securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
-  // DONE
   async findAll(): Promise<User[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.queryAll({
         query: "*",
         where: "",
@@ -38,9 +39,8 @@ export class UsersService {
     }
   }
 
-  // DONE
   async findAllUsersEvents(): Promise<User[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.join({
         query: "public.user.id, public.user.pseudo, public.user_event.event_id",
         join: "user_event",
@@ -58,9 +58,8 @@ export class UsersService {
     }
   }
 
-  // DONE
   async findUsersEvents(id: number): Promise<User[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.join({
         query: "public.user.id, public.user.pseudo",
         join: "user_event",
@@ -78,9 +77,8 @@ export class UsersService {
     }
   }
 
-  // DONE
   async findOne(id: number): Promise<User> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.query({
         query: "id, pseudo",
         where: "id = " + id,
@@ -95,12 +93,17 @@ export class UsersService {
     }
   }
 
-  // DONE
   async findByPseudo(field: string): Promise<User> {
     if (this.securityLevel === 1) {
       return this.db.query({
         query: "*",
         where: "pseudo = " + `'${field}'`,
+      });
+    } else if (this.securityLevel === 2) {
+      const safeField = escapeInput(field);
+      return this.db.query({
+        query: "*",
+        where: "pseudo = " + `'${safeField}'`,
       });
     } else {
       const where = "pseudo = $1";
@@ -112,7 +115,6 @@ export class UsersService {
     }
   }
 
-  // DONE
   async findByPseudoAndPassword(
     pseudo: string,
     password: string
@@ -122,6 +124,17 @@ export class UsersService {
         query: "*",
         where:
           "pseudo = " + `'${pseudo}'` + " AND password = " + `'${password}'`,
+      });
+    } else if (this.securityLevel === 2) {
+      const safePseudo = escapeInput(pseudo);
+      const safePassword = escapeInput(password);
+      return this.db.query({
+        query: "*",
+        where:
+          "pseudo = " +
+          `'${safePseudo}'` +
+          " AND password = " +
+          `'${safePassword}'`,
       });
     } else {
       const where = "pseudo = $1 AND password = $2";
@@ -133,13 +146,18 @@ export class UsersService {
     }
   }
 
-  // DONE
   async pseudoExists(pseudo: string): Promise<boolean> {
     let user;
     if (this.securityLevel === 1) {
       user = await this.db.query({
         query: "*",
         where: "pseudo = " + `'${pseudo}'`,
+      });
+    } else if (this.securityLevel === 2) {
+      const safePseudo = escapeInput(pseudo);
+      user = await this.db.query({
+        query: "*",
+        where: "pseudo = " + `'${safePseudo}'`,
       });
     } else {
       const where = "pseudo = $1";
@@ -152,13 +170,19 @@ export class UsersService {
     return !!user;
   }
 
-  // DONE
   async create(createUserDto: CreateUserDto): Promise<User> {
     const now = Date.now();
     if (this.securityLevel === 1) {
       return this.db.insert({
         query: "pseudo, password, role, created_at, updated_at",
         where: `'${createUserDto.pseudo}', '${createUserDto.password}', 'ROLE_USER', ${now}, ${now}`,
+      });
+    } else if (this.securityLevel === 2) {
+      const safePseudo = escapeInput(createUserDto.pseudo);
+      const safePassword = escapeInput(createUserDto.password);
+      return this.db.insert({
+        query: "pseudo, password, role, created_at, updated_at",
+        where: `'${safePseudo}', '${safePassword}', 'ROLE_USER', ${now}, ${now}`,
       });
     } else {
       const where = `$${1}, $${2}, $${3}, $${4}, $${5}`;
@@ -176,11 +200,16 @@ export class UsersService {
     }
   }
 
-  // DONE
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     if (this.securityLevel === 1) {
       return this.db.update({
         query: `pseudo = '${updateUserDto.pseudo}'`,
+        where: "id = " + id,
+      });
+    } else if (this.securityLevel === 2) {
+      const safePseudo = escapeInput(updateUserDto.pseudo);
+      return this.db.update({
+        query: `pseudo = '${safePseudo}'`,
         where: "id = " + id,
       });
     } else {
@@ -193,7 +222,6 @@ export class UsersService {
     }
   }
 
-  // DONE
   async updatePseudo(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const pseudo = updateUserDto.pseudo.toLowerCase();
 
@@ -203,6 +231,12 @@ export class UsersService {
       if (this.securityLevel === 1) {
         return this.db.update({
           query: `pseudo = '${updateUserDto.pseudo}'`,
+          where: "id = " + id,
+        });
+      } else if (this.securityLevel === 2) {
+        const safePseudo = escapeInput(updateUserDto.pseudo);
+        return this.db.update({
+          query: `pseudo = '${safePseudo}'`,
           where: "id = " + id,
         });
       } else {
@@ -218,7 +252,6 @@ export class UsersService {
     }
   }
 
-  // DONE
   async updatePassword(
     id: number,
     updateUserPasswordDto: UpdateUserPasswordDto
@@ -226,6 +259,12 @@ export class UsersService {
     if (this.securityLevel === 1) {
       return this.db.update({
         query: `password = '${updateUserPasswordDto.password}'`,
+        where: "id = " + id,
+      });
+    } else if (this.securityLevel === 2) {
+      const safePassword = escapeInput(updateUserPasswordDto.password);
+      return this.db.update({
+        query: `password = '${safePassword}'`,
         where: "id = " + id,
       });
     } else {
@@ -238,9 +277,8 @@ export class UsersService {
     }
   }
 
-  // DONE
   async delete(id: number): Promise<User> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.delete({
         query: "",
         where: "id = " + id,

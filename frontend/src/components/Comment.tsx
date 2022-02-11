@@ -49,7 +49,7 @@ export default function Comment({
       </div>
       <div className="comment__content">
         <div className="formatted">
-          <p>{comment.content}</p>
+          <p dangerouslySetInnerHTML={{ __html: comment.content }} />
         </div>
       </div>
     </div>

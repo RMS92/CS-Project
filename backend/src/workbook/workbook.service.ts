@@ -13,6 +13,7 @@ export class WorkbookService {
     this.worksheet = this.workbook.addWorksheet("Requêtes");
 
     this.worksheet.columns = [
+      { header: "Input", key: "input" },
       { header: "Requête", key: "request" },
       { header: "Niveau", key: "level" },
     ];
@@ -25,8 +26,9 @@ export class WorkbookService {
     this.worksheet.getRow(1).font = { bold: true };
   }
 
-  async addRow(query: string, level: number): Promise<boolean> {
+  async addRow(input, query: string, level: number): Promise<boolean> {
     await this.worksheet.addRow({
+      input: input,
       request: query,
       level: level,
     });

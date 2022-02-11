@@ -5,6 +5,7 @@ import { DatabaseTable } from "../database/database.decorator";
 import { DatabaseService } from "../database/database.service";
 import { Comment } from "./models/comment.model";
 import { ConfigService } from "../config/config.service";
+import escapeInput from "../utils";
 
 @Injectable()
 export class CommentsService {
@@ -20,7 +21,6 @@ export class CommentsService {
 
   securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
-  // DONE
   async create(
     createCommentDto: CreateCommentDto,
     user_id: number
@@ -30,6 +30,12 @@ export class CommentsService {
       return this.db.insert({
         query: "content, user_id, event_id, created_at, updated_at",
         where: `'${createCommentDto.content}', ${user_id}, ${createCommentDto.event_id}, ${now}, ${now}`,
+      });
+    } else if (this.securityLevel === 2) {
+      const safeContent = escapeInput(createCommentDto.content);
+      return this.db.insert({
+        query: "content, user_id, event_id, created_at, updated_at",
+        where: `'${safeContent}', ${user_id}, ${createCommentDto.event_id}, ${now}, ${now}`,
       });
     } else {
       const where = `$${1}, $${2}, $${3}, $${4}, $${5}`;
@@ -47,9 +53,8 @@ export class CommentsService {
     }
   }
 
-  // DONE
   async findAll(): Promise<Comment[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.queryAll({
         query: "*",
         where: "ORDER BY created_at DESC",
@@ -72,7 +77,7 @@ export class CommentsService {
   }
 
   async remove(id: number): Promise<Comment> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 1) {
       return this.db.delete({
         query: "",
         where: "id = " + id,

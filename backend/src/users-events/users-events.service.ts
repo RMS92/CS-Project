@@ -19,9 +19,8 @@ export class UsersEventsService {
 
   securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
-  // DONE
   async findAll(): Promise<UserEvent[]> {
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.queryAll({
         query: "*",
         where: "",
@@ -35,11 +34,10 @@ export class UsersEventsService {
     }
   }
 
-  // DONE
   async create(user_id: string, event_id: string): Promise<UserEvent> {
     const now = Date.now();
 
-    if (this.securityLevel === 1) {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.insert({
         query: "user_id, event_id, created_at, updated_at",
         where: `${user_id}, ${event_id}, ${now}, ${now}`,

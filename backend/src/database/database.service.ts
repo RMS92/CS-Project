@@ -1,4 +1,4 @@
-import { Injectable, Type } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { OgmaService } from "@ogma/nestjs-module";
 import { Pool } from "pg";
 import {
@@ -11,8 +11,6 @@ import {
   UpdateParams,
 } from "./interfaces/database.interface";
 import { WorkbookService } from "../workbook/workbook.service";
-import { DatabaseModuleSecurity } from "./interfaces/database-security.interface";
-import { DatabaseModuleOptions } from "./interfaces/database-options.interface";
 import { ConfigService } from "../config/config.service";
 
 @Injectable()
@@ -23,17 +21,25 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
     private readonly pool: Pool,
     readonly feature: DatabaseFeatureOptions,
     private readonly logger: OgmaService,
-    private readonly workbookService: WorkbookService
+    private readonly workbookService: WorkbookService,
+    private readonly configService: ConfigService
   ) {
+    this.configService = new ConfigService({
+      useProcess: true,
+    });
     this.workbookService = new WorkbookService();
     this.tableName = feature.tableName;
   }
 
   //----------- Query normal -----------//
 
-  private async executeQuery(query: string): Promise<T[]> {
+  private async executeQuery(query: string, input): Promise<T[]> {
     // Add query in worksheet
-    await this.workbookService.addRow(query, 1);
+    await this.workbookService.addRow(
+      input,
+      query,
+      this.configService.databaseSecurity.securityLevel
+    );
     await this.workbookService.writeWorkbook(this.tableName);
 
     const res = await this.pool.query(query);
@@ -49,7 +55,7 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       " " +
       params.where;
     console.log("QUERY: ", query);
-    return this.executeQuery(query);
+    return this.executeQuery(query, [params]);
   }
 
   async query(params: QueryParams): Promise<T> {
@@ -61,7 +67,7 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       " WHERE " +
       params.where;
     console.log("QUERY: ", query);
-    const rows = await this.executeQuery(query);
+    const rows = await this.executeQuery(query, params);
     return rows[0];
   }
 
@@ -75,7 +81,7 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       params.where +
       ") RETURNING *;";
     console.log("QUERY: ", query);
-    const rows = await this.executeQuery(query);
+    const rows = await this.executeQuery(query, params);
     return rows[0];
   }
 
@@ -89,7 +95,7 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       params.where +
       " RETURNING *;";
     console.log("QUERY: ", query);
-    const rows = await this.executeQuery(query);
+    const rows = await this.executeQuery(query, params);
     return rows[0];
   }
 
@@ -105,26 +111,27 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       params.joinCondition +
       params.where;
     console.log("QUERY: ", query);
-    return await this.executeQuery(query);
+    return await this.executeQuery(query, params);
   }
 
   async delete(params: DeleteParams): Promise<T> {
     const query =
       "DELETE FROM public." + this.tableName + " WHERE " + params.where;
     console.log("QUERY: ", query);
-    const rows = await this.executeQuery(query);
+    const rows = await this.executeQuery(query, params);
     return rows[0];
   }
 
   //----------- Prepared statement -----------//
   private async runQuery(query: string, params: any[]): Promise<T[]> {
-    // Add query in worksheet
-    await this.workbookService.addRow(query, 3);
-    await this.workbookService.writeWorkbook(this.tableName);
+    // Don't save records in csv for prepared statements
+    //await this.workbookService.addRow(query, 3);
+    //await this.workbookService.writeWorkbook(this.tableName);
 
     const res = await this.pool.query(query, params);
     return res.rows;
   }
+
   async preparedQueryAll(params: QueryParams): Promise<T[]> {
     const query =
       "SELECT " +

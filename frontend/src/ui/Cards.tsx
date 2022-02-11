@@ -20,10 +20,17 @@ export default function EventCard({
     <div className="card">
       <div className="card__body stack">
         <div className="card__title">
-          <Link to={`/events/${event.id}`}>{event.title}</Link>
+          <Link
+            to={`/events/${event.id}`}
+            dangerouslySetInnerHTML={{ __html: event.title }}
+          />
         </div>
         <div className="card__description mb2">
-          <p>{formatDescription(event.content)}</p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: formatDescription(event.content),
+            }}
+          />
         </div>
         <Link to={`/events/${event.id}`} className="card__link" />
       </div>

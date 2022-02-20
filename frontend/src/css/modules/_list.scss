@@ -1,0 +1,53 @@
+// List séparé par un -
+// =============
+.list-group > * {
+  position: relative;
+  // display: block;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--form-border);
+  transition: 0.3s;
+
+  &:first-child {
+    border-top: 1px solid var(--form-border);
+  }
+
+  &:hover {
+    padding-left: space(1);
+    // background: var(--background-elevation--01);
+  }
+}
+
+.list-group svg {
+  margin-left: space(2);
+  width: 16px;
+  height: 16px;
+}
+
+.list-group .icon-trash {
+  color: var(--color-red-02);
+}
+
+.list-icons a  {
+  display: block;
+  svg {
+    margin-right: 12px;
+  }
+}
+
+
+.list-group .list-group__delete {
+  justify-content: right;
+  text-align: right;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .icon-cross {
+    border-radius: 50px;
+    border: 3px solid var(--color-red-03);
+    background-color: var(--color-red-03);
+    cursor: pointer;
+    color: var(--background);
+  }
+}

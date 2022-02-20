@@ -1,0 +1,72 @@
+// Variables
+// ==================
+:root {
+  --color: #555770;
+  --color-muted: #8F90A6;
+  --background: #FFFFFF;
+
+  --color-white-03: #F2F2F5;
+  --color-white-04: #FAFAFC;
+
+  --color-dark-02: #28293D;
+  --color-dark-05: #C7C9D9;
+
+  --color-primary-02: #3E7BFA;
+  --color-primary-03: #6698FA;
+
+  --color-red-02: #FF3B3B;
+
+  --color-primary-outline: #3E7BFA;
+
+  --border: #EBEBF0;
+  --form-border: #E4E4EB;
+
+  --box-shadow-01: 0px 0px 1px rgba(40, 41, 61, 0.08), 0px 0.5px 2px rgba(96, 97, 112, 0.16);
+  --box-shadow-03: 0px 0px 2px rgba(40, 41, 61, 0.04), 0px 4px 8px rgba(96, 97, 112, 0.16);
+
+  --gap: 20px;
+  --card-padding: 16px;
+  --space: 8px;
+  --size: 45px;
+}
+
+// Outils
+// ==================
+@import "tools/reset";
+@import "tools/functions";
+@import "tools/mixins";
+@import "tools/layout";
+@import "tools/typography";
+
+// Generic
+// ==================
+body {
+  font-family: $font;
+  font-size: 16px;
+  color: var(--color);
+  line-height: 1.6;
+  background: var(--background);
+  scroll-margin: 100px 0 0 0;
+  word-break: break-word;
+}
+
+// Modules
+// ==================
+@import "modules/header";
+@import "modules/form";
+@import "modules/card";
+@import "modules/footer";
+@import "modules/btn";
+@import "modules/comments";
+@import "modules/list";
+@import "modules/user";
+@import "modules/alert";
+@import "modules/filter";
+@import "modules/select";
+@import "modules/badge";
+@import "modules/pagination";
+
+// Pages
+// ==================
+@import "pages/events";
+@import "pages/auth";

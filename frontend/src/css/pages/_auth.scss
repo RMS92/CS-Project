@@ -1,0 +1,37 @@
+// Pages d'authentification
+// ==================
+.auth-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - var(--container-padding) * 2);
+  max-width: 400px;
+}
+
+.auth-title {
+  @extend %hero-title;
+  color: var(--color);
+  text-align: center;
+  margin-bottom: space(4);
+}
+.auth-form a {
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+.auth-form {
+  box-shadow: var(--box-shadow-03);
+  border-radius: 3px;
+  padding: space(3);
+  // transition: 0.3s
+}
+.auth-form > * + * {
+  margin-top: space(3);
+}
+.auth-password-forgot {
+  opacity: 0.4;
+}
+.auth-actions {
+  font-size: 0.9rem;
+}

@@ -1,0 +1,46 @@
+.grid-filter {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  @include down(600) {
+    display: none;
+  }
+}
+
+.grid-filter > *:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.grid-filter > *:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-right: 1px solid var(--border);
+}
+.grid-filter__group {
+  padding-left: space(2);
+  display: flex;
+  align-items: center;
+  border-right: none;
+  box-shadow: var(--box-shadow-03);
+}
+
+.grid-filter__group label {
+  margin-right: space(1);
+  color: var(--color);
+  white-space: nowrap;letter-spacing: 2px;
+}
+
+.grid-filter .choices__inner {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  padding: 0 space(4) 0 0;
+  font-size: 14px;
+}
+
+.grid-filter .is-focused .choices__inner {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}

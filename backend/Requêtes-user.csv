@@ -1,13 +1,2 @@
 Input,Requête,Niveau
-"{""query"":""id, pseudo"",""where"":""id = 20""}","SELECT id, pseudo FROM public.user WHERE id = 20",1
-"{""query"":""public.user.id, public.user.pseudo"",""join"":""user_event"",""joinCondition"":""public.user.id = public.user_event.user_id"",""where"":"" WHERE public.user_event.event_id = 52""}","SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = 52",1
-"{""query"":""public.user.id, public.user.pseudo, public.user_event.event_id"",""join"":""user_event"",""joinCondition"":""public.user_event.user_id = public.user.id"",""where"":""""}","SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",1
-"{""query"":""id, pseudo"",""where"":""id = 20""}","SELECT id, pseudo FROM public.user WHERE id = 20",1
-"{""query"":""public.user.id, public.user.pseudo"",""join"":""user_event"",""joinCondition"":""public.user.id = public.user_event.user_id"",""where"":"" WHERE public.user_event.event_id = 54""}","SELECT public.user.id, public.user.pseudo FROM public.user JOIN public.user_event ON public.user.id = public.user_event.user_id WHERE public.user_event.event_id = 54",1
-"{""query"":""id, pseudo"",""where"":""id = 20""}","SELECT id, pseudo FROM public.user WHERE id = 20",1
-"{""query"":""*"",""where"":""pseudo = 'lulu' AND password = '1234'""}",SELECT * FROM public.user WHERE pseudo = 'lulu' AND password = '1234',1
-"{""query"":""*"",""where"":""pseudo = 'lulu' AND password = 'azerty'""}",SELECT * FROM public.user WHERE pseudo = 'lulu' AND password = 'azerty',1
-"{""query"":""id, pseudo"",""where"":""id = 20""}","SELECT id, pseudo FROM public.user WHERE id = 20",1
-"{""query"":""id, pseudo"",""where"":""id = 20""}","SELECT id, pseudo FROM public.user WHERE id = 20",1
-"{""query"":""id, pseudo"",""where"":""id = 20""}","SELECT id, pseudo FROM public.user WHERE id = 20",1
 "{""query"":""public.user.id, public.user.pseudo, public.user_event.event_id"",""join"":""user_event"",""joinCondition"":""public.user_event.user_id = public.user.id"",""where"":""""}","SELECT public.user.id, public.user.pseudo, public.user_event.event_id FROM public.user JOIN public.user_event ON public.user_event.user_id = public.user.id",1

@@ -15,12 +15,7 @@ async function bootstrap() {
   );
 
   const corsOptions = {
-    origin: [
-      "http://localhost:3000",
-      "http://localhost",
-      "http://localhost:80",
-      "http://cs-event.fr",
-    ],
+    origin: ["http://localhost:3000", "http://localhost"],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   };

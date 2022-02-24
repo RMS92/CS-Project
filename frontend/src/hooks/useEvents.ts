@@ -12,7 +12,7 @@ export const SELECT_EVENT = "SELECT_EVENT";
 export const DESELECT_EVENT = "DESELECT_EVENT";
 
 function reducer(state: any, action: any) {
-  console.log("EVENTS REDUCE", action.type, action);
+  // console.log("EVENTS REDUCE", action.type, action);
   switch (action.type) {
     case FETCH_EVENTS_REQUEST:
       return { ...state, loading: true };

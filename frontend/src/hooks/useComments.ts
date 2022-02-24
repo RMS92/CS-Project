@@ -8,7 +8,7 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 function reducer(state: any, action: any) {
-  console.log("COMMENTS REDUCE", action.type, action);
+  // console.log("COMMENTS REDUCE", action.type, action);
   switch (action.type) {
     case FETCH_COMMENTS_REQUEST:
       return { ...state, loading: true };

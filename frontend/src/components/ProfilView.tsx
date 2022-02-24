@@ -82,7 +82,7 @@ function ProfilBodyEvents({
   events: Event[];
   participants: User[];
 }) {
-  return (
+  return events && events.length !== 0 ? (
     <div className="events mt5">
       {events.map((e: Event) => (
         <EventCard
@@ -93,6 +93,12 @@ function ProfilBodyEvents({
           onDelete={Promise.resolve}
         />
       ))}
+    </div>
+  ) : (
+    <div className="py5">
+      <p className="text-muted text-center mt1 mb2">
+        Cet utilisateur n'a pas encore créé d&apos;évènements sur CS Event :(
+      </p>
     </div>
   );
 }

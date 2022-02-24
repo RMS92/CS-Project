@@ -6,7 +6,12 @@ import { FlashMessage } from "../../types";
 import clsx from "clsx";
 
 export default function Register() {
-  const [flashMessages, setFlashMessages] = useState<FlashMessage | null>(null);
+  const [flashMessages, setFlashMessages] = useState<FlashMessage | null>({
+    status: 400,
+    message:
+      "Veuillez ne pas utiliser vos mots de passe habituels pour vous inscrire sur notre site web !",
+    success: false,
+  });
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();

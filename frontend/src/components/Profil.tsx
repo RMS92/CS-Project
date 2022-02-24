@@ -334,7 +334,7 @@ function ProfilBodyEvents({
     })();
   }, []);
 
-  return (
+  return filteredEvents && filteredEvents.length !== 0 ? (
     <div className="events mt5">
       {filteredEvents.map((e: Event) => (
         <EventCard
@@ -345,7 +345,14 @@ function ProfilBodyEvents({
           event={e}
           onDelete={deleteEvent}
         />
-      ))}
+      ))}{" "}
+    </div>
+  ) : (
+    <div className="py5">
+      <p className="text-muted text-center mt1 mb2">
+        Tu n&apos;as malheureusement pas encore créé d&apos;évènements sur CS
+        Event :(
+      </p>
     </div>
   );
 }
@@ -366,20 +373,27 @@ function ProfilBodyInvitations({
     })();
   }, []);
 
-  console.log(invitations);
-  console.log(participants);
+  console.log("invitations", invitations);
+  console.log("participants", participants);
 
-  return (
+  return invitations && invitations.length !== 0 ? (
     <div className="events mt5">
       {invitations.map((e: Event) => (
         <EventCard
           key={e.id}
           // @ts-ignore
-          participants={participants.filter((p) => p.event_id === e.event_id)}
+          participants={participants.filter((p) => p.event_id === e.id)}
           event={e}
           onDelete={Promise.resolve}
         />
       ))}
+    </div>
+  ) : (
+    <div className="py5">
+      <p className="text-muted text-center mt1 mb2">
+        Tu ne participe ou n'a pas été invité à aucun évènement publié sur CS
+        Event :(
+      </p>
     </div>
   );
 }

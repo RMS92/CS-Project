@@ -7,8 +7,11 @@ import { goSpelunking } from "./spelunk";
 import session = require("express-session");
 import * as passport from "passport";
 let cookieparser = require("cookie-parser");
+const fs = require("fs");
 
 async function bootstrap() {
+  const httpsOptions = {};
+
   const app = await NestFactory.create(
     AppModule,
     process.env.NODE_ENV === "production" ? { logger: false } : {}

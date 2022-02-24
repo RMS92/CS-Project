@@ -1,23 +1,20 @@
-profil view invitations - done
+// Correctifs
+Quand pas d'évènement sur un utilisateur afficher un message - DONE
+logo sur l'onglet a la place de celui de react - DONE
+pop up disclaimer register page - DONE
 
-profil normal
- - update delete account and mdp - done
- - invitations (table de liaison) - done
+hash passwords - DONE
+save prepared queries - DONE
+protéger les routes users ?
 
-// TODO
-Error for comment field and create event field when fail creation at level 1 ??
-save csv ce qu'il a rentré + template ??
+certificat https
+cookies pour https
+redirection react "*" sur https
 
-pagination - done
-logo a mettre - done
-notifs quand on a creer un évènement - done
-(en minutes formulaire creation) - done
-notif need to login pour creer event
-footer - done
-
-les ' sont mal traités quand on rentre du contenu dans les forms (ex: j'avoue = erreur bdd car précense ') = afficher erreur
-alerte sur la creation événement
-les niveaux de sécurités
+Deploiement:
+- remplir httpsoptions in main.ts of backend
+- cookie options pour https
+- change url of frontend fetch in config.ts file
 
 ---
  <li className="header__search">

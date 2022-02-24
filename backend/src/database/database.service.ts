@@ -125,8 +125,8 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
   //----------- Prepared statement -----------//
   private async runQuery(query: string, params: any[]): Promise<T[]> {
     // Don't save records in csv for prepared statements
-    //await this.workbookService.addRow(query, 3);
-    //await this.workbookService.writeWorkbook(this.tableName);
+    await this.workbookService.addRow(params, query, 3);
+    await this.workbookService.writeWorkbook(this.tableName);
 
     const res = await this.pool.query(query, params);
     return res.rows;

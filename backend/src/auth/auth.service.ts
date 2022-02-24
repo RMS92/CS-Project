@@ -12,12 +12,14 @@ export class AuthService {
 
   async validateUser(pseudo: string, password: string): Promise<User> {
     pseudo = pseudo.toLowerCase();
-    const user = await this.usersService.findByPseudoAndPassword(
-      pseudo,
-      password
-    );
+    const user = await this.usersService.findByPseudo(pseudo);
     if (user) {
-      return user;
+      const validated = await this.comparePasswords(password, user.password);
+      if (validated) {
+        return user;
+      } else {
+        throw new WrongPasswordException();
+      }
     } else {
       throw new WrongPseudoException();
     }

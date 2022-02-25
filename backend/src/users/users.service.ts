@@ -8,7 +8,8 @@ import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
 import { PseudoAlreadyUsedException } from "../security/exceptions/pseudo-already-used.exception";
 import { ConfigService } from "../config/config.service";
 import escapeInput from "../utils";
-import { sample } from "rxjs/operators";
+const bcrypt = require("bcrypt");
+import { ForbiddenRessourceException } from "./exceptions/forbidden-ressource.exception";
 
 @Injectable()
 export class UsersService {
@@ -24,18 +25,23 @@ export class UsersService {
 
   securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
-  async findAll(): Promise<User[]> {
-    if (this.securityLevel === 1 || this.securityLevel === 2) {
-      return this.db.queryAll({
-        query: "*",
-        where: "",
-      });
+  async findAll(id): Promise<User[]> {
+    const authUser = await this.findOne(id);
+    if (authUser.role === "ROLE_ADMIN") {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return this.db.queryAll({
+          query: "*",
+          where: "",
+        });
+      } else {
+        return this.db.preparedQueryAll({
+          query: "*",
+          where: "",
+          variables: [],
+        });
+      }
     } else {
-      return this.db.preparedQueryAll({
-        query: "*",
-        where: "",
-        variables: [],
-      });
+      throw new ForbiddenRessourceException();
     }
   }
 
@@ -80,13 +86,13 @@ export class UsersService {
   async findOne(id: number): Promise<User> {
     if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.query({
-        query: "id, pseudo",
+        query: "id, pseudo, role",
         where: "id = " + id,
       });
     } else {
       const where = "id = $1";
       return this.db.preparedQuery({
-        query: "id, pseudo",
+        query: "id, pseudo, role",
         where,
         variables: [id],
       });
@@ -200,34 +206,12 @@ export class UsersService {
     }
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    if (this.securityLevel === 1) {
-      return this.db.update({
-        query: `pseudo = '${updateUserDto.pseudo}'`,
-        where: "id = " + id,
-      });
-    } else if (this.securityLevel === 2) {
-      const safePseudo = escapeInput(updateUserDto.pseudo);
-      return this.db.update({
-        query: `pseudo = '${safePseudo}'`,
-        where: "id = " + id,
-      });
-    } else {
-      const where = "id = $2";
-      return this.db.preparedUpdate({
-        query: "pseudo = $1",
-        where,
-        variables: [updateUserDto.pseudo, id],
-      });
-    }
-  }
-
-  async updatePseudo(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    const pseudo = updateUserDto.pseudo.toLowerCase();
-
-    const pseudoExists = await this.pseudoExists(pseudo);
-
-    if (!pseudoExists) {
+  async update(
+    id: number,
+    authId: number,
+    updateUserDto: UpdateUserDto
+  ): Promise<User> {
+    if (id === authId) {
       if (this.securityLevel === 1) {
         return this.db.update({
           query: `pseudo = '${updateUserDto.pseudo}'`,
@@ -248,48 +232,105 @@ export class UsersService {
         });
       }
     } else {
-      throw new PseudoAlreadyUsedException();
+      throw new ForbiddenRessourceException();
+    }
+  }
+
+  async updatePseudo(
+    id: number,
+    authId: number,
+    updateUserDto: UpdateUserDto
+  ): Promise<User> {
+    if (id === authId) {
+      const pseudo = updateUserDto.pseudo.toLowerCase();
+
+      const pseudoExists = await this.pseudoExists(pseudo);
+
+      if (!pseudoExists) {
+        if (this.securityLevel === 1) {
+          return this.db.update({
+            query: `pseudo = '${updateUserDto.pseudo}'`,
+            where: "id = " + id,
+          });
+        } else if (this.securityLevel === 2) {
+          const safePseudo = escapeInput(updateUserDto.pseudo);
+          return this.db.update({
+            query: `pseudo = '${safePseudo}'`,
+            where: "id = " + id,
+          });
+        } else {
+          const where = "id = $2";
+          return this.db.preparedUpdate({
+            query: "pseudo = $1",
+            where,
+            variables: [updateUserDto.pseudo, id],
+          });
+        }
+      } else {
+        throw new PseudoAlreadyUsedException();
+      }
+    } else {
+      throw new ForbiddenRessourceException();
     }
   }
 
   async updatePassword(
     id: number,
+    authId: number,
     updateUserPasswordDto: UpdateUserPasswordDto
   ): Promise<User> {
-    if (this.securityLevel === 1) {
-      return this.db.update({
-        query: `password = '${updateUserPasswordDto.password}'`,
-        where: "id = " + id,
-      });
-    } else if (this.securityLevel === 2) {
-      const safePassword = escapeInput(updateUserPasswordDto.password);
-      return this.db.update({
-        query: `password = '${safePassword}'`,
-        where: "id = " + id,
-      });
+    if (id === authId) {
+      const hashPassword = await this.hashPassword(
+        updateUserPasswordDto.password
+      );
+      if (this.securityLevel === 1) {
+        return this.db.update({
+          query: `password = '${hashPassword}'`,
+          where: "id = " + id,
+        });
+      } else if (this.securityLevel === 2) {
+        // const safePassword = escapeInput(updateUserPasswordDto.password);
+        return this.db.update({
+          query: `password = '${hashPassword}'`,
+          where: "id = " + id,
+        });
+      } else {
+        const where = "id = $2";
+        return this.db.preparedUpdate({
+          query: "password = $1",
+          where,
+          variables: [hashPassword, id],
+        });
+      }
     } else {
-      const where = "id = $2";
-      return this.db.preparedUpdate({
-        query: "password = $1",
-        where,
-        variables: [updateUserPasswordDto.password, id],
-      });
+      throw new ForbiddenRessourceException();
     }
   }
 
-  async delete(id: number): Promise<User> {
-    if (this.securityLevel === 1 || this.securityLevel === 2) {
-      return this.db.delete({
-        query: "",
-        where: "id = " + id,
-      });
+  async delete(id: number, authId: number): Promise<Boolean> {
+    if (id === authId) {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        await this.db.delete({
+          query: "",
+          where: "id = " + id,
+        });
+        return true;
+      } else {
+        const where = "id = $1";
+        await this.db.preparedDelete({
+          query: "",
+          where,
+          variables: [id],
+        });
+        return true;
+      }
     } else {
-      const where = "id = $1";
-      return this.db.preparedDelete({
-        query: "",
-        where,
-        variables: [id],
-      });
+      throw new ForbiddenRessourceException();
     }
+  }
+
+  // Hash password
+  async hashPassword(password: string): Promise<string> {
+    return await bcrypt.hash(password, 12);
   }
 }

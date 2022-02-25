@@ -6,6 +6,7 @@ import { DatabaseService } from "../database/database.service";
 import { Comment } from "./models/comment.model";
 import { ConfigService } from "../config/config.service";
 import escapeInput from "../utils";
+import { ForbiddenRessourceException } from "../users/exceptions/forbidden-ressource.exception";
 
 @Injectable()
 export class CommentsService {
@@ -69,26 +70,43 @@ export class CommentsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} comment`;
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
+      return this.db.query({
+        query: "*",
+        where: "id = " + id,
+      });
+    } else {
+      const where = "id = $1";
+      return this.db.preparedQuery({
+        query: "*",
+        where,
+        variables: [id],
+      });
+    }
   }
 
   update(id: number, updateCommentDto: UpdateCommentDto) {
     return `This action updates a #${id} comment`;
   }
 
-  async remove(id: number): Promise<Comment> {
-    if (this.securityLevel === 1 || this.securityLevel === 1) {
-      return this.db.delete({
-        query: "",
-        where: "id = " + id,
-      });
+  async remove(id: number, authId: number): Promise<Comment> {
+    const comment = await this.findOne(id);
+    if (parseInt(comment.user_id) === authId) {
+      if (this.securityLevel === 1 || this.securityLevel === 1) {
+        return this.db.delete({
+          query: "",
+          where: "id = " + id,
+        });
+      } else {
+        const where = "id = $1";
+        return this.db.preparedDelete({
+          query: "",
+          where,
+          variables: [id],
+        });
+      }
     } else {
-      const where = "id = $1";
-      return this.db.preparedDelete({
-        query: "",
-        where,
-        variables: [id],
-      });
+      throw new ForbiddenRessourceException();
     }
   }
 }

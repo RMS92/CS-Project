@@ -45,7 +45,9 @@ export class CommentsController {
   }
 
   @Delete(":id")
-  async remove(@Param("id") id: string) {
-    return this.commentsService.remove(+id);
+  @UseGuards(AuthenticatedGuard)
+  async remove(@Param("id") id: string, @Req() req) {
+    const authId = req.user.id;
+    return this.commentsService.remove(+id, authId);
   }
 }

@@ -192,16 +192,16 @@ function ProfilBodyEdit({
   const handleDeleteAccount = async () => {
     try {
       // Delete cookie
-      const res2 = await apiFetch("/logout");
-      setOnConnect(res2);
+      // const res2 = await apiFetch("/logout");
 
       // delete cascade set in bdd
       const res = await apiFetch("/users/" + user.id, {
         method: "delete",
       });
+
       setFlashMessages({
         status: 200,
-        success: true,
+        success: res,
         message:
           "Votre compte a bien été supprimé. Réactualiser la page pour valider la suppression.",
       });
@@ -279,7 +279,7 @@ function ProfilBodyEdit({
               type="button"
               onClick={handlePasswordSubmit}
             >
-              Mofidier mon mot de passe
+              Modifier mon mot de passe
             </button>
           </div>
         </form>

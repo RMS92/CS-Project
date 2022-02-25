@@ -1,5 +1,4 @@
 Input,Requête,Niveau
 [],SELECT * FROM public.event ORDER BY created_at DESC,3
-[55],SELECT * FROM public.event WHERE id = $1,3
-[],SELECT * FROM public.event ORDER BY created_at DESC,3
+[56],SELECT * FROM public.event WHERE id = $1,3
 [],SELECT * FROM public.event ORDER BY created_at DESC,3

@@ -10,15 +10,25 @@ let cookieparser = require("cookie-parser");
 const fs = require("fs");
 
 async function bootstrap() {
-  const httpsOptions = {};
+  /*const httpsOptions = {
+    key: fs.readFileSync("/etc/letsencrypt/live/cs-event.fr/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/cs-event.fr/cert.pem'"),
+  };*/
 
   const app = await NestFactory.create(
-    AppModule,
-    process.env.NODE_ENV === "production" ? { logger: false } : {}
+    AppModule
+    //{httpsOptions}
   );
 
   const corsOptions = {
-    origin: ["http://localhost:3000", "http://localhost"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost",
+      "https://cs-event.fr:3000",
+      "https://cs-event.fr",
+      // "http://cs-event.fr:3000",
+      // "http://cs-event.fr",
+    ],
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   };

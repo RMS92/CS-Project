@@ -7,20 +7,26 @@ import {
   Provider,
   Patch,
   Delete,
+  UseGuards,
+  Req,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "./models/user.model";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
+import { AuthenticatedGuard } from "../auth/guards/authenticated-auth.guard";
+import { DeleteUserDto } from "./dto/delete-user.dto";
 
 @Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
+  @UseGuards(AuthenticatedGuard)
+  async findAll(@Req() req): Promise<User[]> {
+    const id = req.user.id;
+    return this.usersService.findAll(+id);
   }
 
   @Get("events")
@@ -44,31 +50,43 @@ export class UsersController {
   }
 
   @Patch(":id")
+  @UseGuards(AuthenticatedGuard)
   async update(
     @Param("id") id: string,
-    @Body() updateUserDto: UpdateUserDto
+    @Body() updateUserDto: UpdateUserDto,
+    @Req() req
   ): Promise<User> {
-    return this.usersService.update(+id, updateUserDto);
+    const authId = req.user.id;
+    return this.usersService.update(+id, authId, updateUserDto);
   }
 
   @Patch(":id/pseudo")
+  @UseGuards(AuthenticatedGuard)
   async updatePseudo(
     @Param("id") id: string,
-    @Body() updateUserDto: UpdateUserDto
+    @Body() updateUserDto: UpdateUserDto,
+    @Req() req
   ): Promise<User> {
-    return this.usersService.updatePseudo(+id, updateUserDto);
+    const authId = req.user.id;
+    return this.usersService.updatePseudo(+id, authId, updateUserDto);
   }
 
   @Patch(":id/password")
+  @UseGuards(AuthenticatedGuard)
   async updatePassword(
     @Param("id") id: string,
-    @Body() updateUserPasswordDto: UpdateUserPasswordDto
+    @Body() updateUserPasswordDto: UpdateUserPasswordDto,
+    @Req() req
   ): Promise<User> {
-    return this.usersService.updatePassword(+id, updateUserPasswordDto);
+    const authId = req.user.id;
+    return this.usersService.updatePassword(+id, authId, updateUserPasswordDto);
   }
 
   @Delete(":id")
-  async delete(@Param("id") id: string): Promise<User> {
-    return this.usersService.delete(+id);
+  @UseGuards(AuthenticatedGuard)
+  async delete(@Param("id") id: string, @Req() req): Promise<Boolean> {
+    const authId = req.user.id;
+    req.logout();
+    return this.usersService.delete(+id, authId);
   }
 }

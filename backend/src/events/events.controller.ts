@@ -13,9 +13,7 @@ import {
 import { EventsService } from "./events.service";
 import { Event } from "./models/event.model";
 import { CreateEventDto } from "./dto/create-event.dto";
-import { UpdateEventDto } from "./dto/update-event.dto";
 import { AuthenticatedGuard } from "../auth/guards/authenticated-auth.guard";
-import { User } from "../users/models/user.model";
 import { UserEvent } from "../users-events/models/user-event.model";
 import { CreateUserEventDto } from "../users-events/dto/create-user-event.dto";
 
@@ -76,7 +74,8 @@ export class EventsController {
 
   @Delete(":id")
   @UseGuards(AuthenticatedGuard)
-  async delete(@Param("id") id: string): Promise<Event> {
-    return this.eventsService.delete(+id);
+  async delete(@Param("id") id: string, @Req() req): Promise<Event> {
+    const authId = req.user.id;
+    return this.eventsService.delete(+id, authId);
   }
 }

@@ -8,6 +8,7 @@ import { User } from "../users/models/user.model";
 import { UserEvent } from "../users-events/models/user-event.model";
 import { ConfigService } from "../config/config.service";
 import escapeInput from "../utils";
+import { ForbiddenRessourceException } from "../users/exceptions/forbidden-ressource.exception";
 
 @Injectable()
 export class EventsService {
@@ -145,19 +146,24 @@ export class EventsService {
     return this.userEventService.create(user_id, event_id);
   }
 
-  async delete(id: number): Promise<Event> {
-    if (this.securityLevel === 1 || this.securityLevel === 2) {
-      return this.db.delete({
-        query: "",
-        where: "id = " + id,
-      });
+  async delete(id: number, authId: number): Promise<Event> {
+    const event = await this.findOne(id);
+    if (parseInt(event.user_id) === authId) {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return this.db.delete({
+          query: "",
+          where: "id = " + id,
+        });
+      } else {
+        const where = "id = $1";
+        return this.db.preparedDelete({
+          query: "",
+          where,
+          variables: [id],
+        });
+      }
     } else {
-      const where = "id = $1";
-      return this.db.preparedDelete({
-        query: "",
-        where,
-        variables: [id],
-      });
+      throw new ForbiddenRessourceException();
     }
   }
 }

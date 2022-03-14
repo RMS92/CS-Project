@@ -140,7 +140,7 @@ export default function ShowEvent() {
             </h4>
             <div className="level1 stack-large p3">
               <p>
-                L&apos;évènement Barbecue Viande se déroulera le{" "}
+                L&apos;évènement <strong>{event?.title}</strong> se déroulera le{" "}
                 <strong>
                   {new Date(parseFloat(event?.begin_at)).toLocaleDateString()}
                 </strong>{" "}

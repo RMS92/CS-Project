@@ -23,10 +23,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @UseGuards(AuthenticatedGuard)
   async findAll(@Req() req): Promise<User[]> {
-    const id = req.user.id;
-    return this.usersService.findAll(+id);
+    return this.usersService.findAll();
   }
 
   @Get("events")

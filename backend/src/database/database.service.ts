@@ -12,6 +12,7 @@ import {
 } from "./interfaces/database.interface";
 import { WorkbookService } from "../workbook/workbook.service";
 import { ConfigService } from "../config/config.service";
+import PromiseMatchers = jest.PromiseMatchers;
 
 @Injectable()
 export class DatabaseService<T> implements DatabaseInterface<T> {
@@ -123,9 +124,13 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
   }
 
   //----------- Prepared statement -----------//
-  private async runQuery(query: string, params: any[]): Promise<T[]> {
+  private async runQuery(
+    query: string,
+    params: any[],
+    queryToSave: string
+  ): Promise<T[]> {
     // Don't save records in csv for prepared statements
-    await this.workbookService.addRow(params, query, 3);
+    await this.workbookService.addRow(params, queryToSave, 3);
     await this.workbookService.writeWorkbook(this.tableName);
 
     const res = await this.pool.query(query, params);
@@ -141,7 +146,11 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       " " +
       params.where;
     console.log("PREPARED QUERY: ", query);
-    return this.runQuery(query, params.variables);
+    const preparedQueryToSave: string = this.saveFormattedPreparedQuery(
+      query,
+      params.variables
+    );
+    return this.runQuery(query, params.variables, preparedQueryToSave);
   }
 
   async preparedQuery(params: QueryParams): Promise<T> {
@@ -153,7 +162,15 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       " WHERE " +
       params.where;
     console.log("PREPARED QUERY: ", query);
-    const rows = await this.runQuery(query, params.variables);
+    const preparedQueryToSave = this.saveFormattedPreparedQuery(
+      query,
+      params.variables
+    );
+    const rows = await this.runQuery(
+      query,
+      params.variables,
+      preparedQueryToSave
+    );
     return rows[0];
   }
 
@@ -167,7 +184,15 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       params.where +
       ") RETURNING *;";
     console.log("PREPARED QUERY: ", query);
-    const rows = await this.runQuery(query, params.variables);
+    const preparedQueryToSave = this.saveFormattedPreparedQuery(
+      query,
+      params.variables
+    );
+    const rows = await this.runQuery(
+      query,
+      params.variables,
+      preparedQueryToSave
+    );
     return rows[0];
   }
 
@@ -181,7 +206,15 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       params.where +
       " RETURNING *;";
     console.log("PREPARED QUERY: ", query);
-    const rows = await this.runQuery(query, params.variables);
+    const preparedQueryToSave = this.saveFormattedPreparedQuery(
+      query,
+      params.variables
+    );
+    const rows = await this.runQuery(
+      query,
+      params.variables,
+      preparedQueryToSave
+    );
     return rows[0];
   }
 
@@ -197,14 +230,43 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
       params.joinCondition +
       params.where;
     console.log("PREPARED QUERY: ", query);
-    return await this.runQuery(query, params.variables);
+    const preparedQueryToSave = this.saveFormattedPreparedQuery(
+      query,
+      params.variables
+    );
+    return await this.runQuery(query, params.variables, preparedQueryToSave);
   }
 
   async preparedDelete(params: DeleteParams): Promise<T> {
     const query =
       "DELETE FROM public." + this.tableName + " WHERE " + params.where;
     console.log("PREPARED QUERY: ", query);
-    const rows = await this.runQuery(query, params.variables);
+    const preparedQueryToSave = this.saveFormattedPreparedQuery(
+      query,
+      params.variables
+    );
+    const rows = await this.runQuery(
+      query,
+      params.variables,
+      preparedQueryToSave
+    );
     return rows[0];
+  }
+
+  private saveFormattedPreparedQuery(query: string, variables: any[]): string {
+    let savedQuery = query;
+    if (variables.length !== 0) {
+      for (let i = 0; i < variables.length; i++) {
+        const removeStr = "[$]" + `${i + 1}`;
+        const regex = new RegExp(removeStr);
+        savedQuery = savedQuery.replace(
+          regex,
+          typeof variables[i] === "number" ? variables[i] : `'${variables[i]}'`
+        );
+      }
+    } else {
+      savedQuery = query;
+    }
+    return savedQuery;
   }
 }

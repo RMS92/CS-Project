@@ -25,23 +25,18 @@ export class UsersService {
 
   securityLevel: number = this.configService.databaseSecurity.securityLevel;
 
-  async findAll(id): Promise<User[]> {
-    const authUser = await this.findOne(id);
-    if (authUser.role === "ROLE_ADMIN") {
-      if (this.securityLevel === 1 || this.securityLevel === 2) {
-        return this.db.queryAll({
-          query: "*",
-          where: "",
-        });
-      } else {
-        return this.db.preparedQueryAll({
-          query: "*",
-          where: "",
-          variables: [],
-        });
-      }
+  async findAll(): Promise<User[]> {
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
+      return this.db.queryAll({
+        query: "id,pseudo",
+        where: "",
+      });
     } else {
-      throw new ForbiddenRessourceException();
+      return this.db.preparedQueryAll({
+        query: "id,pseudo",
+        where: "",
+        variables: [],
+      });
     }
   }
 

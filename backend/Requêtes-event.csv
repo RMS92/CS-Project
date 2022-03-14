@@ -1,4 +1,12 @@
 Input,Requête,Niveau
 [],SELECT * FROM public.event ORDER BY created_at DESC,3
-[56],SELECT * FROM public.event WHERE id = $1,3
+[73],SELECT * FROM public.event WHERE id = 73,3
+[],SELECT * FROM public.event ORDER BY created_at DESC,3
+[72],SELECT * FROM public.event WHERE id = 72,3
+[],SELECT * FROM public.event ORDER BY created_at DESC,3
+[71],SELECT * FROM public.event WHERE id = 71,3
+[],SELECT * FROM public.event ORDER BY created_at DESC,3
+[],SELECT * FROM public.event ORDER BY created_at DESC,3
+"[""Evemement trop bien !"",""AAAAAAAAAAAA"",""25 rue Michelet, Rueil-Malmaison, 92500, France"",""120"",""12"",1648339200000,1647281872107,1647281872107,52]","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('Evemement trop bien !', 'AAAAAAAAAAAA', '25 rue Michelet, Rueil-Malmaison, 92500, France', '120', '12', 1648339200000, 1647281872107, 1647281872107, 52) RETURNING *;",3
+[],SELECT * FROM public.event ORDER BY created_at DESC,3
 [],SELECT * FROM public.event ORDER BY created_at DESC,3

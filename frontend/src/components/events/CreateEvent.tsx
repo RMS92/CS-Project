@@ -94,16 +94,20 @@ export default function CreateEvent({ user }: { user: User }) {
               <Field name="title" type="text" placeholder="">
                 Titre
               </Field>
-              <Field name="place" type="text" placeholder="">
+              <Field
+                name="place"
+                type="text"
+                placeholder="e.g. rue, ville, code postal, pays"
+              >
                 Lieu
               </Field>
               <Field name="begin_at" type="date" placeholder="">
                 Date début
               </Field>
-              <Field name="start_time" type="text" placeholder="">
+              <Field name="start_time" type="text" placeholder="e.g. 14h30">
                 Heure de début
               </Field>
-              <Field name="duration" type="text" placeholder="">
+              <Field name="duration" type="text" placeholder="e.g. 120">
                 Durée (en minutes)
               </Field>
               <Field name="content" type="textarea" placeholder="">

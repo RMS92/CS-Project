@@ -104,7 +104,7 @@ export class EventsService {
       event = await this.db.insert({
         query:
           "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
-        where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
+        where: `'${createEventDto.title}', '${createEventDto.content}', '${createEventDto.place}', ${createEventDto.duration}, '${createEventDto.start_time}', ${begin_at}, ${now}, ${now}, ${user_id}`,
       });
     } else if (this.securityLevel === 2) {
       const safeTitle = escapeInput(createEventDto.title);
@@ -113,7 +113,7 @@ export class EventsService {
       event = await this.db.insert({
         query:
           "title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id",
-        where: `'${safeTitle}', '${safeContent}', '${safePlace}', ${createEventDto.duration}, ${createEventDto.start_time}, ${begin_at}, ${now}, ${now}, ${user_id}`,
+        where: `'${safeTitle}', '${safeContent}', '${safePlace}', ${createEventDto.duration}, '${createEventDto.start_time}', ${begin_at}, ${now}, ${now}, ${user_id}`,
       });
     } else {
       const where = `$${1}, $${2}, $${3}, $${4}, $${5}, $${6}, $${7}, $${8}, $${9}`;

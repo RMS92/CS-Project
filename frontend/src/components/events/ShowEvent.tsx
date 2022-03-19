@@ -144,9 +144,8 @@ export default function ShowEvent() {
                 <strong>
                   {new Date(parseFloat(event?.begin_at)).toLocaleDateString()}
                 </strong>{" "}
-                de {event?.start_time}h à{" "}
-                {event?.start_time + event?.duration / 60}h à l&apos;adresse:{" "}
-                {event.place}.
+                à {event?.start_time} pour une durée de {event?.duration / 60}h
+                à l&apos;adresse: {event.place}.
               </p>
             </div>
           </div>

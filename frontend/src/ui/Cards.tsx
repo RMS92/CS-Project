@@ -53,8 +53,7 @@ export default function EventCard({
         </div>
         <div className="center">
           <Icon name="clock" />
-          {event.duration <= 60 ? event.duration : event.duration / 60}
-          {event.duration <= 60 ? " min" : " heures"}
+          {event.start_time}
         </div>
       </footer>
       <div className="card__badge">{beginDate}</div>

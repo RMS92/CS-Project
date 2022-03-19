@@ -12,7 +12,7 @@ const fs = require("fs");
 async function bootstrap() {
   /*const httpsOptions = {
     key: fs.readFileSync("/etc/letsencrypt/live/cs-event.fr/privkey.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/live/cs-event.fr/cert.pem'"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/cs-event.fr/cert.pem"),
   };*/
 
   const app = await NestFactory.create(

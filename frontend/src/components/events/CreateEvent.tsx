@@ -104,7 +104,7 @@ export default function CreateEvent({ user }: { user: User }) {
               <Field name="begin_at" type="date" placeholder="">
                 Date début
               </Field>
-              <Field name="start_time" type="text" placeholder="e.g. 14h30">
+              <Field name="start_time" type="text" placeholder="e.g. 18h30">
                 Heure de début
               </Field>
               <Field name="duration" type="text" placeholder="e.g. 120">

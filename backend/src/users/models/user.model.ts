@@ -18,4 +18,7 @@ export class User {
 
   @t
   updated_at: Date;
+
+  @t
+  avatar_id: string;
 }

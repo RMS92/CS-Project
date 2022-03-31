@@ -10,12 +10,14 @@ import { ConfigService } from "../config/config.service";
 import escapeInput from "../utils";
 const bcrypt = require("bcrypt");
 import { ForbiddenRessourceException } from "./exceptions/forbidden-ressource.exception";
+import { FilesService } from "../files/files.service";
 
 @Injectable()
 export class UsersService {
   constructor(
     @DatabaseTable("user")
     private readonly db: DatabaseService<User>,
+    private readonly filesService: FilesService,
     private readonly configService: ConfigService
   ) {
     this.configService = new ConfigService({
@@ -43,14 +45,16 @@ export class UsersService {
   async findAllUsersEvents(): Promise<User[]> {
     if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.join({
-        query: "public.user.id, public.user.pseudo, public.user_event.event_id",
+        query:
+          "public.user.id, public.user.pseudo, public.user_event.event_id, public.user.avatar_id",
         join: "user_event",
         joinCondition: "public.user_event.user_id = public.user.id",
         where: "",
       });
     } else {
       return this.db.preparedJoin({
-        query: "public.user.id, public.user.pseudo, public.user_event.event_id",
+        query:
+          "public.user.id, public.user.pseudo, public.user_event.event_id, public.user.avatar_id",
         join: "user_event",
         joinCondition: "public.user_event.user_id = public.user.id",
         where: "",
@@ -62,14 +66,14 @@ export class UsersService {
   async findUsersEvents(id: number): Promise<User[]> {
     if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.join({
-        query: "public.user.id, public.user.pseudo",
+        query: "public.user.id, public.user.pseudo, public.user.avatar_id",
         join: "user_event",
         joinCondition: "public.user.id = public.user_event.user_id",
         where: " WHERE public.user_event.event_id = " + id,
       });
     } else {
       return this.db.preparedJoin({
-        query: "public.user.id, public.user.pseudo",
+        query: "public.user.id, public.user.pseudo, public.user.avatar_id",
         join: "user_event",
         joinCondition: "public.user.id = public.user_event.user_id",
         where: " WHERE public.user_event.event_id = $1",
@@ -81,13 +85,13 @@ export class UsersService {
   async findOne(id: number): Promise<User> {
     if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.query({
-        query: "id, pseudo, role",
+        query: "id, pseudo, role, avatar_id",
         where: "id = " + id,
       });
     } else {
       const where = "id = $1";
       return this.db.preparedQuery({
-        query: "id, pseudo, role",
+        query: "id, pseudo, role, avatar_id",
         where,
         variables: [id],
       });
@@ -300,6 +304,28 @@ export class UsersService {
     } else {
       throw new ForbiddenRessourceException();
     }
+  }
+
+  async updateAvatarFile(
+    userId: number,
+    file: Express.Multer.File
+  ): Promise<User> {
+    const user = await this.db.query({
+      query: "id, pseudo, avatar_id",
+      where: "id = " + userId,
+    });
+
+    if (user.avatar_id) {
+      //remove avatar file
+      await this.filesService.removeAvatarFile(user.pseudo, +user.avatar_id);
+    }
+
+    const newAvatarFile = await this.filesService.saveAvatarFile(file);
+    const { id } = newAvatarFile;
+    return this.db.update({
+      query: "avatar_id = " + id,
+      where: "id = " + userId,
+    });
   }
 
   async delete(id: number, authId: number): Promise<Boolean> {

@@ -36,6 +36,7 @@
     "@ogma/logger": "^2.2.0",
     "@ogma/nestjs-module": "^3.1.0",
     "@ogma/platform-express": "^3.0.1",
+    "@types/multer": "^1.4.7",
     "@types/pg": "^8.6.1",
     "bcrypt": "^5.0.1",
     "class-validator": "^0.13.1",

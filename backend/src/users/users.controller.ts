@@ -9,6 +9,8 @@ import {
   Delete,
   UseGuards,
   Req,
+  UseInterceptors,
+  UploadedFile,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "./models/user.model";
@@ -17,6 +19,13 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
 import { AuthenticatedGuard } from "../auth/guards/authenticated-auth.guard";
 import { DeleteUserDto } from "./dto/delete-user.dto";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import {
+  customAvatarFileStorage,
+  imageFileFilter,
+  renameFilename,
+} from "../utils/file-upload";
 
 @Controller("users")
 export class UsersController {
@@ -78,6 +87,23 @@ export class UsersController {
   ): Promise<User> {
     const authId = req.user.id;
     return this.usersService.updatePassword(+id, authId, updateUserPasswordDto);
+  }
+
+  @Patch(":id/avatarFile")
+  @UseInterceptors(
+    FileInterceptor("file", {
+      storage: diskStorage({
+        destination: customAvatarFileStorage,
+        filename: renameFilename,
+      }),
+      fileFilter: imageFileFilter,
+    })
+  )
+  updateAvatarFile(
+    @Param("id") id: string,
+    @UploadedFile() file: Express.Multer.File
+  ): Promise<User> {
+    return this.usersService.updateAvatarFile(+id, file);
   }
 
   @Delete(":id")

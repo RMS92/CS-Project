@@ -18,6 +18,7 @@ import { UsersEventsModule } from "./users-events/users-events.module";
 import { CommentsModule } from "./comments/comments.module";
 import { MongooseModule } from "@nestjs/mongoose";
 import { WorkbookModule } from './workbook/workbook.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -56,6 +57,8 @@ import { WorkbookModule } from './workbook/workbook.module';
     CommentsModule,
 
     WorkbookModule,
+
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

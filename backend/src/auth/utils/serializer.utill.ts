@@ -21,6 +21,7 @@ export class SessionSerializer extends PassportSerializer {
       role: userToDeserialize.role,
       created_at: userToDeserialize.created_at,
       updated_at: userToDeserialize.updated_at,
+      avatar_id: userToDeserialize.avatar_id,
     };
     done(null, userInfo);
   }

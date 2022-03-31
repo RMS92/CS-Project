@@ -1,4 +1,6 @@
 Input,Requête,Niveau
-"[47,74,1647281872113,1647281872113]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (47, 74, 1647281872113, 1647281872113) RETURNING *;",3
-"[28,74,1647281872122,1647281872122]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (28, 74, 1647281872122, 1647281872122) RETURNING *;",3
-"[47,74,1647281872125,1647281872125]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (47, 74, 1647281872125, 1647281872125) RETURNING *;",3
+"[54,""75"",1648756266337,1648756266337]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (54, '75', 1648756266337, 1648756266337) RETURNING *;",3
+"[30,78,1648756309391,1648756309391]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (30, 78, 1648756309391, 1648756309391) RETURNING *;",3
+"[56,78,1648756309394,1648756309394]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (56, 78, 1648756309394, 1648756309394) RETURNING *;",3
+"[47,78,1648756309397,1648756309397]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (47, 78, 1648756309397, 1648756309397) RETURNING *;",3
+"[28,""78"",1648756324734,1648756324734]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (28, '78', 1648756324734, 1648756324734) RETURNING *;",3

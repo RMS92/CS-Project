@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Icon from "../../ui/Icon";
 import Field from "../../ui/Field";
-import { CommentType, Event, User } from "../../types";
+import { AvatarFile, CommentType, Event, User } from "../../types";
 import { apiFetch, formToObject } from "../../utils/api";
 import Comment from "../Comment";
 import { dateDiff, formatTitle } from "../../utils/functions";
@@ -15,6 +15,7 @@ export default function ShowEvent() {
   const [participants, setParticipants] = useState<User[] | null>();
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isAuthor, setIsAuthor] = useState(false);
+  const [profilPicture, setProfilPicture] = useState<AvatarFile | null>(null);
 
   // @ts-ignore
   const { id } = useParams();
@@ -60,6 +61,16 @@ export default function ShowEvent() {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (!author?.avatar_id) {
+        return;
+      }
+      const res = await apiFetch("/files/" + author.avatar_id + "/avatarFile");
+      setProfilPicture(res);
+    })();
+  }, [author?.avatar_id]);
 
   if (!event) {
     return <></>;
@@ -195,9 +206,19 @@ export default function ShowEvent() {
               <h5 className="h5 mb2">Créateur</h5>
 
               <div className="flex">
-                <a href={`/profil/${event?.user_id}`} className="avatar">
-                  <img src="/media/default.png" alt="avatar-default" />
-                </a>
+                <Link to={`/profil/${author?.id}`} className="avatar">
+                  {profilPicture ? (
+                    <img
+                      src={
+                        process.env.PUBLIC_URL +
+                        `/media/uploads/profil/${author?.pseudo}/${profilPicture.current_filename}`
+                      }
+                      alt={`avatar-${author?.pseudo}`}
+                    />
+                  ) : (
+                    <img src="/media/default.png" alt="avatar-default" />
+                  )}
+                </Link>
                 <div className="ml2">
                   <strong className="bold">
                     {formatTitle(author ? author.pseudo : "")}
@@ -208,37 +229,14 @@ export default function ShowEvent() {
               <h5 className="h5 mb2 mt2">Participants</h5>
               <div className="list-group">
                 {participants
-                  ? participants.map((p: User, i) =>
-                      i < 5 ? (
-                        <div className="flex" key={p.id}>
-                          <a href={`/profil/${p.id}`} className="avatar">
-                            <img
-                              src="/media/default.png"
-                              alt="avatar-default"
-                            />
-                          </a>
-                          <div className="ml2">
-                            <strong className="bold">{p.pseudo}</strong>
-                            <br />
-                          </div>
-                        </div>
-                      ) : i === 6 ? (
-                        <div className="flex" key={p.id}>
-                          <a href={`/profil/${p.id}`} className="avatar">
-                            <img
-                              src="/media/default.png"
-                              alt="avatar-default"
-                            />
-                          </a>
-                          <div className="ml2">
-                            <strong className="bold">
-                              + {participants.length - 5} autres participants
-                            </strong>
-                            <br />
-                          </div>
-                        </div>
-                      ) : null
-                    )
+                  ? participants.map((p: User, i) => (
+                      <Participant
+                        participant={p}
+                        participants={participants}
+                        index={i}
+                        key={p.id}
+                      />
+                    ))
                   : null}
               </div>
             </div>
@@ -247,5 +245,77 @@ export default function ShowEvent() {
         </aside>
       </div>
     </div>
+  );
+}
+
+function Participant({
+  participants,
+  participant,
+  index,
+}: {
+  participants: User[];
+  participant: User;
+  index: number;
+}) {
+  const [profilPicture, setProfilPicture] = useState<AvatarFile | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      if (!participant?.avatar_id) {
+        return;
+      }
+      const res = await apiFetch(
+        "/files/" + participant.avatar_id + "/avatarFile"
+      );
+      setProfilPicture(res);
+    })();
+  }, [participant?.avatar_id]);
+
+  return (
+    <>
+      {index < 5 ? (
+        <div className="flex">
+          <Link to={`/profil/${participant.id}`} className="avatar">
+            {profilPicture ? (
+              <img
+                src={
+                  process.env.PUBLIC_URL +
+                  `/media/uploads/profil/${participant.pseudo}/${profilPicture.current_filename}`
+                }
+                alt={`avatar-${participant.pseudo}`}
+              />
+            ) : (
+              <img src="/media/default.png" alt="avatar-default" />
+            )}
+          </Link>
+          <div className="ml2">
+            <strong className="bold">{participant.pseudo}</strong>
+            <br />
+          </div>
+        </div>
+      ) : index === 6 ? (
+        <div className="flex">
+          <a href={`/profil/${participant.id}`} className="avatar">
+            {profilPicture ? (
+              <img
+                src={
+                  process.env.PUBLIC_URL +
+                  `/media/uploads/profil/${participant.pseudo}/${profilPicture.current_filename}`
+                }
+                alt={`avatar-${participant.pseudo}`}
+              />
+            ) : (
+              <img src="/media/default.png" alt="avatar-default" />
+            )}
+          </a>
+          <div className="ml2">
+            <strong className="bold">
+              + {participants.length - 5} autres participants
+            </strong>
+            <br />
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }

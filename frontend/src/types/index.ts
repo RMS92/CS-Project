@@ -8,6 +8,7 @@ export type User = {
   role: string;
   created_at: Date;
   updated_at: Date;
+  avatar_id: string;
 };
 
 export type Event = {
@@ -36,4 +37,10 @@ export type FlashMessage = {
   status: number;
   message: string;
   success: boolean;
+};
+
+export type AvatarFile = {
+  id: string;
+  original_filename: string;
+  current_filename: string;
 };

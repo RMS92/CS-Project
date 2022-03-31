@@ -2,3 +2,19 @@ Input,Requête,Niveau
 [],SELECT * FROM public.comment ORDER BY created_at ASC,3
 [],SELECT * FROM public.comment ORDER BY created_at ASC,3
 [],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+"[""Salut !"",28,""76"",1648756231925,1648756231925]","INSERT INTO public.comment (content, user_id, event_id, created_at, updated_at) VALUES ('Salut !', 28, '76', 1648756231925, 1648756231925) RETURNING *;",3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+"[""Je suis un commentaire"",28,""78"",1648756331209,1648756331209]","INSERT INTO public.comment (content, user_id, event_id, created_at, updated_at) VALUES ('Je suis un commentaire', 28, '78', 1648756331209, 1648756331209) RETURNING *;",3

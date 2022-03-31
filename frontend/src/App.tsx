@@ -53,7 +53,11 @@ function App() {
           </Route>
           <Route exact path="/profil">
             {user ? (
-              <Profil user={user} setOnConnect={setOnConnect} />
+              <Profil
+                user={user}
+                setUser={setUser}
+                setOnConnect={setOnConnect}
+              />
             ) : (
               <Redirect to="/" />
             )}

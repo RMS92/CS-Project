@@ -18,6 +18,9 @@ export class EnvConfig {
   PORT: number = 3333;
 
   @t
+  UPLOAD_PATH: string = "../frontend/public/media/uploads";
+
+  @t
   SECURITY_LEVEL: number = 3;
 
   @t

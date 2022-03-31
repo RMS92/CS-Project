@@ -3,24 +3,67 @@ import Icon from "../ui/Icon";
 import Field from "../ui/Field";
 import clsx from "clsx";
 import EventCard from "../ui/Cards";
-import { User } from "../types";
-import { formatTitle } from "../utils/functions";
+import { AvatarFile, User } from "../types";
 import { useEvents } from "../hooks/useEvents";
 import { Event } from "../types";
 import { apiFetch } from "../utils/api";
 import Alert from "../ui/Alert";
+import { API_URL } from "../config";
 
 export default function Profil({
   user,
+  setUser,
   setOnConnect,
 }: {
   user: User;
+  setUser: Function;
   setOnConnect: Function;
 }) {
   const [page, setPage] = useState("profil");
   const [participants, setParticipants] = useState<User[]>([]);
   // @ts-ignore
   const [flashMessages, setFlashMessages] = useState<FlashMessage>(null);
+  const [profilPicture, setProfilPicture] = useState<AvatarFile | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      if (!user?.avatar_id) {
+        return;
+      }
+      setUser(await apiFetch("/me"));
+      const res = await apiFetch("/files/" + user.avatar_id + "/avatarFile");
+      setProfilPicture(res);
+    })();
+  }, [user?.avatar_id]);
+
+  const handleChange = async (e: SyntheticEvent) => {
+    // @ts-ignore
+    const file = e.target.files[0];
+    const data = new FormData();
+    data.append("file", file);
+    try {
+      // Update user with avatar file
+      const { avatar_id } = await fetch(
+        API_URL + "/users/" + user.id + "/avatarFile",
+        {
+          credentials: "include",
+          method: "PATCH",
+          body: data,
+        }
+      ).then((res) => {
+        return res.json().then((data) => {
+          return data;
+        });
+      });
+      console.log("avatar_id", avatar_id);
+
+      // Find and set new avatar file from user
+      const file = await apiFetch("/files/" + avatar_id + "/avatarFile");
+      setProfilPicture(file);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -42,21 +85,34 @@ export default function Profil({
         </Alert>
       ) : null}
       <div className="container py5">
-        <div className="stack-extra mb5">
-          <div className="events-hero stack">
-            <div className="hero-title">
-              Profil de {formatTitle(user?.pseudo)}
+        <header className="page-header separated">
+          <div className="profil-header">
+            <div className="profil-header__avatar">
+              {profilPicture ? (
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    `/media/uploads/profil/${user.pseudo}/${profilPicture.current_filename}`
+                  }
+                  alt={`avatar-${user.pseudo}`}
+                />
+              ) : (
+                <img src="/media/default.png" alt="avatar-default" />
+              )}
+              <div className="profil-header__upload">
+                <Icon name="cloud" width="20" />
+              </div>
+              <input type="file" name="avatarFile" onChange={handleChange} />
             </div>
-            <div className="hero-text">
-              Tu fais bel et bien partie de la communauté d'évènements de CS
-              Rennes :)
-              <br />
-              N&apos;hésites pas à consulter les détails de ton compte ou encore
-              les prochains évènements auquel tu t&apos;es inscrit pour ne pas
-              les oublier.
+            <div className="profil-header__body">
+              <h1 className="h1">Mon Profil</h1>
+              <p>
+                Tu fais bel et bien partie de la communauté d'évènements de CS
+                Rennes :)
+              </p>
             </div>
           </div>
-        </div>
+        </header>
         <div className="profil-nav">
           <a
             href="#"

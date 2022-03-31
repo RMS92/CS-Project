@@ -28,12 +28,12 @@ export class EventsService {
     if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.queryAll({
         query: "*",
-        where: "ORDER BY created_at DESC",
+        where: "ORDER BY begin_at DESC",
       });
     } else {
       return this.db.preparedQueryAll({
         query: "*",
-        where: "ORDER BY created_at DESC",
+        where: "ORDER BY begin_at DESC",
         variables: [],
       });
     }

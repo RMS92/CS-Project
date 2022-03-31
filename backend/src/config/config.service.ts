@@ -64,6 +64,10 @@ export class ConfigService {
     };
   }
 
+  getUploadPath(): string {
+    return this.envConfig.UPLOAD_PATH;
+  }
+
   get nodeEnv(): string {
     return this.envConfig.NODE_ENV;
   }

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
 import { formatDescription } from "../utils/functions";
-import { Event, User } from "../types";
+import { AvatarFile, Event, User } from "../types";
+import { apiFetch } from "../utils/api";
 
 export default function EventCard({
   event,
@@ -38,17 +39,14 @@ export default function EventCard({
       <footer className="card__footer">
         <div className="card_avatars avatars">
           {participants.length !== 0
-            ? participants.map((p, i) =>
-                i < 3 ? (
-                  <Link key={i} to={`/profil/${p.id}`} className="avatar">
-                    <img src="/media/default.png" alt="avatar-default" />
-                  </Link>
-                ) : i === 3 ? (
-                  <button key={i} className="avatar">
-                    + {participants.length - 3}
-                  </button>
-                ) : null
-              )
+            ? participants.map((p, i) => (
+                <Participant
+                  key={p.id}
+                  participant={p}
+                  participants={participants}
+                  index={i}
+                />
+              ))
             : null}
         </div>
         <div className="center">
@@ -63,5 +61,49 @@ export default function EventCard({
         </div>
       ) : null}
     </div>
+  );
+}
+
+function Participant({
+  participants,
+  participant,
+  index,
+}: {
+  participants: User[];
+  participant: User;
+  index: number;
+}) {
+  const [profilPicture, setProfilPicture] = useState<AvatarFile | null>(null);
+  useEffect(() => {
+    (async () => {
+      if (!participant?.avatar_id) {
+        return;
+      }
+      const res = await apiFetch(
+        "/files/" + participant.avatar_id + "/avatarFile"
+      );
+      setProfilPicture(res);
+    })();
+  }, [participant?.avatar_id]);
+  return (
+    <>
+      {index < 3 ? (
+        <Link to={`/profil/${participant.id}`} className="avatar">
+          {profilPicture ? (
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                `/media/uploads/profil/${participant.pseudo}/${profilPicture.current_filename}`
+              }
+              alt={`avatar-${participant.pseudo}`}
+            />
+          ) : (
+            <img src="/media/default.png" alt="avatar-default" />
+          )}
+        </Link>
+      ) : index === 3 ? (
+        <button className="avatar">+ {participants.length - 3}</button>
+      ) : null}
+    </>
   );
 }

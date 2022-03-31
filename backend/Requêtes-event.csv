@@ -1,6 +1,45 @@
 Input,Requête,Niveau
-[],SELECT * FROM public.event ORDER BY created_at DESC,3
-[],SELECT * FROM public.event ORDER BY created_at DESC,3
-"[""Evènement Lol"",""Je suis la description d'un évènement LOL!"",""25 rue Michelet, Rueil-Malmaison, 92500, France"",""180"",""2h39"",1651968000000,1647709369440,1647709369440,54]","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('Evènement Lol', 'Je suis la description d'un évènement LOL!', '25 rue Michelet, Rueil-Malmaison, 92500, France', '180', '2h39', 1651968000000, 1647709369440, 1647709369440, 54) RETURNING *;",3
-[],SELECT * FROM public.event ORDER BY created_at DESC,3
 [76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[75],SELECT * FROM public.event WHERE id = 75,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[75],SELECT * FROM public.event WHERE id = 75,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[54],"SELECT title, content, place, duration, public.event.created_at, public.event.updated_at, public.user_event.user_id, begin_at, start_time, event_id as id FROM public.event JOIN public.user_event ON public.event.id = public.user_event.event_id WHERE public.user_event.user_id = 54",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[75],SELECT * FROM public.event WHERE id = 75,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+"[""Evemement trop bien v2 !"",""Salut les gars !"",""13 rue Michelet, Levallois, 92300, France"",""180"",""19h45"",1648944000000,1648756309362,1648756309362,54]","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('Evemement trop bien v2 !', 'Salut les gars !', '13 rue Michelet, Levallois, 92300, France', '180', '19h45', 1648944000000, 1648756309362, 1648756309362, 54) RETURNING *;",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[78],SELECT * FROM public.event WHERE id = 78,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[78],SELECT * FROM public.event WHERE id = 78,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3

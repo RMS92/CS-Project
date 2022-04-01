@@ -17,8 +17,10 @@ import { EventsModule } from "./events/events.module";
 import { UsersEventsModule } from "./users-events/users-events.module";
 import { CommentsModule } from "./comments/comments.module";
 import { MongooseModule } from "@nestjs/mongoose";
-import { WorkbookModule } from './workbook/workbook.module';
-import { FilesModule } from './files/files.module';
+import { WorkbookModule } from "./workbook/workbook.module";
+import { FilesModule } from "./files/files.module";
+import { NotificationsModule } from "./notifications/notifications.module";
+import { EventEmitterModule } from "@nestjs/event-emitter";
 
 @Module({
   imports: [
@@ -44,6 +46,14 @@ import { FilesModule } from './files/files.module';
       },
     }),
 
+    EventEmitterModule.forRoot({
+      wildcard: false,
+      delimiter: ".",
+      newListener: true,
+      removeListener: true,
+      ignoreErrors: false,
+    }),
+
     UsersModule,
 
     EventsModule,
@@ -59,6 +69,8 @@ import { FilesModule } from './files/files.module';
     WorkbookModule,
 
     FilesModule,
+
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -21,7 +21,7 @@ export class EnvConfig {
   UPLOAD_PATH: string = "../frontend/public/media/uploads";
 
   @t
-  SECURITY_LEVEL: number = 3;
+  SECURITY_LEVEL: number = 1;
 
   @t
   COOKIE_AGE: number = 86400;

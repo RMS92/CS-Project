@@ -310,10 +310,20 @@ export class UsersService {
     userId: number,
     file: Express.Multer.File
   ): Promise<User> {
-    const user = await this.db.query({
-      query: "id, pseudo, avatar_id",
-      where: "id = " + userId,
-    });
+    let user = null;
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
+      user = await this.db.query({
+        query: "id, pseudo, avatar_id",
+        where: "id = " + userId,
+      });
+    } else {
+      const where = "id = $1";
+      user = await this.db.preparedQuery({
+        query: "id, pseudo, avatar_id",
+        where,
+        variables: [userId],
+      });
+    }
 
     if (user.avatar_id) {
       //remove avatar file
@@ -322,10 +332,19 @@ export class UsersService {
 
     const newAvatarFile = await this.filesService.saveAvatarFile(file);
     const { id } = newAvatarFile;
-    return this.db.update({
-      query: "avatar_id = " + id,
-      where: "id = " + userId,
-    });
+    if (this.securityLevel === 1 || this.securityLevel === 2) {
+      return this.db.update({
+        query: "avatar_id = " + id,
+        where: "id = " + userId,
+      });
+    } else {
+      const where = "id = $2";
+      return this.db.preparedUpdate({
+        query: "avatar_id = $1",
+        where,
+        variables: [id, userId],
+      });
+    }
   }
 
   async delete(id: number, authId: number): Promise<Boolean> {

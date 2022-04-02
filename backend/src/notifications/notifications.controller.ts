@@ -8,6 +8,7 @@ import {
   Delete,
   Sse,
   UseGuards,
+  Req,
 } from "@nestjs/common";
 import { NotificationsService } from "./notifications.service";
 import { CreateNotificationDto } from "./dto/create-notification.dto";
@@ -44,13 +45,23 @@ export class NotificationsController {
   }
 
   @Post("read")
-  markAsRead(): Promise<Notification[]> {
-    return this.notificationsService.markAsRead();
+  @UseGuards(AuthenticatedGuard)
+  markAsRead(@Req() req): Promise<Notification[]> {
+    const userId = req.user.id;
+    return this.notificationsService.markAsRead(userId);
   }
 
   @Get()
-  findAll() {
+  @UseGuards(AuthenticatedGuard)
+  findAll(): Promise<Notification[]> {
     return this.notificationsService.findAll();
+  }
+
+  @Get("users")
+  @UseGuards(AuthenticatedGuard)
+  findAllByUser(@Req() req): Promise<Notification[]> {
+    const userId = req.user.id;
+    return this.notificationsService.findAllByUser(userId);
   }
 
   @Get(":id")

@@ -1,6 +1,8 @@
 Input,Requête,Niveau
-"[54,""75"",1648756266337,1648756266337]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (54, '75', 1648756266337, 1648756266337) RETURNING *;",3
-"[30,78,1648756309391,1648756309391]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (30, 78, 1648756309391, 1648756309391) RETURNING *;",3
-"[56,78,1648756309394,1648756309394]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (56, 78, 1648756309394, 1648756309394) RETURNING *;",3
-"[47,78,1648756309397,1648756309397]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (47, 78, 1648756309397, 1648756309397) RETURNING *;",3
-"[28,""78"",1648756324734,1648756324734]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (28, '78', 1648756324734, 1648756324734) RETURNING *;",3
+"[28,85,1648925832459,1648925832459]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (28, 85, 1648925832459, 1648925832459) RETURNING *;",3
+"[47,85,1648925832477,1648925832477]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (47, 85, 1648925832477, 1648925832477) RETURNING *;",3
+"[55,85,1648925832482,1648925832482]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (55, 85, 1648925832482, 1648925832482) RETURNING *;",3
+"[54,85,1648925832487,1648925832487]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (54, 85, 1648925832487, 1648925832487) RETURNING *;",3
+"[28,86,1648925960613,1648925960613]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (28, 86, 1648925960613, 1648925960613) RETURNING *;",3
+"[30,86,1648925960618,1648925960618]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (30, 86, 1648925960618, 1648925960618) RETURNING *;",3
+"[47,86,1648925960624,1648925960624]","INSERT INTO public.user_event (user_id, event_id, created_at, updated_at) VALUES (47, 86, 1648925960624, 1648925960624) RETURNING *;",3

@@ -1,40 +1,215 @@
 Input,Requête,Niveau
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 40""}",SELECT * FROM public.avatar_file WHERE id = 40,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 40""}",SELECT * FROM public.avatar_file WHERE id = 40,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 40""}",SELECT * FROM public.avatar_file WHERE id = 40,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 40""}",SELECT * FROM public.avatar_file WHERE id = 40,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 40""}",SELECT * FROM public.avatar_file WHERE id = 40,1
-"{""query"":""*"",""where"":""id = 40""}",SELECT * FROM public.avatar_file WHERE id = 40,1
-"{""query"":"""",""where"":""id = 40""}",DELETE FROM public.avatar_file WHERE id = 40,1
-"{""query"":""original_filename, current_filename, extension, size, created_at, updated_at"",""where"":""'pp3.png', 'ba975e53-8167-426f-84b6-6c4a1d9b5b25.png', 'png', 1624539 ,1648841292480, 1648841292480""}","INSERT INTO public.avatar_file (original_filename, current_filename, extension, size, created_at, updated_at) VALUES ('pp3.png', 'ba975e53-8167-426f-84b6-6c4a1d9b5b25.png', 'png', 1624539 ,1648841292480, 1648841292480) RETURNING *;",1
-"{""query"":""*"",""where"":""id = 44""}",SELECT * FROM public.avatar_file WHERE id = 44,1
-"{""query"":""*"",""where"":""id = 44""}",SELECT * FROM public.avatar_file WHERE id = 44,1
-"{""query"":"""",""where"":""id = 44""}",DELETE FROM public.avatar_file WHERE id = 44,1
-"{""query"":""original_filename, current_filename, extension, size, created_at, updated_at"",""where"":""'pp1.png', '615ecde9-db08-4151-bc86-42e5abb149b7.png', 'png', 251007 ,1648841294781, 1648841294781""}","INSERT INTO public.avatar_file (original_filename, current_filename, extension, size, created_at, updated_at) VALUES ('pp1.png', '615ecde9-db08-4151-bc86-42e5abb149b7.png', 'png', 251007 ,1648841294781, 1648841294781) RETURNING *;",1
-"{""query"":""*"",""where"":""id = 45""}",SELECT * FROM public.avatar_file WHERE id = 45,1
-"{""query"":""*"",""where"":""id = 45""}",SELECT * FROM public.avatar_file WHERE id = 45,1
-"{""query"":"""",""where"":""id = 45""}",DELETE FROM public.avatar_file WHERE id = 45,1
-"{""query"":""original_filename, current_filename, extension, size, created_at, updated_at"",""where"":""'pp3.png', '9b62c2cd-3de0-4cef-aac3-ae70549f3e31.png', 'png', 1624539 ,1648841297139, 1648841297139""}","INSERT INTO public.avatar_file (original_filename, current_filename, extension, size, created_at, updated_at) VALUES ('pp3.png', '9b62c2cd-3de0-4cef-aac3-ae70549f3e31.png', 'png', 1624539 ,1648841297139, 1648841297139) RETURNING *;",1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 40""}",SELECT * FROM public.avatar_file WHERE id = 40,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 43""}",SELECT * FROM public.avatar_file WHERE id = 43,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
-"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[43],DELETE FROM public.avatar_file WHERE id = 43,3
+"[""pp3.png"",""6ac2677a-1112-4fa3-ae03-097c44e1cd27.png"",""png"",1624539,1648925993268,1648925993268]","INSERT INTO public.avatar_file (original_filename, current_filename, extension, size, created_at, updated_at) VALUES ('pp3.png', '6ac2677a-1112-4fa3-ae03-097c44e1cd27.png', 'png', 1624539, 1648925993268, 1648925993268) RETURNING *;",3
+[47],SELECT * FROM public.avatar_file WHERE id = 47,3
+[47],SELECT * FROM public.avatar_file WHERE id = 47,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[47],SELECT * FROM public.avatar_file WHERE id = 47,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[47],SELECT * FROM public.avatar_file WHERE id = 47,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[47],SELECT * FROM public.avatar_file WHERE id = 47,3
+[43],SELECT * FROM public.avatar_file WHERE id = 43,3
+[47],SELECT * FROM public.avatar_file WHERE id = 47,3
+[47],SELECT * FROM public.avatar_file WHERE id = 47,3
+[47],DELETE FROM public.avatar_file WHERE id = 47,3
+"[""pp1.png"",""d4c86078-7b0f-455b-8e4a-fdfe068169dc.png"",""png"",251007,1648925998377,1648925998377]","INSERT INTO public.avatar_file (original_filename, current_filename, extension, size, created_at, updated_at) VALUES ('pp1.png', 'd4c86078-7b0f-455b-8e4a-fdfe068169dc.png', 'png', 251007, 1648925998377, 1648925998377) RETURNING *;",3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+[46],SELECT * FROM public.avatar_file WHERE id = 46,3
+[48],SELECT * FROM public.avatar_file WHERE id = 48,3

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import Icon from "../ui/Icon";
 import { User } from "../types";
 import { apiFetch } from "../utils/api";
+import Notifications from "../ui/Notifications";
 
 export default function Header({
   user,
@@ -43,6 +44,9 @@ export default function Header({
       <ul className="header-side">
         {onConnect ? (
           <>
+            <li className="header__notification">
+              <Notifications user={user} onConnect={onConnect} />
+            </li>
             <li className="header__account">
               <NavLink exact to="/profil">
                 <Icon name="user" />

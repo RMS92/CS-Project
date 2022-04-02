@@ -9,6 +9,8 @@ import { UserEvent } from "../users-events/models/user-event.model";
 import { ConfigService } from "../config/config.service";
 import escapeInput from "../utils";
 import { ForbiddenRessourceException } from "../users/exceptions/forbidden-ressource.exception";
+import { NotificationsService } from "../notifications/notifications.service";
+import { CreateNotificationDto } from "../notifications/dto/create-notification.dto";
 
 @Injectable()
 export class EventsService {
@@ -16,7 +18,8 @@ export class EventsService {
     @DatabaseTable("event")
     private readonly db: DatabaseService<Event>,
     private readonly userEventService: UsersEventsService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
+    private readonly notificationsService: NotificationsService
   ) {
     this.configService = new ConfigService({
       useProcess: true,
@@ -137,6 +140,17 @@ export class EventsService {
 
     for (let i = 0; i < createEventDto.users_ids.length; i++) {
       await this.userEventService.create(createEventDto.users_ids[i], event.id);
+
+      // Send notification
+      // @ts-ignore
+      const data: CreateNotificationDto = {
+        message: `Vous avez été invité à participer à l&apos;évènement<strong> ${event.title}</strong>`,
+        url: "http://localhost:3000/events/" + event.id,
+        // @ts-ignore
+        user_id: createEventDto.users_ids[i],
+        channel: "private",
+      };
+      await this.notificationsService.create(data);
     }
 
     return event;

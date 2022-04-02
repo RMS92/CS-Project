@@ -1,2 +1,4 @@
 Input,Requête,Niveau
-"[{""query"":""*"",""where"":""ORDER BY created_at DESC""}]",SELECT * FROM public.comment ORDER BY created_at DESC,1
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+[],SELECT * FROM public.comment ORDER BY created_at ASC,3

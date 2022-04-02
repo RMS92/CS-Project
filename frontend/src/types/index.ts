@@ -44,3 +44,13 @@ export type AvatarFile = {
   original_filename: string;
   current_filename: string;
 };
+
+export type NotificationType = {
+  id: string;
+  message: string;
+  url: string;
+  channel: string;
+  created_at: string;
+  read_at: Date;
+  user_id: string;
+};

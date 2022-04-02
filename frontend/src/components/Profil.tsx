@@ -55,7 +55,6 @@ export default function Profil({
           return data;
         });
       });
-      console.log("avatar_id", avatar_id);
 
       // Find and set new avatar file from user
       const file = await apiFetch("/files/" + avatar_id + "/avatarFile");
@@ -428,9 +427,6 @@ function ProfilBodyInvitations({
       setInvitations(res);
     })();
   }, []);
-
-  console.log("invitations", invitations);
-  console.log("participants", participants);
 
   return invitations && invitations.length !== 0 ? (
     <div className="events mt5">

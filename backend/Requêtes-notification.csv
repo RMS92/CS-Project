@@ -1,0 +1,34 @@
+Input,Requête,Niveau
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+"[""Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>"",""http://localhost:3000/events/85"",""private"",1648925832469,1648925832469,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>', 'http://localhost:3000/events/85', 'private', 1648925832469, 1648925832469, 28) RETURNING *;",3
+"[""Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>"",""http://localhost:3000/events/85"",""private"",1648925832480,1648925832480,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>', 'http://localhost:3000/events/85', 'private', 1648925832480, 1648925832480, 47) RETURNING *;",3
+"[""Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>"",""http://localhost:3000/events/85"",""private"",1648925832485,1648925832485,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>', 'http://localhost:3000/events/85', 'private', 1648925832485, 1648925832485, 55) RETURNING *;",3
+"[""Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>"",""http://localhost:3000/events/85"",""private"",1648925832490,1648925832490,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Vous avez été invité à participer à l&apos;évènement<strong> Evènement Lol</strong>', 'http://localhost:3000/events/85', 'private', 1648925832490, 1648925832490, 54) RETURNING *;",3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1648925844714,22]",UPDATE public.notification SET read_at = 1648925844714 WHERE id = 22 RETURNING *;,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[54],SELECT * FROM public.notification WHERE user_id = 54 ORDER BY created_at DESC,3
+[54],SELECT * FROM public.notification WHERE read_at is null AND user_id = 54,3
+"[1648925885225,25]",UPDATE public.notification SET read_at = 1648925885225 WHERE id = 25 RETURNING *;,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[54],SELECT * FROM public.notification WHERE user_id = 54 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+"[""Vous avez été invité à participer à l&apos;évènement<strong> Evemement trop bien !</strong>"",""http://localhost:3000/events/86"",""private"",1648925960615,1648925960615,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Vous avez été invité à participer à l&apos;évènement<strong> Evemement trop bien !</strong>', 'http://localhost:3000/events/86', 'private', 1648925960615, 1648925960615, 28) RETURNING *;",3
+"[""Vous avez été invité à participer à l&apos;évènement<strong> Evemement trop bien !</strong>"",""http://localhost:3000/events/86"",""private"",1648925960621,1648925960621,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Vous avez été invité à participer à l&apos;évènement<strong> Evemement trop bien !</strong>', 'http://localhost:3000/events/86', 'private', 1648925960621, 1648925960621, 30) RETURNING *;",3
+"[""Vous avez été invité à participer à l&apos;évènement<strong> Evemement trop bien !</strong>"",""http://localhost:3000/events/86"",""private"",1648925960626,1648925960626,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Vous avez été invité à participer à l&apos;évènement<strong> Evemement trop bien !</strong>', 'http://localhost:3000/events/86', 'private', 1648925960626, 1648925960626, 47) RETURNING *;",3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1648925967294,26]",UPDATE public.notification SET read_at = 1648925967294 WHERE id = 26 RETURNING *;,3
+[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
+[30],SELECT * FROM public.notification WHERE read_at is null AND user_id = 30,3
+"[1648925979698,27]",UPDATE public.notification SET read_at = 1648925979698 WHERE id = 27 RETURNING *;,3
+[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
+[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
+[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
+[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
+[54],SELECT * FROM public.notification WHERE user_id = 54 ORDER BY created_at DESC,3

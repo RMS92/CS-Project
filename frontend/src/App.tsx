@@ -17,6 +17,8 @@ import { User } from "./types";
 import { apiFetch } from "./utils/api";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -75,6 +77,13 @@ function App() {
           <Route exact path="/inscription">
             {onConnect ? <Redirect to="/" /> : <Register />}
           </Route>
+
+          <PrivateRoute
+            requiredRoles={["ROLE_ADMIN", "ROLE_SUPERADMIN"]}
+            path="/administration"
+          >
+            <Dashboard />
+          </PrivateRoute>
         </Switch>
         <Footer />
       </Router>

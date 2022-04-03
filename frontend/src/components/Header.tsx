@@ -37,7 +37,7 @@ export default function Header({
         </li>
         <li>
           <NavLink exact to="/">
-            <Icon name="events" /> Evènements
+            <Icon name="events" /> Évènements
           </NavLink>
         </li>
       </ul>
@@ -47,6 +47,21 @@ export default function Header({
             <li className="header__notification">
               <Notifications user={user} onConnect={onConnect} />
             </li>
+
+            {user?.role &&
+            (user.role === "ROLE_ADMIN" || user.role === "ROLE_SUPERADMIN") ? (
+              <li className="header__dashboard">
+                <NavLink to="/administration" className="center">
+                  <Icon
+                    name="dashboard"
+                    width="22"
+                    style={{ marginRight: 0 }}
+                  />
+                  <span>Dashboard</span>
+                </NavLink>
+              </li>
+            ) : null}
+
             <li className="header__account">
               <NavLink exact to="/profil">
                 <Icon name="user" />

@@ -6,7 +6,7 @@ export type User = {
   id: string;
   pseudo: string;
   role: string;
-  created_at: Date;
+  created_at: string;
   updated_at: Date;
   avatar_id: string;
 };

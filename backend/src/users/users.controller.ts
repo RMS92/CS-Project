@@ -32,8 +32,15 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async findAll(@Req() req): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return this.usersService.findAll();
+  }
+
+  @Get("admin")
+  @UseGuards(AuthenticatedGuard)
+  async findAllAdmin(@Req() req): Promise<User[]> {
+    const role = req.user.role;
+    return this.usersService.findAllAdmin(role);
   }
 
   @Get("events")
@@ -112,5 +119,12 @@ export class UsersController {
     const authId = req.user.id;
     req.logout();
     return this.usersService.delete(+id, authId);
+  }
+
+  @Delete(":id/admin")
+  @UseGuards(AuthenticatedGuard)
+  async deleteAdmin(@Param("id") id: string, @Req() req): Promise<Boolean> {
+    const role = req.user.role;
+    return this.usersService.deleteAdmin(+id, role);
   }
 }

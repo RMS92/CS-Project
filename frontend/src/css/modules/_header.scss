@@ -136,6 +136,15 @@
   }
 }
 
+.header__dashboard {
+  display: flex;
+  align-items: center;
+
+  span {
+    padding-left: calc(1 * var(--space));
+  }
+}
+
 .header__notification .icon, .header__notification > button {
   display: block;
   width: 16px;

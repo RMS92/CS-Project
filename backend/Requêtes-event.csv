@@ -5,10 +5,6 @@ Input,Requête,Niveau
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[84],SELECT * FROM public.event WHERE id = 84,3
-[84],DELETE FROM public.event WHERE id = 84,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-"[""Evènement Lol"",""zzzzzzzzzzzzzzzzzzzzzzz"",""25 rue Michelet, Rueil-Malmaison, 92500, France"",""120"",""12h56"",1651276800000,1648925832453,1648925832453,30]","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('Evènement Lol', 'zzzzzzzzzzzzzzzzzzzzzzz', '25 rue Michelet, Rueil-Malmaison, 92500, France', '120', '12h56', 1651276800000, 1648925832453, 1648925832453, 30) RETURNING *;",3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
@@ -17,27 +13,9 @@ Input,Requête,Niveau
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[83],SELECT * FROM public.event WHERE id = 83,3
-[83],DELETE FROM public.event WHERE id = 83,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
-"[""Evemement trop bien !"",""jjjjjjjjjjjjjjjjjjjjjjjj"",""13 rue Michelet, Levallois, 92300, France"",""120"",""12h"",1651968000000,1648925960610,1648925960610,54]","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('Evemement trop bien !', 'jjjjjjjjjjjjjjjjjjjjjjjj', '13 rue Michelet, Levallois, 92300, France', '120', '12h', 1651968000000, 1648925960610, 1648925960610, 54) RETURNING *;",3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[86],SELECT * FROM public.event WHERE id = 86,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[85],SELECT * FROM public.event WHERE id = 85,3
-[85],DELETE FROM public.event WHERE id = 85,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[86],SELECT * FROM public.event WHERE id = 86,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[86],SELECT * FROM public.event WHERE id = 86,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[86],SELECT * FROM public.event WHERE id = 86,3
-[86],DELETE FROM public.event WHERE id = 86,3

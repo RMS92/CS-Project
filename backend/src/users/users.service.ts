@@ -42,6 +42,23 @@ export class UsersService {
     }
   }
 
+  async findAllAdmin(role: string): Promise<User[]> {
+    if (role === "ROLE_ADMIN" || role === "ROLE_SUPERADMIN") {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return this.db.queryAll({
+          query: "id,pseudo,role,created_at",
+          where: "",
+        });
+      } else {
+        return this.db.preparedQueryAll({
+          query: "id,pseudo,role,created_at",
+          where: "",
+          variables: [],
+        });
+      }
+    }
+  }
+
   async findAllUsersEvents(): Promise<User[]> {
     if (this.securityLevel === 1 || this.securityLevel === 2) {
       return this.db.join({
@@ -349,6 +366,28 @@ export class UsersService {
 
   async delete(id: number, authId: number): Promise<Boolean> {
     if (id === authId) {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        await this.db.delete({
+          query: "",
+          where: "id = " + id,
+        });
+        return true;
+      } else {
+        const where = "id = $1";
+        await this.db.preparedDelete({
+          query: "",
+          where,
+          variables: [id],
+        });
+        return true;
+      }
+    } else {
+      throw new ForbiddenRessourceException();
+    }
+  }
+
+  async deleteAdmin(id: number, role: string): Promise<Boolean> {
+    if (role === "ROLE_ADMIN" || role === "ROLE_SUPERADMIN") {
       if (this.securityLevel === 1 || this.securityLevel === 2) {
         await this.db.delete({
           query: "",

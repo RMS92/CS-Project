@@ -16,6 +16,7 @@ import { CreateEventDto } from "./dto/create-event.dto";
 import { AuthenticatedGuard } from "../auth/guards/authenticated-auth.guard";
 import { UserEvent } from "../users-events/models/user-event.model";
 import { CreateUserEventDto } from "../users-events/dto/create-user-event.dto";
+import { UpdateEventDto } from "./dto/update-event.dto";
 
 @Controller("events")
 export class EventsController {
@@ -64,18 +65,28 @@ export class EventsController {
     );
   }
 
-  /*@Patch(":id")
+  @Patch(":id/admin")
+  @UseGuards(AuthenticatedGuard)
   async update(
     @Param("id") id: string,
-    @Body() updateEventDto: UpdateEventDto
-  ): Promise<ShowEvent> {
-    return this.eventsService.update(+id, updateEventDto);
-  }*/
+    @Body() updateEventDto: UpdateEventDto,
+    @Req() req
+  ): Promise<Event> {
+    const role = req.user.role;
+    return this.eventsService.updateAdmin(+id, role, updateEventDto);
+  }
 
   @Delete(":id")
   @UseGuards(AuthenticatedGuard)
   async delete(@Param("id") id: string, @Req() req): Promise<Event> {
     const authId = req.user.id;
     return this.eventsService.delete(+id, authId);
+  }
+
+  @Delete(":id/admin")
+  @UseGuards(AuthenticatedGuard)
+  async deleteAdmin(@Param("id") id: string, @Req() req): Promise<Event> {
+    const role = req.user.role;
+    return this.eventsService.deleteAdmin(+id, role);
   }
 }

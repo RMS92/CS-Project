@@ -1,18 +1,21 @@
 import React, { SyntheticEvent, useEffect, useState } from "react";
 import { Event } from "../../../types";
 import Icon from "../../../ui/Icon";
-import { MoreModal } from "../../../ui/Modal";
 import Pagination from "../../../ui/Pagination";
-import SlideIn from "../../../ui/animations/SlideIn";
-import { useEvents } from "../../../hooks/useEvents";
-import { fireEvent } from "@testing-library/react";
 
 export default function DashboardBodyEvents({
   setPage,
+  events,
+  fetchEvent,
+  fetchEvents,
+  deleteAdminEvent,
 }: {
   setPage: Function;
+  events: Event[];
+  fetchEvent: Function;
+  fetchEvents: Function;
+  deleteAdminEvent: Function;
 }) {
-  const { events, fetchEvents } = useEvents();
   const [currentModal, setCurrentModal] = useState<string>("");
   const [paginationItems, setPaginationItems] = useState<Event[]>([]);
   const [searchValue, setSearchValue] = useState("");
@@ -29,8 +32,6 @@ export default function DashboardBodyEvents({
       ? u
       : ""
   );
-
-  console.log(currentModal);
 
   const handleChange = (e: SyntheticEvent) => {
     // @ts-ignore
@@ -97,6 +98,8 @@ export default function DashboardBodyEvents({
                       className="icon icon-edit"
                       onClick={async () => {
                         //set page to edit event
+                        await fetchEvent(e, "select");
+                        setPage("events/edit");
                       }}
                     />
                   </td>
@@ -110,6 +113,7 @@ export default function DashboardBodyEvents({
                       className="icon icon-delete"
                       onClick={async () => {
                         //delete event
+                        await deleteAdminEvent(e);
                       }}
                     />
                   </td>

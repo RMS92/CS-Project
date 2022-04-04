@@ -1,21 +1,20 @@
 Input,Requête,Niveau
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"{""query"":""title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id"",""where"":""'test', (SELECT password FROM public.user WHERE pseudo='roro' LIMIT 1), 'test2', 60, 19, 1639672943276, 1639672943276, 1639672943276, 15) RETURNING * --', 'aaaaaaaaaaaaaaaaaaaaaaa', '25 rue Michelet, Rueil-Malmaison, 92500, France', 120, '18h30', 1651968000000, 1649066209531, 1649066209531, 28""}","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('test', (SELECT password FROM public.user WHERE pseudo='roro' LIMIT 1), 'test2', 60, 19, 1639672943276, 1639672943276, 1639672943276, 15) RETURNING * --', 'aaaaaaaaaaaaaaaaaaaaaaa', '25 rue Michelet, Rueil-Malmaison, 92500, France', 120, '18h30', 1651968000000, 1649066209531, 1649066209531, 28) RETURNING *;",1
+"{""query"":""title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id"",""where"":""'test', (SELECT password FROM public.user WHERE pseudo='roro' LIMIT 1), 'test2', 60, 19, 1639672943276, 1639672943276, 1639672943276, 30) RETURNING * --', 'aaaaaaaaaaaaaaaaaaaaaaa', '25 rue Michelet, Rueil-Malmaison, 92500, France', 120, '18h30', 1651968000000, 1649066284341, 1649066284341, 28""}","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('test', (SELECT password FROM public.user WHERE pseudo='roro' LIMIT 1), 'test2', 60, 19, 1639672943276, 1639672943276, 1639672943276, 30) RETURNING * --', 'aaaaaaaaaaaaaaaaaaaaaaa', '25 rue Michelet, Rueil-Malmaison, 92500, France', 120, '18h30', 1651968000000, 1649066284341, 1649066284341, 28) RETURNING *;",1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"{""query"":""*"",""where"":""id = 90""}",SELECT * FROM public.event WHERE id = 90,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"{""query"":""*"",""where"":""id = 90""}",SELECT * FROM public.event WHERE id = 90,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"{""query"":""*"",""where"":""id = 90""}",SELECT * FROM public.event WHERE id = 90,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY begin_at DESC""}]",SELECT * FROM public.event ORDER BY begin_at DESC,1

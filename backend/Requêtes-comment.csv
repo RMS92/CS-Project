@@ -1,4 +1,4 @@
 Input,Requête,Niveau
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
+"[{""query"":""*"",""where"":""ORDER BY created_at DESC""}]",SELECT * FROM public.comment ORDER BY created_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY created_at DESC""}]",SELECT * FROM public.comment ORDER BY created_at DESC,1
+"[{""query"":""*"",""where"":""ORDER BY created_at DESC""}]",SELECT * FROM public.comment ORDER BY created_at DESC,1

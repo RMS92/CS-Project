@@ -8,11 +8,12 @@ export const FETCH_EVENT_REQUEST = "FETCH_EVENT_REQUEST";
 export const FETCH_EVENT_RESPONSE = "FETCH_EVENT_RESPONSE";
 export const UPDATE_EVENT = "UPDATE_EVENT";
 export const DELETE_EVENT = "DELETE_EVENT";
+export const DELETE_ADMIN_EVENT = "DELETE_ADMIN_EVENT";
 export const SELECT_EVENT = "SELECT_EVENT";
 export const DESELECT_EVENT = "DESELECT_EVENT";
 
 function reducer(state: any, action: any) {
-  // console.log("EVENTS REDUCE", action.type, action);
+  console.log("EVENTS REDUCE", action.type, action);
   switch (action.type) {
     case FETCH_EVENTS_REQUEST:
       return { ...state, loading: true };
@@ -46,6 +47,11 @@ function reducer(state: any, action: any) {
         ...state,
         events: state.events.filter((s: Event) => s !== action.payload),
       };
+    case DELETE_ADMIN_EVENT:
+      return {
+        ...state,
+        events: state.events.filter((s: Event) => s !== action.payload),
+      };
     case SELECT_EVENT:
       return { ...state, selectedEventId: action.payload };
     case DESELECT_EVENT:
@@ -66,7 +72,7 @@ export function useEvents() {
       return null;
     }
     for (let s of state.events) {
-      if (s._d === state.selectedEventId) {
+      if (s.id === state.selectedEventId) {
         return s;
       }
     }
@@ -114,9 +120,25 @@ export function useEvents() {
       },
       []
     ),
+    updateAdminEvent: useCallback(
+      async (event: Event, type: string, data: object) => {
+        dispatch({ type: UPDATE_EVENT, target: event, payload: data });
+        await apiFetch("/events/" + event.id + "/admin", {
+          method: "PATCH",
+          body: JSON.stringify(data),
+        });
+      },
+      []
+    ),
     deleteEvent: useCallback(async (event: Event) => {
       dispatch({ type: DELETE_EVENT, payload: event });
       await apiFetch("/events/" + event.id, {
+        method: "delete",
+      });
+    }, []),
+    deleteAdminEvent: useCallback(async (event: Event) => {
+      dispatch({ type: DELETE_ADMIN_EVENT, payload: event });
+      await apiFetch("/events/" + event.id + "/admin", {
         method: "delete",
       });
     }, []),

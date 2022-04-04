@@ -11,6 +11,7 @@ import escapeInput from "../utils";
 import { ForbiddenRessourceException } from "../users/exceptions/forbidden-ressource.exception";
 import { NotificationsService } from "../notifications/notifications.service";
 import { CreateNotificationDto } from "../notifications/dto/create-notification.dto";
+import { UpdateEventDto } from "./dto/update-event.dto";
 
 @Injectable()
 export class EventsService {
@@ -160,9 +161,65 @@ export class EventsService {
     return this.userEventService.create(user_id, event_id);
   }
 
+  async updateAdmin(
+    id: number,
+    role: string,
+    updateEventDto: UpdateEventDto
+  ): Promise<Event> {
+    const now = Date.now();
+    const begin_at = new Date(updateEventDto.begin_at).getTime();
+    if (role === "ROLE_ADMIN" || role === "ROLE_SUPERADMIN") {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return this.db.update({
+          query: `title = '${updateEventDto.title}', content = ${updateEventDto.content}, place = ${updateEventDto.place}, duration = ${updateEventDto.duration}, start_time = ${updateEventDto.start_time}, begin_at = ${begin_at}, updated_at = ${now}`,
+          where: "id = " + id,
+        });
+      } else {
+        const where = "id = $8";
+        return this.db.preparedUpdate({
+          query:
+            "title = $1, content = $2, place = $3, duration = $4, start_time = $5, begin_at = $6, updated_at = $7",
+          where,
+          variables: [
+            updateEventDto.title,
+            updateEventDto.content,
+            updateEventDto.place,
+            updateEventDto.duration,
+            updateEventDto.start_time,
+            begin_at,
+            now,
+            id,
+          ],
+        });
+      }
+    } else {
+      throw new ForbiddenRessourceException();
+    }
+  }
+
   async delete(id: number, authId: number): Promise<Event> {
     const event = await this.findOne(id);
     if (parseInt(event.user_id) === authId) {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return this.db.delete({
+          query: "",
+          where: "id = " + id,
+        });
+      } else {
+        const where = "id = $1";
+        return this.db.preparedDelete({
+          query: "",
+          where,
+          variables: [id],
+        });
+      }
+    } else {
+      throw new ForbiddenRessourceException();
+    }
+  }
+
+  async deleteAdmin(id: number, role: string): Promise<Event> {
+    if (role === "ROLE_ADMIN" || role === "ROLE_SUPERADMIN") {
       if (this.securityLevel === 1 || this.securityLevel === 2) {
         return this.db.delete({
           query: "",

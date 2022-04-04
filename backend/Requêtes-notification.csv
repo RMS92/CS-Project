@@ -1,18 +1,4 @@
 Input,Requête,Niveau
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[64],SELECT * FROM public.notification WHERE user_id = 64 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+"[{""query"":""*"",""where"":""WHERE user_id = 28 ORDER BY created_at DESC""}]",SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,1
+"[{""query"":""*"",""where"":""WHERE user_id = 30 ORDER BY created_at DESC""}]",SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,1
+"[{""query"":""*"",""where"":""WHERE user_id = 28 ORDER BY created_at DESC""}]",SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,1

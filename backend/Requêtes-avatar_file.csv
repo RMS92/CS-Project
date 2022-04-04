@@ -1,36 +1,59 @@
 Input,Requête,Niveau
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
-[46],SELECT * FROM public.avatar_file WHERE id = 46,3
-[48],SELECT * FROM public.avatar_file WHERE id = 48,3
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1
+"{""query"":""*"",""where"":""id = 46""}",SELECT * FROM public.avatar_file WHERE id = 46,1
+"{""query"":""*"",""where"":""id = 48""}",SELECT * FROM public.avatar_file WHERE id = 48,1

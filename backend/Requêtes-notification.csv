@@ -1,4 +1,9 @@
 Input,Requête,Niveau
-"[{""query"":""*"",""where"":""WHERE user_id = 28 ORDER BY created_at DESC""}]",SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,1
-"[{""query"":""*"",""where"":""WHERE user_id = 30 ORDER BY created_at DESC""}]",SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,1
-"[{""query"":""*"",""where"":""WHERE user_id = 28 ORDER BY created_at DESC""}]",SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,1
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3
+[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
+[30],SELECT * FROM public.notification WHERE read_at is null AND user_id = 30,3
+"[1649151085313,60]",UPDATE public.notification SET read_at = 1649151085313 WHERE id = 60 RETURNING *;,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3

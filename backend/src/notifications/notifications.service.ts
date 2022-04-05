@@ -7,7 +7,7 @@ import { DatabaseTable } from "../database/database.decorator";
 import { DatabaseService } from "../database/database.service";
 import { Notification } from "./models/notification.model";
 import { ConfigService } from "../config/config.service";
-import { not } from "rxjs/internal-compatibility";
+import { ForbiddenRessourceException } from "../users/exceptions/forbidden-ressource.exception";
 
 @Injectable()
 export class NotificationsService {
@@ -113,7 +113,28 @@ export class NotificationsService {
       return this.db.preparedQueryAll({
         query: "*",
         where,
+        variables: [],
       });
+    }
+  }
+
+  async findAllAdmin(role: string): Promise<Notification[]> {
+    if (role === "ROLE_ADMIN" || role === "ROLE_SUPERADMIN") {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return this.db.queryAll({
+          query: "*",
+          where: "WHERE channel LIKE 'public'",
+        });
+      } else {
+        const where = "WHERE channel LIKE 'public'";
+        return this.db.preparedQueryAll({
+          query: "*",
+          where,
+          variables: [],
+        });
+      }
+    } else {
+      throw new ForbiddenRessourceException();
     }
   }
 
@@ -139,5 +160,25 @@ export class NotificationsService {
 
   remove(id: number) {
     return `This action removes a #${id} notification`;
+  }
+
+  async removeAdmin(id: number, role: string): Promise<Notification> {
+    if (role === "ROLE_ADMIN" || role === "ROLE_SUPERADMIN") {
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return await this.db.delete({
+          query: "",
+          where: "id = " + id,
+        });
+      } else {
+        const where = "id = $1";
+        return await this.db.preparedDelete({
+          query: "",
+          where,
+          variables: [id],
+        });
+      }
+    } else {
+      throw new ForbiddenRessourceException();
+    }
   }
 }

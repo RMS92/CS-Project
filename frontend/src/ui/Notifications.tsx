@@ -60,7 +60,7 @@ export default function Notifications({
       eventSource.onmessage = ({ data }) => {
         const eventNotification = JSON.parse(data);
         if (
-          (!eventNotification.user_id &&
+          (eventNotification.user_id === user?.id &&
             eventNotification.channel === "public") ||
           (eventNotification.user_id === user?.id &&
             eventNotification.channel === "private")

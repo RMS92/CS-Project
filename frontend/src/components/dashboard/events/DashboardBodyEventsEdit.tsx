@@ -33,8 +33,6 @@ export default function DashboardBodyEventsEdit({
     const form: HTMLFormElement = e.target as HTMLFormElement;
     const data: object = formToObject(form);
 
-    console.log(data);
-
     try {
       updateAdminEvent(selectedEvent, "", data);
     } catch (err) {

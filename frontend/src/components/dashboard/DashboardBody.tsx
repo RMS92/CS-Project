@@ -7,6 +7,9 @@ import { NotificationType } from "../../types";
 import DashboardBodyEvents from "./events/DashboardBodyEvents";
 import DashboardBodyEventsEdit from "./events/DashboardBodyEventsEdit";
 import { useEvents } from "../../hooks/useEvents";
+import DashboardBodyNotifications from "./notifications/DashboardBodyNotifications";
+import DashboardBodyNotificationsCreate from "./notifications/DashboardBodyNotificationsCreate";
+import { useNotifications } from "../../hooks/useNotifications";
 
 export default function DashboardBody({
   page,
@@ -23,6 +26,13 @@ export default function DashboardBody({
     updateAdminEvent,
     deleteAdminEvent,
   } = useEvents();
+
+  const {
+    notifications,
+    fetchNotifications,
+    createNotification,
+    deleteNotification,
+  } = useNotifications();
 
   return (
     <main className="py5">
@@ -42,24 +52,16 @@ export default function DashboardBody({
           updateAdminEvent={updateAdminEvent}
         />
       ) : page === "notifications" ? (
-        <DashboardBodyNotifications />
+        <DashboardBodyNotifications
+          notifications={notifications}
+          fetchNotifications={fetchNotifications}
+          deleteNotification={deleteNotification}
+        />
       ) : page === "notifications/create" ? (
-        <DashboardBodyNotificationsCreate />
-      ) : page === "notifications/edit" ? (
-        <DashboardBodyNotificationsEdit />
+        <DashboardBodyNotificationsCreate
+          createNotification={createNotification}
+        />
       ) : null}
     </main>
   );
-}
-
-function DashboardBodyNotifications() {
-  return <>Notification body</>;
-}
-
-function DashboardBodyNotificationsCreate() {
-  return <>Notifications create</>;
-}
-
-function DashboardBodyNotificationsEdit() {
-  return <>Notifications edit</>;
 }

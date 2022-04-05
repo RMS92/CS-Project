@@ -57,6 +57,13 @@ export class NotificationsController {
     return this.notificationsService.findAll();
   }
 
+  @Get("admin")
+  @UseGuards(AuthenticatedGuard)
+  findAllAdmin(@Req() req): Promise<Notification[]> {
+    const role = req.user.role;
+    return this.notificationsService.findAllAdmin(role);
+  }
+
   @Get("users")
   @UseGuards(AuthenticatedGuard)
   findAllByUser(@Req() req): Promise<Notification[]> {
@@ -72,5 +79,12 @@ export class NotificationsController {
   @Delete(":id")
   remove(@Param("id") id: string) {
     return this.notificationsService.remove(+id);
+  }
+
+  @Delete(":id/admin")
+  @UseGuards(AuthenticatedGuard)
+  removeAdmin(@Param("id") id: string, @Req() req): Promise<Notification> {
+    const role = req.user.role;
+    return this.notificationsService.removeAdmin(+id, role);
   }
 }

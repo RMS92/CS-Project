@@ -12,16 +12,10 @@ import { FilesService } from "./files.service";
 import { CreateFileDto } from "./dto/create-file.dto";
 import { UpdateFileDto } from "./dto/update-file.dto";
 import { AvatarFile } from "./models/avatar.model";
-import { AuthenticatedGuard } from "../auth/guards/authenticated-auth.guard";
 
 @Controller("files")
 export class FilesController {
   constructor(private readonly filesService: FilesService) {}
-
-  @Post()
-  create(@Body() createFileDto: CreateFileDto) {
-    return this.filesService.create(createFileDto);
-  }
 
   @Get()
   findAll() {

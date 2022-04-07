@@ -18,7 +18,7 @@ export class AuthService {
       if (validated) {
         return user;
       } else {
-        throw new WrongPasswordException();
+        throw new WrongPseudoException();
       }
     } else {
       throw new WrongPseudoException();

@@ -18,7 +18,6 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
 import { AuthenticatedGuard } from "../auth/guards/authenticated-auth.guard";
-import { DeleteUserDto } from "./dto/delete-user.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import {

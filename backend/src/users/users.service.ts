@@ -11,6 +11,9 @@ import escapeInput from "../utils";
 const bcrypt = require("bcrypt");
 import { ForbiddenRessourceException } from "./exceptions/forbidden-ressource.exception";
 import { FilesService } from "../files/files.service";
+import { IncorrectFileTypeException } from "../files/exceptions/incorrect-file-type.exception";
+import { promisify } from "util";
+import * as fs from "fs";
 
 @Injectable()
 export class UsersService {
@@ -342,25 +345,49 @@ export class UsersService {
       });
     }
 
-    if (user.avatar_id) {
-      //remove avatar file
-      await this.filesService.removeAvatarFile(user.pseudo, +user.avatar_id);
-    }
+    // Check file type
+    const fileType = await this.filesService.checkFileType(
+      this.configService.getUploadPath() +
+        `/profil/${user.pseudo}/${file.filename}`
+    );
 
-    const newAvatarFile = await this.filesService.saveAvatarFile(file);
-    const { id } = newAvatarFile;
-    if (this.securityLevel === 1 || this.securityLevel === 2) {
-      return this.db.update({
-        query: "avatar_id = " + id,
-        where: "id = " + userId,
-      });
+    if (
+      fileType &&
+      (fileType.ext === "png" ||
+        fileType.ext === "jpg" ||
+        fileType.ext === "jpeg")
+    ) {
+      //remove avatar file
+      if (user.avatar_id) {
+        await this.filesService.removeAvatarFile(user.pseudo, +user.avatar_id);
+      }
+
+      // Save avatar file
+      const newAvatarFile = await this.filesService.saveAvatarFile(file);
+      const { id } = newAvatarFile;
+      if (this.securityLevel === 1 || this.securityLevel === 2) {
+        return this.db.update({
+          query: "avatar_id = " + id,
+          where: "id = " + userId,
+        });
+      } else {
+        const where = "id = $2";
+        return this.db.preparedUpdate({
+          query: "avatar_id = $1",
+          where,
+          variables: [id, userId],
+        });
+      }
     } else {
-      const where = "id = $2";
-      return this.db.preparedUpdate({
-        query: "avatar_id = $1",
-        where,
-        variables: [id, userId],
-      });
+      // unlink suspicious file
+      const unlinkAsync = promisify(fs.unlink);
+      await unlinkAsync(
+        this.configService.getUploadPath() +
+          `/profil/${user.pseudo}/` +
+          file.filename
+      );
+
+      throw new IncorrectFileTypeException();
     }
   }
 

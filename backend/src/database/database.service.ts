@@ -255,7 +255,6 @@ export class DatabaseService<T> implements DatabaseInterface<T> {
 
   private saveFormattedPreparedQuery(query: string, variables: any[]): string {
     let savedQuery = query;
-    console.log("oooooooo", savedQuery);
     if (variables.length !== 0) {
       for (let i = 0; i < variables.length; i++) {
         const removeStr = "[$]" + `${i + 1}`;

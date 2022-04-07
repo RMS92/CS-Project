@@ -7,6 +7,7 @@ import { AvatarFile } from "./models/avatar.model";
 import { DatabaseTable } from "../database/database.decorator";
 import { DatabaseService } from "../database/database.service";
 import { ConfigService } from "../config/config.service";
+const FileType = require("file-type");
 
 @Injectable()
 export class FilesService {
@@ -56,6 +57,7 @@ export class FilesService {
 
   async saveAvatarFile(file): Promise<AvatarFile> {
     const { originalname, filename, mimetype, size } = file;
+
     const extension = mimetype.split("/")[1];
     const now = Date.now();
     if (this.securityLevel === 1 || this.securityLevel === 2) {
@@ -73,6 +75,10 @@ export class FilesService {
         variables: [originalname, filename, extension, size, now, now],
       });
     }
+  }
+
+  async checkFileType(filename: string) {
+    return FileType.fromFile(filename);
   }
 
   async removeAvatarFile(pseudo: string, id: number): Promise<AvatarFile> {

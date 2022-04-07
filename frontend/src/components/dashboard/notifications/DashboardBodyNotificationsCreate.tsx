@@ -48,8 +48,6 @@ export default function DashboardBodyNotificationsCreate({
       channel: DOMPurify.sanitize(data.channel),
     });
 
-    console.log(data);
-
     try {
       for (let i = 0; i < users.length; i++) {
         Object.assign(data, { user_id: users[i].id });

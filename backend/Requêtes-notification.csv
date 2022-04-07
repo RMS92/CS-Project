@@ -1,9 +1,79 @@
 Input,Requête,Niveau
 [28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
 [],SELECT * FROM public.notification WHERE channel LIKE 'public',3
 [28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
 [],SELECT * FROM public.notification WHERE channel LIKE 'public',3
-[30],SELECT * FROM public.notification WHERE user_id = 30 ORDER BY created_at DESC,3
-[30],SELECT * FROM public.notification WHERE read_at is null AND user_id = 30,3
-"[1649151085313,60]",UPDATE public.notification SET read_at = 1649151085313 WHERE id = 60 RETURNING *;,3
+"[""<img src=x onerror=alert(1)//>"",""events"",""http://localhost:3000/public"",1649321885731,1649321885731,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=x onerror=alert(1)//>', 'events', 'http://localhost:3000/public', 1649321885731, 1649321885731, 55) RETURNING *;",3
+"[""<img src=x onerror=alert(1)//>"",""events"",""http://localhost:3000/public"",1649321885759,1649321885759,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=x onerror=alert(1)//>', 'events', 'http://localhost:3000/public', 1649321885759, 1649321885759, 30) RETURNING *;",3
+"[""<img src=x onerror=alert(1)//>"",""events"",""http://localhost:3000/public"",1649321885779,1649321885779,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=x onerror=alert(1)//>', 'events', 'http://localhost:3000/public', 1649321885779, 1649321885779, 28) RETURNING *;",3
+"[""<img src=x onerror=alert(1)//>"",""events"",""http://localhost:3000/public"",1649321885802,1649321885802,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=x onerror=alert(1)//>', 'events', 'http://localhost:3000/public', 1649321885802, 1649321885802, 47) RETURNING *;",3
+"[""<img src=x onerror=alert(1)//>"",""events"",""http://localhost:3000/public"",1649321885824,1649321885824,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=x onerror=alert(1)//>', 'events', 'http://localhost:3000/public', 1649321885824, 1649321885824, 54) RETURNING *;",3
 [28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1649321916270,63]",UPDATE public.notification SET read_at = 1649321916270 WHERE id = 63 RETURNING *;,3
+"[""<img src=\""x\"">"",""events"",""http://localhost:3000/public"",1649321931073,1649321931073,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'events', 'http://localhost:3000/public', 1649321931073, 1649321931073, 55) RETURNING *;",3
+"[""<img src=\""x\"">"",""events"",""http://localhost:3000/public"",1649321931104,1649321931104,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'events', 'http://localhost:3000/public', 1649321931104, 1649321931104, 30) RETURNING *;",3
+"[""<img src=\""x\"">"",""events"",""http://localhost:3000/public"",1649321931145,1649321931145,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'events', 'http://localhost:3000/public', 1649321931145, 1649321931145, 28) RETURNING *;",3
+"[""<img src=\""x\"">"",""events"",""http://localhost:3000/public"",1649321931176,1649321931176,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'events', 'http://localhost:3000/public', 1649321931176, 1649321931176, 47) RETURNING *;",3
+"[""<img src=\""x\"">"",""events"",""http://localhost:3000/public"",1649321931197,1649321931197,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'events', 'http://localhost:3000/public', 1649321931197, 1649321931197, 54) RETURNING *;",3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1649321945149,68]",UPDATE public.notification SET read_at = 1649321945149 WHERE id = 68 RETURNING *;,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+"[""<img src=\""x\"">"",""http://localhost:3000/events"",""public"",1649322058521,1649322058521,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/events', 'public', 1649322058521, 1649322058521, 55) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/events"",""public"",1649322058543,1649322058543,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/events', 'public', 1649322058543, 1649322058543, 30) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/events"",""public"",1649322058563,1649322058563,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/events', 'public', 1649322058563, 1649322058563, 28) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/events"",""public"",1649322058594,1649322058594,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/events', 'public', 1649322058594, 1649322058594, 47) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/events"",""public"",1649322058614,1649322058614,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/events', 'public', 1649322058614, 1649322058614, 54) RETURNING *;",3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1649322061644,73]",UPDATE public.notification SET read_at = 1649322061644 WHERE id = 73 RETURNING *;,3
+"[""Bonjour à tous les abonnés !"",""http://localhost:3000/events"",""public"",1649322085691,1649322085691,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Bonjour à tous les abonnés !', 'http://localhost:3000/events', 'public', 1649322085691, 1649322085691, 55) RETURNING *;",3
+"[""Bonjour à tous les abonnés !"",""http://localhost:3000/events"",""public"",1649322085711,1649322085711,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Bonjour à tous les abonnés !', 'http://localhost:3000/events', 'public', 1649322085711, 1649322085711, 30) RETURNING *;",3
+"[""Bonjour à tous les abonnés !"",""http://localhost:3000/events"",""public"",1649322085731,1649322085731,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Bonjour à tous les abonnés !', 'http://localhost:3000/events', 'public', 1649322085731, 1649322085731, 28) RETURNING *;",3
+"[""Bonjour à tous les abonnés !"",""http://localhost:3000/events"",""public"",1649322085765,1649322085765,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Bonjour à tous les abonnés !', 'http://localhost:3000/events', 'public', 1649322085765, 1649322085765, 47) RETURNING *;",3
+"[""Bonjour à tous les abonnés !"",""http://localhost:3000/events"",""public"",1649322085792,1649322085792,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Bonjour à tous les abonnés !', 'http://localhost:3000/events', 'public', 1649322085792, 1649322085792, 54) RETURNING *;",3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1649322086639,78]",UPDATE public.notification SET read_at = 1649322086639 WHERE id = 78 RETURNING *;,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322186348,1649322186348,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322186348, 1649322186348, 55) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322186372,1649322186372,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322186372, 1649322186372, 30) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322186393,1649322186393,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322186393, 1649322186393, 28) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322186418,1649322186418,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322186418, 1649322186418, 47) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322186441,1649322186441,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322186441, 1649322186441, 54) RETURNING *;",3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1649322187918,83]",UPDATE public.notification SET read_at = 1649322187918 WHERE id = 83 RETURNING *;,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+"[""<img src=\""x\"">"",""http://localhost:3000/"",""public"",1649322211948,1649322211948,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/', 'public', 1649322211948, 1649322211948, 55) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/"",""public"",1649322211972,1649322211972,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/', 'public', 1649322211972, 1649322211972, 30) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/"",""public"",1649322211992,1649322211992,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/', 'public', 1649322211992, 1649322211992, 28) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/"",""public"",1649322212023,1649322212023,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/', 'public', 1649322212023, 1649322212023, 47) RETURNING *;",3
+"[""<img src=\""x\"">"",""http://localhost:3000/"",""public"",1649322212051,1649322212051,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'http://localhost:3000/', 'public', 1649322212051, 1649322212051, 54) RETURNING *;",3
+[28],SELECT * FROM public.notification WHERE read_at is null AND user_id = 28,3
+"[1649322216393,88]",UPDATE public.notification SET read_at = 1649322216393 WHERE id = 88 RETURNING *;,3
+[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322241318,1649322241318,55]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322241318, 1649322241318, 55) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322241341,1649322241341,30]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322241341, 1649322241341, 30) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322241362,1649322241362,28]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322241362, 1649322241362, 28) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322241396,1649322241396,47]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322241396, 1649322241396, 47) RETURNING *;",3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649322241419,1649322241419,54]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649322241419, 1649322241419, 54) RETURNING *;",3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3

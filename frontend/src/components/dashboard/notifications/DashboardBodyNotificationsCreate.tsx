@@ -4,6 +4,7 @@ import Icon from "../../../ui/Icon";
 import Field from "../../../ui/Field";
 import { User } from "../../../types";
 import { useEvents } from "../../../hooks/useEvents";
+import DOMPurify from "dompurify";
 
 export default function DashboardBodyNotificationsCreate({
   createNotification,
@@ -12,7 +13,7 @@ export default function DashboardBodyNotificationsCreate({
 }) {
   const [fields, setFields] = useState({
     message: "",
-    url: "http://localhost:3000/",
+    url: "",
     channel: "public",
   });
   const [users, setUsers] = useState<User[]>([]);
@@ -37,12 +38,21 @@ export default function DashboardBodyNotificationsCreate({
     const form: HTMLFormElement = e.target as HTMLFormElement;
     const data: object = formToObject(form);
 
+    // sanitize data
+    Object.assign(data, {
+      // @ts-ignore
+      message: DOMPurify.sanitize(data.message),
+      // @ts-ignore
+      url: "http://localhost:3000/" + DOMPurify.sanitize(data.url),
+      // @ts-ignore
+      channel: DOMPurify.sanitize(data.channel),
+    });
+
     console.log(data);
 
     try {
       for (let i = 0; i < users.length; i++) {
         Object.assign(data, { user_id: users[i].id });
-        console.log(data);
         await apiFetch("/notifications", {
           method: "post",
           body: JSON.stringify(data),
@@ -75,7 +85,8 @@ export default function DashboardBodyNotificationsCreate({
             name="url"
             type="text"
             value={fields.url}
-            placeholder=""
+            required={false}
+            placeholder="e.g. events/1"
             onChange={handleChange}
           >
             Url

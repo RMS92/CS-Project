@@ -9,6 +9,7 @@ import { Event } from "../types";
 import { apiFetch } from "../utils/api";
 import Alert from "../ui/Alert";
 import { API_URL } from "../config";
+import DOMPurify from "dompurify";
 
 export default function Profil({
   user,
@@ -205,6 +206,8 @@ function ProfilBodyEdit({
   const [password2, setPassword2] = useState("");
 
   const handlePseudoSubmit = async () => {
+    const sanitizePseudo = DOMPurify.sanitize(pseudo.pseudo);
+    Object.assign(pseudo, { pseudo: sanitizePseudo });
     try {
       const res = await apiFetch("/users/" + user.id + "/pseudo", {
         method: "PATCH",
@@ -223,6 +226,8 @@ function ProfilBodyEdit({
   const handlePasswordSubmit = async () => {
     try {
       if (password.password === password2) {
+        const sanitizePassword = DOMPurify.sanitize(password.password);
+        Object.assign(password, { password: sanitizePassword });
         const res = await apiFetch("/users/" + user.id + "/password", {
           method: "PATCH",
           body: JSON.stringify(password),

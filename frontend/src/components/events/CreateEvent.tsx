@@ -6,6 +6,7 @@ import SelectBox from "../../ui/SelectBox";
 import { FlashMessage, User } from "../../types";
 import Alert from "../../ui/Alert";
 import clsx from "clsx";
+import DOMPurify from "dompurify";
 
 export default function CreateEvent({ user }: { user: User }) {
   const [users, setUsers] = useState<User[]>();
@@ -36,6 +37,19 @@ export default function CreateEvent({ user }: { user: User }) {
 
     const form: HTMLFormElement = e.target as HTMLFormElement;
     const data: object = formToObject(form);
+    // sanitize data
+    Object.assign(data, {
+      // @ts-ignore
+      title: DOMPurify.sanitize(data.title),
+      // @ts-ignore
+      place: DOMPurify.sanitize(data.place),
+      // @ts-ignore
+      start_time: DOMPurify.sanitize(data.start_time),
+      // @ts-ignore
+      duration: DOMPurify.sanitize(data.duration),
+      // @ts-ignore
+      content: DOMPurify.sanitize(data.content),
+    });
 
     //
     for (let i = 0; i < participants.length; i++) ids.push(participants[i].id);

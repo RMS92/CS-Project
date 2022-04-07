@@ -1,11 +1,70 @@
 Input,Requête,Niveau
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[77],SELECT * FROM public.event WHERE id = 77,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
-[90],SELECT * FROM public.event WHERE id = 90,3
-[90],DELETE FROM public.event WHERE id = 90,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[78],SELECT * FROM public.event WHERE id = 78,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[78],SELECT * FROM public.event WHERE id = 78,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[28],"SELECT title, content, place, duration, public.event.created_at, public.event.updated_at, public.user_event.user_id, begin_at, start_time, event_id as id FROM public.event JOIN public.user_event ON public.event.id = public.user_event.event_id WHERE public.user_event.user_id = 28",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[28],"SELECT title, content, place, duration, public.event.created_at, public.event.updated_at, public.user_event.user_id, begin_at, start_time, event_id as id FROM public.event JOIN public.user_event ON public.event.id = public.user_event.event_id WHERE public.user_event.user_id = 28",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+"[""<img src=x onerror=alert(1)//>"",""aaaaaaaaaaaaaaaaaaaaaa"",""25 rue Michelet, Rueil-Malmaison, 92500, France"",""120"",""12h50"",1650153600000,1649320935565,1649320935565,28]","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('<img src=x onerror=alert(1)//>', 'aaaaaaaaaaaaaaaaaaaaaa', '25 rue Michelet, Rueil-Malmaison, 92500, France', '120', '12h50', 1650153600000, 1649320935565, 1649320935565, 28) RETURNING *;",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[91],SELECT * FROM public.event WHERE id = 91,3
+[91],DELETE FROM public.event WHERE id = 91,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[76],SELECT * FROM public.event WHERE id = 76,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[77],SELECT * FROM public.event WHERE id = 77,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+"[""<img src=\""x\"">"",""ffffffffffffffff"",""25 rue Michelet, Rueil-Malmaison, 92500, France"",""120"",""12h60"",1650758400000,1649321358896,1649321358896,28]","INSERT INTO public.event (title, content, place, duration, start_time, begin_at, created_at, updated_at, user_id) VALUES ('<img src=""x"">', 'ffffffffffffffff', '25 rue Michelet, Rueil-Malmaison, 92500, France', '120', '12h60', 1650758400000, 1649321358896, 1649321358896, 28) RETURNING *;",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[92],SELECT * FROM public.event WHERE id = 92,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[92],SELECT * FROM public.event WHERE id = 92,3
+[92],DELETE FROM public.event WHERE id = 92,3
+[28],"SELECT title, content, place, duration, public.event.created_at, public.event.updated_at, public.user_event.user_id, begin_at, start_time, event_id as id FROM public.event JOIN public.user_event ON public.event.id = public.user_event.event_id WHERE public.user_event.user_id = 28",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+"[""<img src=\""x\"">"",""Je suis un évènement trop bien :)"",""25 rue Michelet, Rueil-Malmaison, 92500, France"",""120"",""14h30"",1650758400000,1649321577118,77]","UPDATE public.event SET title = '<img src=""x"">', content = 'Je suis un évènement trop bien :)', place = '25 rue Michelet, Rueil-Malmaison, 92500, France', duration = '120', start_time = '14h30', begin_at = 1650758400000, updated_at = 1649321577118 WHERE id = 77 RETURNING *;",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+"[""Evemement trop bien v3 !"",""Je suis un évènement trop bien :)"",""25 rue Michelet, Rueil-Malmaison, 92500, France"",""120"",""14h30"",1651276800000,1649321602438,77]","UPDATE public.event SET title = 'Evemement trop bien v3 !', content = 'Je suis un évènement trop bien :)', place = '25 rue Michelet, Rueil-Malmaison, 92500, France', duration = '120', start_time = '14h30', begin_at = 1651276800000, updated_at = 1649321602438 WHERE id = 77 RETURNING *;",3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[],SELECT * FROM public.event ORDER BY begin_at DESC,3
+[77],SELECT * FROM public.event WHERE id = 77,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3
 [],SELECT * FROM public.event ORDER BY begin_at DESC,3

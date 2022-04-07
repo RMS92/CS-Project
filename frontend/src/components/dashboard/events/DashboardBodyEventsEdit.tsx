@@ -3,6 +3,7 @@ import Icon from "../../../ui/Icon";
 import Field from "../../../ui/Field";
 import React, { SyntheticEvent, useState } from "react";
 import { apiFetch, formToObject } from "../../../utils/api";
+import DOMPurify from "dompurify";
 
 export default function DashboardBodyEventsEdit({
   selectedEvent,
@@ -32,6 +33,20 @@ export default function DashboardBodyEventsEdit({
 
     const form: HTMLFormElement = e.target as HTMLFormElement;
     const data: object = formToObject(form);
+
+    // sanitize data
+    Object.assign(data, {
+      // @ts-ignore
+      title: DOMPurify.sanitize(data.title),
+      // @ts-ignore
+      place: DOMPurify.sanitize(data.place),
+      // @ts-ignore
+      start_time: DOMPurify.sanitize(data.start_time),
+      // @ts-ignore
+      duration: DOMPurify.sanitize(data.duration),
+      // @ts-ignore
+      content: DOMPurify.sanitize(data.content),
+    });
 
     try {
       updateAdminEvent(selectedEvent, "", data);

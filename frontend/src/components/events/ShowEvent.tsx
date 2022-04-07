@@ -7,6 +7,7 @@ import { apiFetch, formToObject } from "../../utils/api";
 import Comment from "../Comment";
 import { dateDiff, formatTitle } from "../../utils/functions";
 import { useComments } from "../../hooks/useComments";
+import DOMPurify from "dompurify";
 
 export default function ShowEvent() {
   const [user, setUser] = useState<User | null>();
@@ -97,6 +98,10 @@ export default function ShowEvent() {
 
     const form: HTMLFormElement = e.target as HTMLFormElement;
     const data: object = formToObject(form);
+
+    // @ts-ignore
+    Object.assign(data, { content: DOMPurify.sanitize(data.content) });
+    console.log(data);
 
     Object.assign(data, { event_id: id });
 

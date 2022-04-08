@@ -12,7 +12,6 @@ import {
 } from "./interfaces/database.interface";
 import { WorkbookService } from "../workbook/workbook.service";
 import { ConfigService } from "../config/config.service";
-import PromiseMatchers = jest.PromiseMatchers;
 
 @Injectable()
 export class DatabaseService<T> implements DatabaseInterface<T> {

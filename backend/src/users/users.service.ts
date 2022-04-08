@@ -357,7 +357,7 @@ export class UsersService {
         fileType.ext === "jpg" ||
         fileType.ext === "jpeg")
     ) {
-      //remove avatar file
+      // remove avatar file if one exists
       if (user.avatar_id) {
         await this.filesService.removeAvatarFile(user.pseudo, +user.avatar_id);
       }

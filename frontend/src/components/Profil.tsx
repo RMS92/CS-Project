@@ -40,26 +40,28 @@ export default function Profil({
   const handleChange = async (e: SyntheticEvent) => {
     // @ts-ignore
     const file = e.target.files[0];
+    console.log(file);
     const data = new FormData();
     data.append("file", file);
     try {
       // Update user with avatar file
-      const { avatar_id } = await fetch(
-        API_URL + "/users/" + user.id + "/avatarFile",
-        {
-          credentials: "include",
-          method: "PATCH",
-          body: data,
-        }
-      ).then((res) => {
+      const res = await fetch(API_URL + "/users/" + user.id + "/avatarFile", {
+        credentials: "include",
+        method: "PATCH",
+        body: data,
+      }).then((res) => {
         return res.json().then((data) => {
           return data;
         });
       });
 
       // Find and set new avatar file from user
-      const file = await apiFetch("/files/" + avatar_id + "/avatarFile");
-      setProfilPicture(file);
+      if (res.statusCode !== 400) {
+        const file = await apiFetch("/files/" + res.avatar_id + "/avatarFile");
+        setProfilPicture(file);
+      } else {
+        console.log("Incorrect file type");
+      }
     } catch (err) {
       console.log(err);
     }

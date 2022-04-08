@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 const fs = require("fs");
 const { promisify } = require("util");
 const path = require("path");
+const FileType = require("file-type");
 
 export const customAvatarFileStorage = async (
   req: Express.Request,
@@ -33,7 +34,7 @@ export const renameFilename = (
   callback(null, filename);
 };
 
-export const imageFileFilter = (req, file, callback) => {
+export const imageFileFilter = async (req, file, callback) => {
   if (!file.originalname.match(/.(jpg|jpeg|png|gif)$/i)) {
     return callback(
       new Error("Only jpeg and png image files are allowed"),

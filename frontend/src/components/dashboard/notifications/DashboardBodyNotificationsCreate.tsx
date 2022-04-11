@@ -3,7 +3,6 @@ import { apiFetch, formToObject } from "../../../utils/api";
 import Icon from "../../../ui/Icon";
 import Field from "../../../ui/Field";
 import { User } from "../../../types";
-import { useEvents } from "../../../hooks/useEvents";
 import DOMPurify from "dompurify";
 
 export default function DashboardBodyNotificationsCreate({
@@ -41,9 +40,9 @@ export default function DashboardBodyNotificationsCreate({
     // sanitize data
     Object.assign(data, {
       // @ts-ignore
-      message: DOMPurify.sanitize(data.message),
+      message: data.message,
       // @ts-ignore
-      url: "http://localhost:3000/" + DOMPurify.sanitize(data.url),
+      url: "http://localhost:3000/",
       // @ts-ignore
       channel: DOMPurify.sanitize(data.channel),
     });
@@ -78,16 +77,6 @@ export default function DashboardBodyNotificationsCreate({
             onChange={handleChange}
           >
             Message
-          </Field>
-          <Field
-            name="url"
-            type="text"
-            value={fields.url}
-            required={false}
-            placeholder="e.g. events/1"
-            onChange={handleChange}
-          >
-            Url
           </Field>
           <Field
             name="channel"

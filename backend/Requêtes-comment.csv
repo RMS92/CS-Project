@@ -1,28 +1,2 @@
 Input,Requête,Niveau
 [],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-"[""<img src=x onerror=alert(1)//>"",28,""77"",1649319896096,1649319896096]","INSERT INTO public.comment (content, user_id, event_id, created_at, updated_at) VALUES ('<img src=x onerror=alert(1)//>', 28, '77', 1649319896096, 1649319896096) RETURNING *;",3
-[23],SELECT * FROM public.comment WHERE id = 23,3
-[23],DELETE FROM public.comment WHERE id = 23,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-"[""<img src=x onerror=alert(1)//>"",28,""77"",1649319999850,1649319999850]","INSERT INTO public.comment (content, user_id, event_id, created_at, updated_at) VALUES ('<img src=x onerror=alert(1)//>', 28, '77', 1649319999850, 1649319999850) RETURNING *;",3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-"[""<img src=\""x\"">"",28,""77"",1649320235065,1649320235065]","INSERT INTO public.comment (content, user_id, event_id, created_at, updated_at) VALUES ('<img src=""x"">', 28, '77', 1649320235065, 1649320235065) RETURNING *;",3
-[25],SELECT * FROM public.comment WHERE id = 25,3
-[25],DELETE FROM public.comment WHERE id = 25,3
-[24],SELECT * FROM public.comment WHERE id = 24,3
-[24],DELETE FROM public.comment WHERE id = 24,3
-"[""<svg><g></g></svg>"",28,""77"",1649320288275,1649320288275]","INSERT INTO public.comment (content, user_id, event_id, created_at, updated_at) VALUES ('<svg><g></g></svg>', 28, '77', 1649320288275, 1649320288275) RETURNING *;",3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-"[""Je "",28,""77"",1649320309804,1649320309804]","INSERT INTO public.comment (content, user_id, event_id, created_at, updated_at) VALUES ('Je ', 28, '77', 1649320309804, 1649320309804) RETURNING *;",3
-[26],SELECT * FROM public.comment WHERE id = 26,3
-[26],DELETE FROM public.comment WHERE id = 26,3
-[27],SELECT * FROM public.comment WHERE id = 27,3
-[27],DELETE FROM public.comment WHERE id = 27,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3
-[],SELECT * FROM public.comment ORDER BY created_at ASC,3

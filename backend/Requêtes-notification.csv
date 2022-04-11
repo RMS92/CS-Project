@@ -1,8 +1,14 @@
 Input,Requête,Niveau
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
-[28],SELECT * FROM public.notification WHERE user_id = 28 ORDER BY created_at DESC,3
+[65],SELECT * FROM public.notification WHERE user_id = 65 ORDER BY created_at DESC,3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3
+[65],SELECT * FROM public.notification WHERE user_id = 65 ORDER BY created_at DESC,3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3
+"[""Salut les abonnés !"",""http://localhost:3000/"",""public"",1649672285280,1649672285280,65]","INSERT INTO public.notification (message, url, channel, created_at, updated_at, user_id) VALUES ('Salut les abonnés !', 'http://localhost:3000/', 'public', 1649672285280, 1649672285280, 65) RETURNING *;",3
+[65],SELECT * FROM public.notification WHERE read_at is null AND user_id = 65,3
+"[1649672286407,226]",UPDATE public.notification SET read_at = 1649672286407 WHERE id = 226 RETURNING *;,3
+[65],SELECT * FROM public.notification WHERE user_id = 65 ORDER BY created_at DESC,3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3
+[65],SELECT * FROM public.notification WHERE user_id = 65 ORDER BY created_at DESC,3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3
+[65],SELECT * FROM public.notification WHERE user_id = 65 ORDER BY created_at DESC,3
+[],SELECT * FROM public.notification WHERE channel LIKE 'public',3

@@ -1,27 +1,15 @@
-// Correctifs
-Quand pas d'évènement sur un utilisateur afficher un message - DONE
-logo sur l'onglet a la place de celui de react - DONE
-pop up disclaimer register page - DONE
+# CS EVENT
+- CS EVENT est un mini réseau social sur lequel les étudiants et les associations de CentraleSupélec peuvent créer et participer à des évènements se déroulant sur le campus de Rennes
+- Site web développé dans le cade du projet de fin d'étude CentraleSupélec. Son objectif est de recueillir des données de type requêtes SQL afin d'implémenter un IDS basé sur du Machine Learning
 
-hash passwords - DONE
-save prepared queries - DONE
-protéger les routes users ? - DONE
+# Frontend
+- Lancer 'npm install'
+- Lancer 'npm start'
 
-certificat https
-cookies pour https
-redirection react "*" sur https
+# Backend
+- Lancer 'npm install'
+- Lancer 'npm run start:dev'
 
-Deploiement:
-- remplir httpsoptions in main.ts of backend
-- cookie options pour https {secure true}
-- change url of frontend fetch in config.ts file
-
----
- <li className="header__search">
-          <div className="form-group" style={{ position: "relative" }}>
-            <input className="search" placeholder="Recherche..." />
-            <button>
-              <Icon name="search" />
-            </button>
-          </div>
-        </li>
+# Configuration
+- Le fichier de configuration du frontend se trouve à l'emplacement suivant: 'frontend/src/config.ts'
+- Le fichier de configuration du backend se trouve à l'emplacement suivant 'backend/src/config/model/env.model.ts'

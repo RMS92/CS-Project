@@ -46,7 +46,7 @@
     "exceljs": "^4.3.0",
     "express-session": "^1.17.2",
     "helmet": "^4.6.0",
-    "mongoose": "^5.13.14",
+    "mongoose": "^6.4.6",
     "nestjs-spelunker": "^0.4.1",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
